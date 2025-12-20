@@ -1,0 +1,83 @@
+:root {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 1 0;
+}
+
+header, footer {
+    background-color: rgb(22, 22, 134);
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+    padding: 5px;
+    gap: 5px;
+}
+
+.selectCategorias{
+    height: 40px;
+}
+
+.inputBusqueda {
+    height: 40px;
+}
+
+
+.logo {
+    background-image: url("./images/logo_techzone.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 110px;
+    width: 100px;
+}
+
+.divBusqueda {
+    display: flex;
+    align-items: center;
+}
+
+.imagenLupa {
+    background-image: url("./images/busqueda-de-lupa.png");
+    height: 40px;
+    width: 40px;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    background-color: white;
+
+}
+
+.listaFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 5px;
+    gap: 5px;
+}
+
+.pCopyright {
+    text-align: center;
+}
+
