@@ -1,0 +1,97 @@
+:root {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100dvh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem; 
+    background-color: #3460a1;
+    gap: 1rem;
+    color: white;
+}
+
+.logo {
+    width: 10rem;   
+    height: 3rem;   
+    background-image: url('./images/logo_techzone.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.selectCategorias {
+    padding: 0.25rem 0.5rem; 
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    border: 0.0625rem solid #ccc; 
+    background-color: #fff;
+}
+
+
+.divBusqueda {
+    position: relative;
+    width: 18rem; 
+}
+
+.inputBusqueda {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 0.5rem; 
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    outline: none;
+}
+
+
+.imagenLupa {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;  
+    height: 1.5rem; 
+    background-image: url('./images/busqueda-de-lupa.png');
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+
+header span {
+    margin-left: 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: color 0.3s;
+}
+
+header span:hover {
+    color: #000000;
+}
+
+/* Responsive básico */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .divBusqueda {
+        width: 100%;
+        max-width: 300px;
+    }
+}
