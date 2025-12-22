@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechZone</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
     <header>
@@ -25,11 +25,12 @@
             <span class="imagenLupa"></span>
         </div>
 
-        <span>Mi cuenta</span>
+        <span>Iniciar sesión</span>
         <span>Carrito</span>
     </header>
 
-
+    <aside class="asideIzquierdo"></aside>
+    
     <main>
         <h1>Productos destacados</h1>
         <div>
@@ -37,13 +38,15 @@
             <p>Producto 2</p>
             <p>Producto 3</p>
         </div>
-
+        
         <h1>Productos en oferta</h1>
         <div>
             (Usando la base de datos)
         </div>
     </main>
 
+    <aside class="asideDerecho"></aside>
+    
     <footer>
         <nav>
             <ul class="listaFooter">
