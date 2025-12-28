@@ -36,9 +36,8 @@ main {
     grid-area: asideIzquierdo;
 }
 
-header,
-footer {
-    background-color: #3460a1;
+header, footer {
+    background: linear-gradient(135deg, #000000, #1e00ff);
     color: white;
 }
 

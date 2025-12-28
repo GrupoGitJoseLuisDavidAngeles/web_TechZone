@@ -18,6 +18,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 main {
     background-color: white;
     padding: 2rem 2.5rem;
@@ -32,19 +33,6 @@ main h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     color: rgb(51, 51, 51);
-}
-
-
-
-.container-form {
-    border: #3460a1 solid 2px;
-    padding: 20px;
-
-    h2 {
-        text-align: center;
-        padding: 5px;
-        color: #3460a1;
-    }
 }
 
 .loginForm {
@@ -100,10 +88,23 @@ main h2 {
     transform: translateY(0);
 }
 
-.register-link{
+.register-link {
     padding: 10px;
     justify-self: center;
     padding-top: 30px;
 
     text-align: center;
+
+
+}
+
+.register-link a {
+    color: #667eea;
+}
+
+.register-link a:visited {
+    color: #667eea;
+}
+.register-link a:hover {
+    color: #5563c1;
 }

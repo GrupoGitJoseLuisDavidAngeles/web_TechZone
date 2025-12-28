@@ -22,7 +22,7 @@
                 <label for="tPassword">Contraseña: </label>
                 <input type="password" name="password" id="tPassword">
                 <button type="submit">Iniciar sesión</button>
-                <label for="" class="register-link"><a href="register.php">O registrarse</a></label>
+                <label for="" class="register-link"><a href="register.php">Si no tienes cuenta, registrate</a></label>
                 <!-- <button type="button"></button> -->
             </form>
 
