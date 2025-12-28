@@ -13,105 +13,28 @@
 
 body {
     min-height: 100dvh;
-    height: 100dvh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 15% 1fr 15%;
-    grid-template-areas:
-        "header           header   header"
-        "asideIzquierdo   main     asideDerecho"
-        "footer           footer   footer";
-}
-
-header,
-footer {
-    background-color: #3460a1;
-    color: white;
-}
-
-header {
-    grid-area: header;
+    background: linear-gradient(135deg, #000000, #1e00ff);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.75rem 1.5rem;
-    gap: 1rem;
-
 }
-
-.logo {
-    width: 10rem;
-    height: 3rem;
-    background-image: url("./images/logo_techzone.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-
-.selectCategorias {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-    border-radius: 0.25rem;
-    border: 0.0625rem solid rgb(255, 255, 255);
-    background-color: #fff;
-}
-
-
-.divBusqueda {
-    position: relative;
-    width: 18rem;
-}
-
-.inputBusqueda {
-    width: 100%;
-    padding: 0.5rem 2.5rem 0.5rem 0.5rem;
-    border: 0.0625rem solid #ccc;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    outline: none;
-}
-
-.imagenLupa {
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1.5rem;
-    height: 1.5rem;
-    background-image: url("./images/busqueda-de-lupa.png");
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
-}
-
-
-header span {
-    margin-left: 1rem;
-    cursor: pointer;
-    font-size: 0.875rem;
-    transition: color 0.3s;
-}
-
-header span:hover {
-    color: black;
-}
-
-.asideDerecho {
-    grid-area: asideDerecho;
-}
-
-.asideIzquierdo {
-    grid-area: asideIzquierdo;
-}
-
-
-
 main {
-    display: grid;
-    place-content: center;
-    grid-area: main;
+    background-color: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px #00000033;
 }
+
+
+main h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: rgb(51, 51, 51);
+}
+
+
 
 .container-form {
     border: #3460a1 solid 2px;
@@ -124,49 +47,63 @@ main {
     }
 }
 
-.loginform {
-    width: 80%;
-    align-self: center;
-    display: grid;
-    grid-template-columns: 180px 200px;
-    gap: 20px;
-    padding: 10px;
-
-    label {
-        text-align: left;
-    }
-
-    input {
-        align-self: end;
-        border: #3460a1 solid 2px;
-        padding: 3px;
-    }
-
-    button {
-        justify-self: center;
-        width: 110px;
-        background-color: #3460a1;
-        color: #ffffff;
-        border: none;
-        padding: 5px;
-        font-weight: 600;
-        letter-spacing: .5px;
-    }
-}
-
-footer {
-    grid-area: footer;
-}
-
-.listaFooter {
+.loginForm {
     display: flex;
-    justify-content: space-around;
-    list-style: none;
-    padding: 0.5rem;
-    gap: 0.5rem;
+    flex-direction: column;
 }
 
-.pCopyright {
+
+.loginForm label {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: rgb(85, 85, 85);
+}
+
+
+.loginForm input {
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+.loginForm input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+}
+
+
+.loginForm button {
+    margin-top: 0.5rem;
+    padding: 0.7rem;
+    background-color: #667eea;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+
+.loginForm button:hover {
+    background-color: #5563c1;
+    transform: translateY(-2px);
+}
+
+
+.loginForm button:active {
+    transform: translateY(0);
+}
+
+.register-link{
+    padding: 10px;
+    justify-self: center;
+    padding-top: 30px;
+
     text-align: center;
-    padding-bottom: 0.5rem;
 }
