@@ -105,6 +105,24 @@ main h2 {
 .register-link a:visited {
     color: #667eea;
 }
+
 .register-link a:hover {
     color: #5563c1;
+}
+
+.tLogo {
+    position: absolute;
+    background-image: url("../public/images/logo_techzone.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 10px;
+    left: 10px;
+    width: 300px;
+    height: 150px;
+}
+
+@media screen and (max-width: 815px) {
+    .tLogo {
+        display: none;
+    }
 }

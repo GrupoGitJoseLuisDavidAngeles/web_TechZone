@@ -14,17 +14,17 @@
 </head>
 
 <body>
+    <div class="tLogo"></div>
     <main>
-            <h2> Inicio de sesión </h2>
-            <form method="post" class="loginForm">
-                <label for="tEmail">Identificador de usuario:</label>
-                <input type="email" name="email" id="tEmail">
-                <label for="tPassword">Contraseña: </label>
-                <input type="password" name="password" id="tPassword">
-                <button type="submit">Iniciar sesión</button>
-                <label for="" class="register-link"><a href="register.php">Si no tienes cuenta, registrate</a></label>
-                <!-- <button type="button"></button> -->
-            </form>
+        <h2> Inicio de sesión </h2>
+        <form method="post" class="loginForm">
+            <label for="tEmail">Identificador de usuario:</label>
+            <input type="email" name="email" id="tEmail">
+            <label for="tPassword">Contraseña: </label>
+            <input type="password" name="password" id="tPassword">
+            <button type="submit">Iniciar sesión</button>
+            <label for="" class="register-link"><a href="register.php">Si no tienes cuenta, registrate</a></label>
+        </form>
 
     </main>
 </body>
