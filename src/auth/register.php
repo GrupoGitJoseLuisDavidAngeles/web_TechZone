@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <div class="tLogo"></div>
     <main>
         <h2>Registro</h2>
 
@@ -15,7 +16,6 @@
 
             <label for="tUsuario">Usuario:</label>
             <input type="text" name="text" id="tUsuario">
-
 
             <label for="tEmail">Email:</label>
             <input type="email" name="email" id="tEmail">

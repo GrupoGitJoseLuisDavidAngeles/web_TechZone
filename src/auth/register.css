@@ -16,6 +16,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 
@@ -28,6 +29,17 @@ main {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
+
+.tLogo {
+    position: absolute;
+    background-image: url("../public/images/logo_techzone.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 10px;
+    left: 10px;
+    width: 300px;
+    height: 150px;
+}
 
 main h2 {
     text-align: center;
@@ -87,4 +99,14 @@ main h2 {
 
 .registerForm button:active {
     transform: translateY(0);
+}
+
+
+
+
+
+@media screen and (max-width: 815px) {
+    .tLogo {
+        display: none;
+    }
 }
