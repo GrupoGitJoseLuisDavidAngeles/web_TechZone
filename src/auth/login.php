@@ -9,59 +9,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100dvh;
-            display: grid;
-            place-content: center;
-            position: inherit;
+    <link rel="stylesheet" href="login.css">
 
-            /* grid-template-columns: 1fr; */
-        }
-        
-        main {
-            display: grid;
-            /* height: 100%; */
-            h2{
-                text-align: center;
-            }
-        }
-
-        .loginform {
-            width: 80%;
-            align-self: center;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-
-            label {
-                text-align: left;
-            }
-
-            input{
-                align-self: end;
-                width: 150%;
-            }
-            button {
-                justify-self: center;
-                width: 90px;
-            }
-        }
-    </style>
 </head>
 
 <body>
+    <div class="tLogo"></div>
     <main>
-        <h2> Inicia sesión </h2>
-        <form method="post" class="loginform">
-            <label for="tEmail">Cuenta de correo:</label>
+        <h2> Inicio de sesión </h2>
+        <form method="post" class="loginForm">
+            <label for="tEmail">Identificador de usuario:</label>
             <input type="email" name="email" id="tEmail">
             <label for="tPassword">Contraseña: </label>
             <input type="password" name="password" id="tPassword">
-            <button type="submit">Inicia sesión</button>
-            <button type="button">Registrase</button>
+            <button type="submit">Iniciar sesión</button>
+            <label for="" class="register-link"><a href="register.php">Si no tienes cuenta, registrate</a></label>
         </form>
+
     </main>
 </body>
 
