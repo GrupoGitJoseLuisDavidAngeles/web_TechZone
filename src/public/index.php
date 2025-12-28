@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <div class="logo"></div>
+        <div class="tLogo"></div>
 
         <div>
             <label for="">Categorías</label>
