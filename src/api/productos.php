@@ -10,7 +10,7 @@ if (isset($_GET['categoria']) && is_numeric($_GET['categoria'])) {
             p.descripcion,
             p.precio,
             p.stock,
-            p.ruta_imagen,
+            p.imagen,
             c.nombre AS categoria
         FROM productos p
         JOIN categorias c ON p.categoria_id = c.id
@@ -28,7 +28,7 @@ if (isset($_GET['categoria']) && is_numeric($_GET['categoria'])) {
             p.descripcion,
             p.precio,
             p.stock,
-            p.ruta_imagen,
+            p.imagen,
             c.nombre AS categoria
         FROM productos p
         JOIN categorias c ON p.categoria_id = c.id
@@ -38,5 +38,5 @@ if (isset($_GET['categoria']) && is_numeric($_GET['categoria'])) {
 $productos = $stmt->fetchAll();
 
 header('Content-Type: application/json; charset=utf-8');
-echo json_encode($productos);
+echo json_encode($productos, JSON_UNESCAPED_UNICODE);
 ?>
