@@ -3,7 +3,7 @@ setup();
 
 async function setup() {
     const service = new productosService();
-    const productos =  service.getProducts();
+    const productos = service.getProducts();
     // console.log(productos);
-    
+
 }
