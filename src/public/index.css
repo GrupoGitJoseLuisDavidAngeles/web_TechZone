@@ -32,11 +32,36 @@ main {
 }
 
 
+.productos-destacados {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.product-card {
+    /* border: black 1px solid; */
+    border-radius: 10px;
+    display: grid;
+    padding: 5px;
+}
+
+.product-card:hover{
+    background-color: #cccccc3f;
+    width: calc(inherit + 10px);
+    /* width: ; */
+}
+
+.imagen-producto {
+    width: 150px;
+    justify-self: center;
+}
+
 .asideIzquierdo {
     grid-area: asideIzquierdo;
 }
 
-header, footer {
+header,
+footer {
     background: linear-gradient(135deg, #000000, #1d1dff, #3924db);
     color: white;
 }

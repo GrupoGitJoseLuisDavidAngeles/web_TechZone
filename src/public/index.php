@@ -14,6 +14,7 @@
         <div>
             <label for="">Categorías</label>
             <select name="" id="" class="selectCategorias">
+                <option disabled selected>Selecciona una categoría</option>
                 <option value="">Portátiles</option>
                 <option value="">Sobremesa</option>
                 <option value="">Componentes</option>
@@ -34,10 +35,7 @@
     
     <main>
         <h1>Productos destacados</h1>
-        <div>
-            <p>Producto 1</p>
-            <p>Producto 2</p>
-            <p>Producto 3</p>
+        <div id="tProductosDestacados" class="productos-destacados">     
         </div>
         
         <h1>Productos en oferta</h1>
