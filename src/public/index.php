@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <div class="logo"></div>
+        <div class="tLogo"></div>
 
         <div>
             <label for="">Categorías</label>
@@ -55,7 +55,7 @@
                 <li>Comunidad</li>
             </ul>
         </nav>
-        <p class="pCopyright">Copyright</p>
+        <p class="pCopyright">© 2025 TechZone. Todos los derechos reservados.</p>
     </footer>
 
 </body>
