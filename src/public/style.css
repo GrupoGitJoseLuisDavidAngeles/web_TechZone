@@ -33,7 +33,7 @@ header {
 }
 
 
-.selectCategorias {
+.selectCategories {
     padding: 0.25rem 0.5rem; 
     font-size: 0.875rem;
     border-radius: 0.25rem;
@@ -42,12 +42,12 @@ header {
 }
 
 
-.divBusqueda {
+.divSearchBar {
     position: relative;
     width: 18rem; 
 }
 
-.inputBusqueda {
+.inputSearchBar {
     width: 100%;
     padding: 0.5rem 2.5rem 0.5rem 0.5rem; 
     border: 0.0625rem solid #ccc;
@@ -57,7 +57,7 @@ header {
 }
 
 
-.imagenLupa {
+.iconSearchBar {
     position: absolute;
     right: 0.5rem;
     top: 50%;
@@ -90,7 +90,7 @@ header span:hover {
         gap: 0.5rem;
     }
 
-    .divBusqueda {
+    .divSearchBar {
         width: 100%;
         max-width: 300px;
     }

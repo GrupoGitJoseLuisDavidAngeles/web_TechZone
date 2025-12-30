@@ -15,29 +15,29 @@
 
         <div>
             <label for="">Categorías</label>
-            <select name="" id="" class="selectCategorias">
-                <option disabled selected>Selecciona una categoría</option>
-                <option value="">Portátiles</option>
-                <option value="">Sobremesa</option>
-                <option value="">Componentes</option>
-                <option value="">Periféricos</option>
+            <select name="" id="tSelectCategory" class="selectCategories">
+                <option value="all" selected>Todas las categorías</option>
+                <option value="Portátiles">Portátiles</option>
+                <option value="Sobremesa">Sobremesa</option>
+                <option value="Componentes">Componentes</option>
+                <option value="Periféricos">Periféricos</option>
             </select>
         </div>
 
-        <div class="divBusqueda">
-            <input class="inputBusqueda" type="text" name="" id="" placeholder="Busque un producto">
-            <span class="imagenLupa"></span>
+        <div class="divSearchBar">
+            <input class="inputSearchBar" type="text" name="" id="" placeholder="Busque un producto">
+            <span class="iconSearchBar"></span>
         </div>
 
-        <span>Iniciar sesión</span>
-        <span>Carrito</span>
+        <a href="../auth/login.php">Iniciar sesión</a>
+        <a href="../carrito/index.php">Carrito</a>
     </header>
 
-    <aside class="asideIzquierdo"></aside>
+    <aside class="aside-left"></aside>
 
     <main>
         <h1>Productos destacados</h1>
-        <div id="tProductosDestacados" class="productos-destacados">
+        <div id="tFeaturedProducts" class="featured-products">
         </div>
 
         <h1>Productos en oferta</h1>
@@ -46,11 +46,11 @@
         </div>
     </main>
 
-    <aside class="asideDerecho"></aside>
+    <aside class="aside-right"></aside>
 
     <footer>
         <nav>
-            <ul class="listaFooter">
+            <ul class="listFooter">
                 <li>Contacto</li>
                 <li>Sobre nosotros</li>
                 <li>Comunidad</li>

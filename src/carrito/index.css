@@ -205,12 +205,12 @@ header {
     background-position: center;
 }
 
-.divBusqueda {
+.divSearchBar {
     position: relative;
     width: 18rem;
 }
 
-.inputBusqueda {
+.inputSearchBar {
     width: 100%;
     padding: 0.5rem 2.5rem 0.5rem 0.5rem;
     border: 0.0625rem solid #ccc;
@@ -219,7 +219,7 @@ header {
     outline: none;
 }
 
-.imagenLupa {
+.iconSearchBar {
     position: absolute;
     right: 0.5rem;
     top: 50%;
@@ -247,7 +247,7 @@ footer {
     grid-area: footer;
 }
 
-.listaFooter {
+.listFooter {
     display: flex;
     justify-content: space-around;
     list-style: none;
@@ -269,7 +269,7 @@ footer {
         gap: 0.5rem;
     }
 
-    .divBusqueda {
+    .divSearchBar {
         width: 100%;
         max-width: 300px;
     }

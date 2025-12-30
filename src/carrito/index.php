@@ -12,9 +12,9 @@
     <header>
         <div class="tLogo"></div>
 
-        <div class="divBusqueda">
-            <input class="inputBusqueda" type="text" name="" id="" placeholder="Busque un producto">
-            <span class="imagenLupa"></span>
+        <div class="divSearchBar">
+            <input class="inputSearchBar" type="text" name="" id="" placeholder="Busque un producto">
+            <span class="iconSearchBar"></span>
         </div>
 
         <span>Iniciar sesión</span>
@@ -105,7 +105,7 @@
 
     <footer>
         <nav>
-            <ul class="listaFooter">
+            <ul class="listFooter">
                 <li>Contacto</li>
                 <li>Sobre nosotros</li>
                 <li>Comunidad</li>
