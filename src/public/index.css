@@ -42,6 +42,7 @@ main {
 }
 
 .product-card {
+    cursor: pointer;
     border-radius: 10px;
     display: grid;
     padding: 5px;
@@ -49,6 +50,16 @@ main {
     gap: 4px;
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    .product-name {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    .product-price {
+        font-weight: bold;
+        color: #1d1dff;
+        font-size: 1.1rem;
+    }
 }
 
 .product-card:hover {
@@ -129,14 +140,16 @@ header {
 }
 
 
-header span {
+header a {
+    color: inherit;
+    text-decoration: none;
     margin-left: 1rem;
     cursor: pointer;
     font-size: 0.875rem;
     transition: color 0.3s;
 }
 
-header span:hover {
+header a:hover {
     color: black;
 }
 

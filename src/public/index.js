@@ -42,13 +42,15 @@ function fillFeaturedContainer(productos) {
         nImg.classList.add('product-image');
         nImg.src = 'http://localhost:8081/assets/' + producto.imagen;
 
-        const nNombre = document.createElement('h3');
+        const nNombre = document.createElement('p');
         nCard.appendChild(nNombre)
         nNombre.textContent = producto.nombre;
+        nNombre.classList.add('product-name');
 
         const nPrecio = document.createElement('p');
         nCard.appendChild(nPrecio);
         nPrecio.textContent = producto.precio + ' €';
+        nPrecio.classList.add('product-price');
 
         const nDescripcion = document.createElement('p');
         nCard.appendChild(nDescripcion);

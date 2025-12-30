@@ -29,8 +29,8 @@
             <span class="iconSearchBar"></span>
         </div>
 
-        <span>Iniciar sesión</span>
-        <span>Carrito</span>
+        <a href="../auth/login.php">Iniciar sesión</a>
+        <a href="../carrito/index.php">Carrito</a>
     </header>
 
     <aside class="aside-left"></aside>
