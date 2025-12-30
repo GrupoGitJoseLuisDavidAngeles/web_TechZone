@@ -46,6 +46,7 @@ main {
     display: grid;
     padding: 5px;
     grid-template-rows: 2fr auto auto;
+    gap: 4px;
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }

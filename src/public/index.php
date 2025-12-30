@@ -15,12 +15,12 @@
 
         <div>
             <label for="">Categorías</label>
-            <select name="" id="" class="selectCategories">
-                <option disabled selected>Selecciona una categoría</option>
-                <option value="">Portátiles</option>
-                <option value="">Sobremesa</option>
-                <option value="">Componentes</option>
-                <option value="">Periféricos</option>
+            <select name="" id="tSelectCategory" class="selectCategories">
+                <option value="all" selected>Todas las categorías</option>
+                <option value="Portátiles">Portátiles</option>
+                <option value="Sobremesa">Sobremesa</option>
+                <option value="Componentes">Componentes</option>
+                <option value="Periféricos">Periféricos</option>
             </select>
         </div>
 
@@ -37,7 +37,7 @@
 
     <main>
         <h1>Productos destacados</h1>
-        <div id="tProductosDestacados" class="featured-products">
+        <div id="tFeaturedProducts" class="featured-products">
         </div>
 
         <h1>Productos en oferta</h1>

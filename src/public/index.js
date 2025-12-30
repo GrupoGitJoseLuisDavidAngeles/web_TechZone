@@ -3,18 +3,33 @@ setup();
 
 async function setup() {
     const service = new productosService();
-    const productos = await service.getProducts();
-    fillDestacados(productos)
+    let productos = await service.getProducts();
+    fillFeaturedContainer(productos);
+    const nSelCategory = document.querySelector('#tSelectCategory');
+    nSelCategory.addEventListener('change', fillFeaturedByCategory)
+}
 
+async function fillFeaturedByCategory(e) {
+    const nSelect = e.target;
+    const categoria = nSelect.value;
+
+    const service = new productosService();
+    let productos = await service.getProducts();
+    if (categoria != 'all') {
+        productos = productos.filter(prod => prod['categoria'] == categoria)
+    }
+    fillFeaturedContainer(productos);
 
 }
 
+
 /**
  * 
- * @param {Array<{id:number, nombre:string,descripcion:string, precio:number,stock:number, imagen:string, categoria:string}>} productos 
+ * @param {Array<{id:number, nombre:string, descripcion:string, precio:number, stock:number, imagen:string, categoria:string}>} productos 
  */
-function fillDestacados(productos) {
-    const nContainer = document.querySelector('#tProductosDestacados');
+function fillFeaturedContainer(productos) {
+    const nContainer = document.querySelector('#tFeaturedProducts');
+    nContainer.innerHTML = '';
     for (let i = 0; i < productos.length; i++) {
         const producto = productos[i];
 
