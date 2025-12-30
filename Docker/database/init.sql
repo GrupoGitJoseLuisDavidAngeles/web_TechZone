@@ -47,6 +47,17 @@ CREATE TABLE carrito_productos (
     UNIQUE (carrito_id, producto_id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+CREATE TABLE ofertas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    producto_id INT NOT NULL,
+    precio_oferta DECIMAL(10,2) NOT NULL,
+    fecha_inicio DATETIME NOT NULL,
+    fecha_fin DATETIME NOT NULL,
+    activa TINYINT(1) DEFAULT 1,
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+        ON DELETE CASCADE
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 INSERT INTO categorias (nombre, descripcion) VALUES
 ('Portátiles', 'Ordenadores portátiles'),
 ('Sobremesa', 'PCs de sobremesa'),
@@ -74,3 +85,23 @@ INSERT INTO productos (nombre, descripcion, precio, stock, categoria_id, imagen)
 ('Razer DeathAdder V2', 'Ratón gaming óptico 20.000 DPI', 59.99, 40, 4, 'mouse.png'),
 ('LG UltraGear 27"', 'Monitor gaming 144Hz 1ms', 299.99, 7, 4, 'monitor.png'),
 ('HyperX Cloud II', 'Auriculares gaming con sonido 7.1', 99.99, 14, 4, 'headphones.png');
+
+INSERT INTO ofertas (producto_id, precio_oferta, fecha_inicio, fecha_fin)
+VALUES
+(1, 649.99, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+(2, 799.99, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY));
+
+INSERT INTO ofertas (producto_id, precio_oferta, fecha_inicio, fecha_fin)
+VALUES
+(4, 1699.99, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+(5, 449.99, NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY));
+
+INSERT INTO ofertas (producto_id, precio_oferta, fecha_inicio, fecha_fin)
+VALUES
+(7, 129.99, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY)),
+(8, 309.99, NOW(), DATE_ADD(NOW(), INTERVAL 10 DAY));
+
+INSERT INTO ofertas (producto_id, precio_oferta, fecha_inicio, fecha_fin)
+VALUES
+(10, 119.99, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+(12, 279.99, NOW(), DATE_ADD(NOW(), INTERVAL 12 DAY));
