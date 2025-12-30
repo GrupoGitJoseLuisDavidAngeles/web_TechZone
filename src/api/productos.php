@@ -11,9 +11,8 @@ if (isset($_GET['categoria']) && is_numeric($_GET['categoria'])) {
             p.precio,
             p.stock,
             p.imagen,
-            c.nombre AS categoria
+            p.categoria_id
         FROM productos p
-        JOIN categorias c ON p.categoria_id = c.id
         WHERE p.categoria_id = ?
     ");
 
@@ -29,9 +28,8 @@ if (isset($_GET['categoria']) && is_numeric($_GET['categoria'])) {
             p.precio,
             p.stock,
             p.imagen,
-            c.nombre AS categoria
+            p.categoria_id
         FROM productos p
-        JOIN categorias c ON p.categoria_id = c.id
     ");
 }
 
