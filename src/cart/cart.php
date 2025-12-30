@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./cart.css">
 </head>
 
 <body>
@@ -96,7 +96,12 @@
                 <p>IVA <span class="iva">100€</span></p>
                 <p>Gastos de envío</p>
             </div>
-            <p class="total">Total: <span id="total">1100 €</span> </p>
+            <div class="total">
+                <span class="totalLabel">
+                    Total <span class="textIva">(IVA incluido)</span>
+                </span>
+                <span class="totalPrice" id="finallPrice">1100 €</span>
+            </div>
             <button class="btnComprar">Finalizar compra</button>
         </div>
     </main>

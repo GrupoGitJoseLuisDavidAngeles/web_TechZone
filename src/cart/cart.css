@@ -9,6 +9,7 @@
     box-sizing: border-box;
 }
 
+/* movil*/
 body {
     min-height: 100dvh;
     display: grid;
@@ -16,7 +17,7 @@ body {
     grid-template-columns: 15% 1fr 15%;
     grid-template-areas:
         "header       header    header"
-        "asideLeft    main      asideRight"
+        "main         main      main"
         "footer       footer    footer";
 }
 
@@ -28,10 +29,9 @@ main {
     grid-area: main;
     padding: 1rem;
     display: grid;
-    grid-template-columns: 2fr 1fr;
     grid-template-areas: 
-        "shoppingCart    order"
-        "shoppingCart    order";
+        "shoppingCart"
+        "order";
     gap: 2rem;
 }
 
@@ -56,7 +56,9 @@ main {
 
 .product {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 2fr;
+    gap: 1.5rem;
     padding: 2rem;
 }
 
@@ -66,7 +68,7 @@ main {
     transition: background-color 0.2s linear;
 }
 
-.productImage1, .productImage2, .productImage3  {
+.productImage1, .productImage2, .productImage3 {
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -79,6 +81,7 @@ main {
 .productImage3 {
     background-image: url("../assets/monitor.png");
 }
+
 
 
 .btnDelete, .btnAdd {
@@ -117,18 +120,22 @@ main {
 }
 
 .price {
-    text-align: end;
+    grid-column: span 2;
 }
 
 .order {
-    width: 400px; 
-    height: fit-content;                
+    width: 350px; 
     margin: 20px auto;           
     padding: 20px;
     border: 1px solid #d5d5d5;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+    h2, .orderSummary  {
+        display: none;
+    }
 }
+
 
 .order h2 {
     font-size: 1.5rem;
@@ -154,10 +161,16 @@ main {
 }
 
 .total {
+    display: flex;
+    justify-content: space-between;
     font-size: 1.2rem;
-    text-align: right;
     margin-top: 10px;
 }
+
+.textIva {
+    color: #b1b1b1;
+}
+
 
 .btnComprar {
     display: block;
@@ -262,6 +275,9 @@ footer {
 
 
 
+
+
+/* TABLET */
 @media screen and (min-width: 768px) {
     header {
         flex-wrap: wrap;
@@ -273,4 +289,53 @@ footer {
         width: 100%;
         max-width: 300px;
     }
+}
+
+
+/* MONITOR */
+@media screen and (min-width: 1024px) {
+    body {
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 15% 1fr 15%;
+        grid-template-areas:
+            "header       header    header"
+            "asideLeft    main      asideRight"
+            "footer       footer    footer";
+    }
+
+    main {
+        grid-area: main;
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: 
+            "shoppingCart    order"
+            "shoppingCart    order";
+        gap: 2rem;
+    }
+
+    .order {
+        width: 400px; 
+        height: fit-content;                
+        margin: 20px auto;           
+        padding: 20px;
+        border: 1px solid #d5d5d5;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+        h2, .orderSummary {
+            display: block;
+        }
+    }
+
+    .product {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        padding: 2rem;
+    }
+
+    .price {
+        text-align: end;
+    }
+
 }
