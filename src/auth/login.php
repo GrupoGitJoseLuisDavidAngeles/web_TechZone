@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 
+session_start();
+$mensajeExito = $_SESSION['success_message'] ?? null;
+unset($_SESSION['success_message']);
+
 $errores = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($usuario) {
             if (password_verify($password, $usuario['password'])) {
-                session_start();
+                session_regenerate_id(true);
+
                 $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['usuario_nombre'] = $usuario['nombre'];
 
@@ -47,6 +52,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="tLogo"></div>
     <main>
         <h2> Inicio de sesión </h2>
+        <?php if ($mensajeExito): ?>
+            <div class="success">
+                <?= htmlspecialchars($mensajeExito) ?>
+            </div>
+        <?php endif; ?>
+
         <?php if (!empty($errores)): ?>
             <div class="errors">
                 <?= htmlspecialchars($errores[0]) ?>

@@ -43,6 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ");
         $stmt->execute([$usuario, $email, $hash]);
 
+        session_start();
+        $_SESSION['success_message'] = 'Registro completado correctamente.';
+
         header('Location: login.php');
         exit;
     }
