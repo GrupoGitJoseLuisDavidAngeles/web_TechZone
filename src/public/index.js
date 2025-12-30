@@ -24,7 +24,7 @@ function fillDestacados(productos) {
 
         const nImg = document.createElement('img');
         nCard.appendChild(nImg);
-        nImg.classList.add('imagen-producto');
+        nImg.classList.add('product-image');
         nImg.src = 'http://localhost:8081/assets/' + producto.imagen;
 
         const nNombre = document.createElement('h3');
