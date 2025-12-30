@@ -8,28 +8,29 @@ unset($_SESSION['success_message']);
 $errores = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
+    $identificador = trim($_POST['identifier'] ?? '');
     $password = $_POST['password'] ?? '';
 
-    if ($email === '' || $password === '') {
+    if ($identificador === '' || $password === '') {
         $errores[] = 'Todos los campos son obligatorios';
     } else {
-        $stmt = $pdo->prepare("SELECT id, nombre, password FROM usuarios WHERE email = ?");
-        $stmt->execute([$email]);
+        $stmt = $pdo->prepare("
+            SELECT id, nombre, password
+            FROM usuarios
+            WHERE email = ? OR nombre = ?
+            LIMIT 1
+        ");
+        $stmt->execute([$identificador, $identificador]);
         $usuario = $stmt->fetch();
 
-        if ($usuario) {
-            if (password_verify($password, $usuario['password'])) {
-                session_regenerate_id(true);
+        if ($usuario && password_verify($password, $usuario['password'])) {
+            session_regenerate_id(true);
 
-                $_SESSION['usuario_id'] = $usuario['id'];
-                $_SESSION['usuario_nombre'] = $usuario['nombre'];
+            $_SESSION['usuario_id'] = $usuario['id'];
+            $_SESSION['usuario_nombre'] = $usuario['nombre'];
 
-                header('Location: ../public/index.php');
-                exit;
-            } else {
-                $errores[] = 'Usuario o contraseña incorrectos';
-            }
+            header('Location: ../public/index.php');
+            exit;
         } else {
             $errores[] = 'Usuario o contraseña incorrectos';
         }
@@ -45,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión</title>
     <link rel="stylesheet" href="login.css">
-
 </head>
 
 <body>
@@ -65,8 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form method="post" class="loginForm">
-            <label for="tEmail">Identificador de usuario:</label>
-            <input type="email" name="email" id="tEmail" autocomplete="email">
+            <label for="tIdentifier">Identificador de usuario:</label>
+            <input type="text" name="identifier" id="tIdentifier" autocomplete="username">
             <label for="tPassword">Contraseña: </label>
             <input type="password" name="password" id="tPassword" autocomplete="current-password">
             <button type="submit">Iniciar sesión</button>
