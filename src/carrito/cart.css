@@ -9,7 +9,7 @@
     box-sizing: border-box;
 }
 
-/* movil*/
+
 body {
     min-height: 100dvh;
     display: grid;
@@ -42,7 +42,7 @@ main {
 
     & > p {
         color: #808080;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -57,9 +57,15 @@ main {
 .product {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 2fr;
+    grid-template-rows: auto auto;
     gap: 1.5rem;
-    padding: 2rem;
+    padding: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #d6d6d6;
+}
+
+.productsContainer .product:last-child {
+    border-bottom: none;
 }
 
 .product:hover {
@@ -68,21 +74,35 @@ main {
     transition: background-color 0.2s linear;
 }
 
-.productImage1, .productImage2, .productImage3 {
+.productImage {
     background-size: contain;
     background-repeat: no-repeat;
-}
-.productImage1 {
-    background-image: url("../assets/keyboard.png");
-}
-.productImage2 {
-    background-image: url("../assets/mouse.png");
-}
-.productImage3 {
-    background-image: url("../assets/monitor.png");
+    width: 100%;
+    height: 120px;
+    grid-column: 1;
+    grid-row: span 2;
 }
 
+.productInformation {
+    display: flex;
+    flex-direction: column; 
+    gap: 0.4rem;
+}
 
+.productName {
+    font-size: 1.2rem;
+}
+
+.category {
+    font-size: 0.8rem;
+    color: grey;
+}
+
+.deliveryDay {
+    font-size: 0.8rem;
+    color: green;
+    margin: 10px 0 10px 0;
+}
 
 .btnDelete, .btnAdd {
     background-color: #c9c6c656;
@@ -97,6 +117,7 @@ main {
 }
 
 .deleteProduct {
+    display: inline;
     text-decoration: none;
     color: blue;
 }
@@ -113,18 +134,15 @@ main {
     padding: 5px 20px 5px 20px;
 }
 
-.deliveryDay {
-    font-size: 0.8rem;
-    color: green;
-    margin: 10px 0 10px 0;
-}
-
 .price {
-    grid-column: span 2;
+    font-weight: bold;
 }
 
 .order {
-    width: 350px; 
+    position: sticky;
+    bottom: 5px;
+    width: 100%; 
+    background-color: #ffffff;
     margin: 20px auto;           
     padding: 20px;
     border: 1px solid #d5d5d5;
@@ -135,7 +153,6 @@ main {
         display: none;
     }
 }
-
 
 .order h2 {
     font-size: 1.5rem;
@@ -201,9 +218,12 @@ header, footer {
 
 header {
     grid-area: header;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
     padding: 0.75rem 1.5rem;
     gap: 1rem;
 }
@@ -215,7 +235,8 @@ header {
     background-image: url("../public/images/logo_techzone.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: left center;
+    flex-shrink: 0;
 }
 
 .divBusqueda {
@@ -277,7 +298,6 @@ footer {
 
 
 
-/* TABLET */
 @media screen and (min-width: 768px) {
     header {
         flex-wrap: wrap;
@@ -289,10 +309,11 @@ footer {
         width: 100%;
         max-width: 300px;
     }
-}
+} 
 
 
-/* MONITOR */
+
+
 @media screen and (min-width: 1024px) {
     body {
         grid-template-rows: auto 1fr auto;
@@ -304,24 +325,29 @@ footer {
     }
 
     main {
-        grid-area: main;
-        padding: 1rem;
         display: grid;
         grid-template-columns: 2fr 1fr;
         grid-template-areas: 
             "shoppingCart    order"
-            "shoppingCart    order";
+        ;
         gap: 2rem;
+        align-items: start;
+    }
+
+    .cart {
+        grid-area: shoppingCart;
     }
 
     .order {
-        width: 400px; 
+        grid-area: order;
+        position: relative;
+        /* width: 100%; 
         height: fit-content;                
-        margin: 20px auto;           
+        margin: 0;           
         padding: 20px;
         border: 1px solid #d5d5d5;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2); */
 
         h2, .orderSummary {
             display: block;
@@ -329,13 +355,11 @@ footer {
     }
 
     .product {
-        display: grid;
         grid-template-columns: 1fr 2fr 1fr;
-        padding: 2rem;
+        padding-right: 2rem;
     }
 
     .price {
         text-align: end;
     }
-
 }
