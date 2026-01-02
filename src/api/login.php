@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../libs/jwt.utils.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -27,7 +28,7 @@ if ($identifier === '' || $password === '') {
 }
 
 $stmt = $pdo->prepare("
-    SELECT id, nombre, password
+    SELECT id, nombre, password, rol
     FROM usuarios
     WHERE email = ? OR nombre = ?
     LIMIT 1
@@ -49,16 +50,12 @@ $clave = 'CLAVE_SECRETA';
 $payload = [
     'sub' => $usuario['id'],
     'nombre' => $usuario['nombre'],
+    'rol' => $usuario['rol'],
     'iat' => time(),
     'exp' => time() + 3600 * 2
 ];
 
-$header = base64_encode(json_encode(['alg' => 'HS256', 'typ' => 'JWT']));
-$body   = base64_encode(json_encode($payload));
-$signature = hash_hmac('sha256', "$header.$body", $clave, true);
-$signature = base64_encode($signature);
-
-$jwt = "$header.$body.$signature";
+$jwt = generateJWT($payload, $clave);
 
 echo json_encode([
     'ok' => true,
