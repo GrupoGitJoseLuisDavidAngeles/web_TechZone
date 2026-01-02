@@ -7,6 +7,8 @@
     <title>TechZone</title>
     <link rel="stylesheet" href="./index.css">
     <script type="module" src="index.js"></script>
+    <link rel="icon" type="image/png" href="./images/favicon.png">
+
 </head>
 
 <body>
@@ -17,10 +19,6 @@
             <label for="">Categorías</label>
             <select name="" id="tSelectCategory" class="selectCategories">
                 <option value="all" selected>Todas las categorías</option>
-                <option value="Portátiles">Portátiles</option>
-                <option value="Sobremesa">Sobremesa</option>
-                <option value="Componentes">Componentes</option>
-                <option value="Periféricos">Periféricos</option>
             </select>
         </div>
 
@@ -41,7 +39,7 @@
         </div>
 
         <h1>Productos en oferta</h1>
-        <div>
+        <div id="tProductsOnOffer" class="featured-products">
             (Usando la base de datos)
         </div>
     </main>
