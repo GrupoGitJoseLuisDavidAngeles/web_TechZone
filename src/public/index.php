@@ -34,11 +34,11 @@
     <aside class="aside-left"></aside>
 
     <main>
-        <h1>Productos destacados</h1>
+        <h1><span id="tTitleFeatured">Productos</span> destacados</h1>
         <div id="tFeaturedProducts" class="featured-products">
         </div>
 
-        <h1>Productos en oferta</h1>
+        <h1><span id="tTitleOffers">Productos</span> en oferta</h1>
         <div id="tProductsOnOffer" class="featured-products">
             (Usando la base de datos)
         </div>
