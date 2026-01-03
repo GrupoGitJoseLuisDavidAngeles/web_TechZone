@@ -13,9 +13,9 @@
     <header>
         <div class="tLogo"></div>
 
-        <div class="divBusqueda">
-            <input class="inputBusqueda" type="text" name="" id="" placeholder="Busque un producto">
-            <span class="imagenLupa"></span>
+        <div class="divSearch">
+            <input class="inputSearch" type="text" name="" id="" placeholder="Busque un producto">
+            <span class="searchIcon"></span>
         </div>
 
         <span class="login">Iniciar sesión</span>
@@ -26,7 +26,7 @@
     <main>
         <div class="cart">
             <h1>Carrito de la compra</h1>
-            <p id="productsQuantity">x <span>productos</span></p>
+            <p id="productsQuantity">x<span> productos</span></p>
 
             <div class="productsContainer">
 
@@ -43,7 +43,7 @@
                             <span class="productQuantity" id="itemQuantity">5</span>
                             <button class="btnAdd">+</button>
                         </div>
-                        <a href="" class="deleteProduct">Eliminar producto</a>
+                        <span href="" class="deleteProduct">Eliminar producto</span>
                     </div>
                     <p class="price"><span class="amount">30</span> €</p>
                 </div>
@@ -95,7 +95,9 @@
                 <p>IVA 
                     <span class="iva"><span class="amount">100</span> €</span>
                 </p>
-                <p>Gastos de envío</p>
+                <p>Gastos de envío
+                    <span class="shippingCosts"></span>
+                </p>
             </div>
             <div class="total">
                 <span class="totalLabel">
@@ -103,7 +105,7 @@
                 </span>
                 <span class="totalPrice" id="finalPrice">1100 €</span>
             </div>
-            <button class="btnComprar">Finalizar compra</button>
+            <button class="btnComprar">Finalizar compra</button> 
         </div>
     </main>
 

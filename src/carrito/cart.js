@@ -28,6 +28,7 @@ function fillFeaturedContainer(products) {
         nProduct.appendChild(nImage);
         nImage.classList.add('productImage'); 
         nImage.style.backgroundImage = `url('http://localhost:8081/assets/${product.imagen}')`;
+        nImage.style.backgroundPositionX = "center";
 
         const nInfo = document.createElement('div');
         nProduct.appendChild(nInfo);
@@ -76,9 +77,13 @@ function fillFeaturedContainer(products) {
         const nPrice = document.createElement('p');
         nProduct.appendChild(nPrice);
         nPrice.classList.add('price');
-        nPrice.innerHTML = `<span class="amount">${product.precio}</span> €`;
-    });
 
+        const nAmount = document.createElement("span");
+        nPrice.appendChild(nAmount);
+        nAmount.classList.add("amount");
+        nAmount.textContent = product.precio;
+        nPrice.append(" €");
+    });
 
     nContainer.addEventListener('click', (e) => {
         const target = e.target;

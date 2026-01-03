@@ -13,12 +13,17 @@
 body {
     min-height: 100dvh;
     display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 15% 1fr 15%;
     grid-template-areas:
-        "header       header    header"
-        "main         main      main"
-        "footer       footer    footer";
+        "header"
+        "main"
+        "footer";
+    overflow-x: auto;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 .asideRight {
@@ -27,23 +32,24 @@ body {
 
 main {
     grid-area: main;
-    padding: 1rem;
     display: grid;
     grid-template-areas: 
         "shoppingCart"
         "order";
     gap: 2rem;
+    padding: 1rem;
+    min-height: 900px;  /*calc(100dvh - 100px);*/
 }
 
 .cart {
     grid-area: shoppingCart;
     display: flex;
     flex-direction: column;
+}
 
-    & > p {
-        color: #808080;
-        font-size: 0.9rem;
-    }
+.cart > p {
+    color: #808080;
+    font-size: 1.7rem;
 }
 
 .productsContainer {
@@ -56,7 +62,7 @@ main {
 
 .product {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto;
     gap: 1.5rem;
     padding: 1rem;
@@ -90,36 +96,46 @@ main {
 }
 
 .productName {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 }
 
 .category {
-    font-size: 0.8rem;
+    font-size: 1.3rem;
     color: grey;
 }
 
 .deliveryDay {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     color: green;
     margin: 10px 0 10px 0;
 }
 
 .btnDelete, .btnAdd {
     background-color: #c9c6c656;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 0.5rem;
     border: none;
     cursor: pointer;
 }
 
+.btnDelete {
+    margin-right: 0.5rem;
+}
+
 .btnAdd {
     margin-right: 1rem;
+    margin-left: 0.5rem;
 }
 
 .deleteProduct {
-    display: inline;
+    display: inline-block;
+    width: fit-content;
     text-decoration: none;
     color: blue;
+    font-size: 1.1rem;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
 }
 
 .deleteProduct:hover {
@@ -127,31 +143,33 @@ main {
 }
 
 .productQuantity {
-    margin: 1rem 0rem 1rem 0rem;
-    border: solid 1px;
-    border-color: #d6d6d6;
+    font-size: 1rem;
+    margin: 1rem 0rem;
+    border: 1px solid #d6d6d6;
     border-radius: 5px;
-    padding: 5px 20px 5px 20px;
+    padding: 5px 25px;
 }
 
 .price {
     font-weight: bold;
+    font-size: 1.4rem;
 }
 
 .order {
+    grid-area: order;
     position: sticky;
     bottom: 5px;
     width: 100%; 
-    background-color: #ffffff;
-    margin: 20px auto;           
+    margin-top: 1rem;
     padding: 20px;
+    background-color: #ffffff;
     border: 1px solid #d5d5d5;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px #00000033;
+}
 
-    h2, .orderSummary  {
-        display: none;
-    }
+.order h2, .order .orderSummary {
+    display: none;
 }
 
 .order h2 {
@@ -188,7 +206,6 @@ main {
     color: #b1b1b1;
 }
 
-
 .btnComprar {
     display: block;
     width: 100%;
@@ -220,6 +237,7 @@ header {
     grid-area: header;
     position: sticky;
     top: 0;
+    width: 100%;
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -239,12 +257,12 @@ header {
     flex-shrink: 0;
 }
 
-.divBusqueda {
+.divSearch {
     position: relative;
     width: 18rem;
 }
 
-.inputBusqueda {
+.inputSearch {
     width: 100%;
     padding: 0.5rem 2.5rem 0.5rem 0.5rem;
     border: 0.0625rem solid #ccc;
@@ -253,7 +271,7 @@ header {
     outline: none;
 }
 
-.imagenLupa {
+.searchIcon {
     position: absolute;
     right: 0.5rem;
     top: 50%;
@@ -305,9 +323,25 @@ footer {
         gap: 0.5rem;
     }
 
-    .divBusqueda {
+    .divSearch {
         width: 100%;
         max-width: 300px;
+    }
+
+    .cart > p {
+        font-size: 1.5rem;
+    }
+
+    .productName {
+        font-size: 1.4rem;
+    }
+
+    .category {
+        font-size: 1.1rem;
+    }
+
+    .price {
+            font-size: 1.2rem;
     }
 } 
 
@@ -316,7 +350,6 @@ footer {
 
 @media screen and (min-width: 1024px) {
     body {
-        grid-template-rows: auto 1fr auto;
         grid-template-columns: 15% 1fr 15%;
         grid-template-areas:
             "header       header    header"
@@ -325,41 +358,38 @@ footer {
     }
 
     main {
-        display: grid;
         grid-template-columns: 2fr 1fr;
         grid-template-areas: 
-            "shoppingCart    order"
-        ;
-        gap: 2rem;
+            "shoppingCart   order";
         align-items: start;
     }
 
-    .cart {
-        grid-area: shoppingCart;
+    .order {
+        position: fixed;
+        top: 15%;
+        right: 15%;
+        width: 20%;
+        height: fit-content;
+        margin: 0;
+        z-index: 100;
     }
 
-    .order {
-        grid-area: order;
-        position: relative;
-        /* width: 100%; 
-        height: fit-content;                
-        margin: 0;           
-        padding: 20px;
-        border: 1px solid #d5d5d5;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2); */
-
-        h2, .orderSummary {
-            display: block;
-        }
+    .order h2, .order .orderSummary {
+        display: block;
     }
 
     .product {
-        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-columns: 1.5fr 2fr 1fr;
         padding-right: 2rem;
     }
 
     .price {
         text-align: end;
+    }
+
+    .total {
+        border-top: solid 1px #b0b0b0;
+        padding-top: 1rem;
+        font-size: 1rem;
     }
 }
