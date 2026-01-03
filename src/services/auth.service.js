@@ -1,5 +1,12 @@
 export default class AuthService {
 
+    /**
+     * 
+     * @param {*} identifier 
+     * @param {*} password 
+     * @param {*} url 
+     * @returns {Promise<string>}
+     */
     async login(identifier, password, url) {
         let response;
         try {
