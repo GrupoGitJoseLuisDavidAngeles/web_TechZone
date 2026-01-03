@@ -118,20 +118,16 @@ async function fillOnOffer(products, offers) {
         nPrecioNuevo.textContent = offer.precio_nuevo + ' €'
         nPrecioNuevo.classList.add('product-price');
 
+        const nDescuento = document.createElement('p');
+        nCard.appendChild(nDescuento);
+        const discountPercent = '-'+((offer.precio_original - offer.precio_nuevo) / offer.precio_original * 100).toFixed(0) + '%';
+        nDescuento.textContent = discountPercent;
+        nDescuento.classList.add('product-discount')
+
         const nPrecioOriginal = document.createElement('span');
         nPrecioNuevo.appendChild(nPrecioOriginal);
         nPrecioOriginal.textContent = offer.precio_original + ' €';
         nPrecioOriginal.classList.add('product-price-old');
-
-        const nFecha = document.createElement('p');
-        nCard.appendChild(nFecha);
-        const fechaFinObjeto = new Date(offer.fecha_fin.replace(" ", "T"));
-        console.log(fechaFinObjeto);
-        
-        const fechaFormateada = format(fechaFinObjeto, 'dd/MM/yyyy');
-        console.log(fechaFormateada);
-        
-        // nFecha.textContent=fechaFormateada;
 
         const nDescripcion = document.createElement('p');
         nCard.appendChild(nDescripcion);
