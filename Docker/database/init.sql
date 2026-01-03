@@ -103,5 +103,5 @@ VALUES
 
 INSERT INTO ofertas (producto_id, precio_oferta, fecha_inicio, fecha_fin)
 VALUES
-(10, 119.99, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
-(12, 279.99, NOW(), DATE_ADD(NOW(), INTERVAL 12 DAY));
+(10, 99.99, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
+(12, 49.99, NOW(), DATE_ADD(NOW(), INTERVAL 12 DAY));
