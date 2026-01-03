@@ -1,0 +1,6 @@
+###
+GET http://localhost:8081/api/productos.php
+###
+GET http://localhost:8081/api/categorias.php
+###
+GET http://localhost:8081/api/ofertas.php
