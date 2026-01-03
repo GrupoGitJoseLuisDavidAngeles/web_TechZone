@@ -17,7 +17,6 @@ export function decodeJWT(token) {
         const payloadJSON = atob(payloadB64);
         return JSON.parse(payloadJSON);
     } catch (e) {
-        console.error('Error decodificando token:', e);
-        return null;
+        throw new Error('Error decodificando token:', e);
     }
 }
