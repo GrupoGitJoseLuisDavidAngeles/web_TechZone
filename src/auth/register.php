@@ -74,10 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post" class="registerForm">
 
             <label for="tUsuario">Usuario:</label>
-            <input type="text" name="user" id="tUsuario" autocomplete="username">
+            <input type="text" name="user" id="tUsuario" autocomplete="username" value="<?= htmlspecialchars($usuario ?? '') ?>">
 
             <label for="tEmail">Email:</label>
-            <input type="text" name="email" id="tEmail" autocomplete="email">
+            <input type="text" name="email" id="tEmail" autocomplete="email" value="<?= htmlspecialchars($email ?? '') ?>">
         
             <label for="tPassword">Contraseña:</label>
             <input type="password" name="password" id="tPassword" autocomplete="new-password">
