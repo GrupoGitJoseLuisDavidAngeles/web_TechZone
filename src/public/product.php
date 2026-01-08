@@ -1,6 +1,3 @@
-<!-- desde indice la id por la url -->
-<!-- http://localhost:8081/api/categoria.php?id=2 -->
-<!-- productos individuales, ofertas, principal (mostrando algunos), barra de busqueda, panel de admin -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
     <link rel="stylesheet" href="./product.css">
+    <script type="module" src="./product.js"></script>
 </head>
 <body>
     <header>
@@ -23,27 +21,35 @@
     </header>
 
     <aside class="asideLeft"></aside>
-    <!-- fecha fin -->
-    <main>
-        <div class="product">
-            <div class="productImage"></div>
-            <div class="productInformation">
-                <h2 class="productName">Teclado mecánico</h2>
-                <p class="category">categoria</p>
+
+    <main id="mainContainer">
+        
+        <!-- <div class="product" id="productContainer"> 
+
+            <div class="productImage" id="productImageContainer"></div>
+
+            <div class="productInformation" id="productInformationContainer">
+                <h2 class="productName" id="productTitle">Teclado mecánico</h2>
+                <p class="category" id="productCategory">categoria</p>
             </div>
-            <div class="prices">
-                <p class="oldPrice"><span class="oldAmount">40</span> €</p>
-                <p class="newPrice"><span class="newAmount">30</span> €</p>
+
+            <div class="prices" id="priceContainer">
+                <p class="oldPrice" id="oldPriceText"><span class="oldAmount" id="oldPriceAmount">40</span> €</p>
+                <p class="newPrice" id="newPriceText"><span class="newAmount" id="newPriceAmount">30</span> €</p>
+                <p class="date" id="dateContainer">
+                    Fecha fin: <span class="offerEndDate" id="endDateValue">15-12-2024</span>
+                </p>
             </div>
         </div>
-        <button class="btnAdd" type="submit">Añadir a la cesta</button>
 
-        <details class="productDescription">
-            <summary>Descripción del producto</summary>
-            <p>
+        <button class="btnAdd" id="addCartButton" type="submit">Añadir a la cesta</button>
+
+        <details class="productDescription" id="productDescriptionContainer">
+            <summary id="descriptionSummary">Descripción del producto</summary>
+            <p id="descriptionText">
                 Teclado mecánico con switches rojos, retroiluminación RGB y estructura de aluminio.
             </p>
-        </details> 
+        </details>  -->
     </main>
 
     <aside class="asideRight"></aside>
