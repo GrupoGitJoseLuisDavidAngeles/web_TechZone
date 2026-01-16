@@ -51,7 +51,7 @@ main {
         "productImage"
         "productInformation"
         "prices";
-    gap: 2rem;
+    gap: 1rem;
 }
 
 
@@ -238,26 +238,27 @@ footer {
             "product product"               
             "btnAdd btnAdd"                 
             "productDescription productDescription"; 
-        gap: 1rem;
+        gap: 0.5rem;
         margin: 0 auto;
     }
 
     .product {
         display: grid;
         grid-template-columns: 2fr 1.5fr;
-        grid-template-rows: repeat(2, auto);  
+        grid-template-rows: repeat(2, 1fr);  
         grid-template-areas:
             "productImage productInformation"
             "productImage prices";
-        gap: 1rem;
+        gap: 0;
         align-items: center;
+        position: relative;
     }
 
     .productImage {
+        padding-top: 2rem;
         grid-area: productImage;
         width: 100%;
         aspect-ratio: 1;
-
     }
 
     .productInformation {
@@ -266,7 +267,18 @@ footer {
 
     .prices {
         grid-area: prices;
+        align-self: start;
+        position: absolute;
     }
+
+    .oldPrice {
+        font-size: 1.5rem;
+    }
+
+    .newPrice {
+        font-size: 2rem;
+    }
+
 
     .btnAdd {
         grid-area: btnAdd;
@@ -274,7 +286,7 @@ footer {
         height: 50%;
         font-size: 1.2rem;
         justify-self: end;    
-        margin: 1rem 0.5rem;       
+        margin: 1rem 0.5rem;
     }
 
     .productDescription {
