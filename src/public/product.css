@@ -33,10 +33,9 @@ main {
     grid-area: main;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
     grid-template-areas: 
         "product"
-        "btnAdd"
         "description";
     gap: 1rem;
     padding: 1rem;
@@ -46,12 +45,13 @@ main {
     grid-area: product;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto auto;
+    grid-template-rows: repeat(4, auto);
     grid-template-areas: 
         "productImage"
         "productInformation"
-        "prices";
-    gap: 1rem;
+        "prices"
+        "btnAdd";
+    gap: 1.5rem;
 }
 
 
@@ -59,26 +59,26 @@ main {
     grid-area: btnAdd;
     display: block;
     width: 100%;
-    height: 100%;
     padding: 10px 0;
-    font-size: 2rem;
-    margin-top: 15px;
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
     background-color: #007bff;  
     color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 1.5rem;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
 .productDescription {
+    grid-area: description;
     padding-top: 2rem;
     font-size: 1.6rem;
 }
 
 details > p {
     color: #616161;
+    padding-left: 2.8rem;
 }
 
 .btnAdd:hover {
@@ -90,6 +90,7 @@ details > p {
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: center;
+    align-content: center;
     aspect-ratio: 1;
 }
 
@@ -98,11 +99,11 @@ details > p {
 }
 
 .productName {
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 .category {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     color: grey;
 }
 
@@ -117,12 +118,12 @@ details > p {
 }
 
 .newPrice {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: bold;
 }
 
 .date {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     width: fit-content;
     padding: 0.5rem;
     border-radius: 10px;
@@ -231,69 +232,67 @@ footer {
 @media screen and (min-width: 768px) {
 
     main {
-        display: grid;
         grid-template-columns: 2fr 1fr; 
-        grid-template-rows: repeat(3, auto); 
+        grid-template-rows: repeat(2, auto); 
         grid-template-areas:
-            "product product"               
-            "btnAdd btnAdd"                 
-            "productDescription productDescription"; 
+            "product             product"              
+            "productDescription  productDescription"; 
         gap: 0.5rem;
         margin: 0 auto;
     }
 
     .product {
-        display: grid;
         grid-template-columns: 2fr 1.5fr;
-        grid-template-rows: repeat(2, 1fr);  
+        grid-template-rows: repeat(3, auto);  
         grid-template-areas:
             "productImage productInformation"
-            "productImage prices";
-        gap: 0;
+            "productImage prices"
+            "productImage btnAdd";
+        gap: 0.5rem;
         align-items: center;
         position: relative;
     }
 
     .productImage {
         padding-top: 2rem;
-        grid-area: productImage;
-        width: 100%;
         aspect-ratio: 1;
     }
 
     .productInformation {
-        grid-area: productInformation;
+        align-self: end;
     }
 
     .prices {
-        grid-area: prices;
-        align-self: start;
-        position: absolute;
+        align-self: center;
     }
 
     .oldPrice {
-        font-size: 1.5rem;
-    }
-
-    .newPrice {
         font-size: 2rem;
     }
 
+    .newPrice {
+        font-size: 2.5rem;
+
+    }
+
+    .date {
+        font-size: 1.2rem;
+    }
 
     .btnAdd {
-        grid-area: btnAdd;
-        width: 40%;    
-        height: 50%;
-        font-size: 1.2rem;
-        justify-self: end;    
-        margin: 1rem 0.5rem;
+        width: 100%;   
+        font-size: 1.5rem;
+        align-self: start;
     }
+
 
     .productDescription {
         grid-area: productDescription;
-        height: auto;
     }
+
 }
+
+
 
 @media screen and (min-width: 1024px) {
     header {
@@ -306,7 +305,7 @@ footer {
         display: grid;
         grid-template-columns: 2fr 1fr; 
         grid-template-rows: auto; 
-        gap: 3rem;
+        gap: 1rem;
         padding: 2rem 3rem;
     }
 
@@ -315,21 +314,22 @@ footer {
         grid-template-rows: repeat(3, auto);  
         grid-template-areas:
             "productImage productInformation"
-            "productImage prices";
-        gap: 2rem;
-        align-items: start;
+            "productImage prices"
+            "productImage btnAdd";
+        gap: 0.25rem;
     }
 
     .productImage {
         display: flex;
+        width: 60%;
         justify-content: center;
-        align-items: center;
+        justify-self: center;
     }
 
+    /* Object-fit:contain, se usa para que no se deforma la imagen */
     .productImage img {
-        width: 100%;
-        max-width: 800px;
-        height: auto;
+        display: flex;
+        object-fit: contain; 
         border-radius: 10px;
     }
 
@@ -340,11 +340,11 @@ footer {
     }
 
     .productName {
-        font-size: 3rem;
+        font-size: 3.8rem;
     }
 
     .category {
-        font-size: 1.6rem;
+        font-size: 2rem;
     }
 
     .prices {
@@ -373,11 +373,27 @@ footer {
         font-size: 1.6rem;
         justify-self: center; 
         margin-top: 1.5rem;
+        align-self: start;
     }
 
     .productDescription {
         font-size: 1.4rem;
-        margin-top: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    
+    .productDescription > summary {
+        font-size: 2rem;
+        margin: 0;
+        padding: 0;
+        display: list-item;
+        cursor: pointer;
+    }
+
+    .productDescription > p {
+        font-size: 1.7rem;
     }
 
 }

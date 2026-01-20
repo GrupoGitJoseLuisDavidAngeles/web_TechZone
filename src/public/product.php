@@ -24,7 +24,8 @@
 
     <main id="mainContainer">
         
-        <!-- <div class="product" id="productContainer"> 
+        <!-- 
+        <div class="product" id="productContainer"> 
 
             <div class="productImage" id="productImageContainer"></div>
 
@@ -40,16 +41,17 @@
                     Fecha fin: <span class="offerEndDate" id="endDateValue">15-12-2024</span>
                 </p>
             </div>
-        </div>
 
-        <button class="btnAdd" id="addCartButton" type="submit">Añadir a la cesta</button>
+            <button class="btnAdd" id="addCartButton" type="submit">Añadir a la cesta</button>
+        </div>
 
         <details class="productDescription" id="productDescriptionContainer">
             <summary id="descriptionSummary">Descripción del producto</summary>
             <p id="descriptionText">
                 Teclado mecánico con switches rojos, retroiluminación RGB y estructura de aluminio.
             </p>
-        </details>  -->
+        </details>  
+        -->
     </main>
 
     <aside class="asideRight"></aside>

@@ -46,7 +46,7 @@ function fillProductWithData(products, offerts, categories, productId){
     const img = document.createElement("img");
     img.setAttribute("src", `../assets/${product.imagen}`);
     img.setAttribute("alt", product.nombre);
-    img.style.width = "100%";
+    img.style.width = "95%";
     img.style.height = "auto";
     nDivImage.appendChild(img);
 
@@ -112,13 +112,12 @@ function fillProductWithData(products, offerts, categories, productId){
     nDate.appendChild(nEndDate);
     nDivPrices.appendChild(nDate);
 
-
     const btnAdd = document.createElement("button");
     btnAdd.setAttribute("class", "btnAdd");
     btnAdd.setAttribute("id", "addCartBtn");
     btnAdd.setAttribute("type", "submit");
     btnAdd.textContent = "Añadir a la cesta";
-    nMain.appendChild(btnAdd);
+    nDivProduct.appendChild(btnAdd);
 
 
     const details = document.createElement("details");
