@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechZone</title>
-    <link rel="stylesheet" href="./index.css">
-    <script type="module" src="index.js"></script>
+    <link rel="stylesheet" href="./profile.css">
+    <script type="module" src="profile.js"></script>
     <link rel="icon" type="image/png" href="./images/favicon.png">
 
 </head>
@@ -14,59 +14,43 @@
 <body>
     <header>
         <div class="tLogo"></div>
-
-
-
-        <!-- <a href="../auth/login.php">Iniciar sesión</a>
-        <a href="../carrito/index.php">Carrito</a> -->
+        <a href="../auth/login.php">Iniciar sesión</a>
+        <a href="../carrito/index.php">Carrito</a>
     </header>
 
     <aside class="aside-left"></aside>
 
     <main>
-        <h1>Perfil de <span id="tTitleUsername">Pepito Pérez</span></h1>
+        <h1 class="profile-title">Perfil de <span id="tTitleUsername">Pepito Pérez</span></h1>
+        <img src="./images/avatar.png" alt="Foto de perfil del usuario" class="profile-avatar">
         <div class="profile-data-card">
-            <img src="./images/avatar.jpg" alt="Foto de perfil del usuario" class="profile-avatar">
-            <p class="data-type">Nombre</p>
-            <p class="data-element">Pepito Pérez</p>
-            <p class="data-type">Email</p>
-            <p class="data-element">peperez@mail.com</p>  
+            <div>
+                <p class="data-type">Nombre</p>
+                <p class="data-element">Pepito Pérez</p>
+            </div>
+            <div>
+
+                <p class="data-type">Email</p>
+                <p class="data-element">peperez@mail.com</p>
+            </div>
             <button type="button">Editar perfil</button>
         </div>
 
         <!-- Resumen rápido -->
-        <section class="profile-summary">
-            <article>
-                <h2>Pedidos</h2>
-                <p>12 realizados</p>
-            </article>
-            <article>
-                <h2>Direcciones</h2>
-                <p>3 guardadas</p>
-            </article>
-            <article>
-                <h2>Métodos de pago</h2>
-                <p>2 registrados</p>
-            </article>
-        </section>
+        <div class="profile-orders">
+            <h2>Pedidos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
 
-        <section class="profile-orders">
-            <h2>Mis pedidos recientes</h2>
-            <ul>
-                <li>
-                    <span>#12345</span>
-                    <span>Entregado</span>
-                    <span>$49.99</span>
-                </li>
-                <li>
-                    <span>#12312</span>
-                    <span>En camino</span>
-                    <span>$89.50</span>
-                </li>
-            </ul>
-        </section>
 
-       <button>Cerrar sesión</button>
+        <button class="end-session">Cerrar sesión</button>
 
     </main>
 
