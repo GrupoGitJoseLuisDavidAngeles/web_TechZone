@@ -1,10 +1,11 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../libs/jwt.utils.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
 $CLAVE_JWT = 'CLAVE_SECRETA';
+$pdo = Database::getInstance();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);

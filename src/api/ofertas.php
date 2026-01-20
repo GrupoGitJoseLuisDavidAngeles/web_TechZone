@@ -1,6 +1,7 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/Database.php';
 
+$pdo = Database::getInstance();
 $stmt = $pdo->prepare("
     SELECT 
         p.id AS producto_id,
