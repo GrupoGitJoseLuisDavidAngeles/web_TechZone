@@ -53,7 +53,6 @@ async function fillContainersByCategory(e) {
     const nSelect = e.target;
     const categoriaId = nSelect.value;
 
-
     const service = new productosService();
     let productos = await service.getProducts();
     let ofertas = await service.getOffers();
