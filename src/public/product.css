@@ -33,26 +33,25 @@ main {
     grid-area: main;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: repeat(2, auto);
     grid-template-areas: 
         "product"
-        "btnAdd"
         "description";
     gap: 1rem;
     padding: 1rem;
-    min-height: 900px;  
 }
 
 .product {
     grid-area: product;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto auto;
+    grid-template-rows: repeat(4, auto);
     grid-template-areas: 
         "productImage"
         "productInformation"
-        "prices";
-    gap: 2rem;
+        "prices"
+        "btnAdd";
+    gap: 1.5rem;
 }
 
 
@@ -60,26 +59,26 @@ main {
     grid-area: btnAdd;
     display: block;
     width: 100%;
-    height: 100%;
     padding: 10px 0;
-    font-size: 2rem;
-    margin-top: 15px;
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
     background-color: #007bff;  
     color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 1.5rem;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
 .productDescription {
+    grid-area: description;
     padding-top: 2rem;
     font-size: 1.6rem;
 }
 
 details > p {
     color: #616161;
+    padding-left: 2.8rem;
 }
 
 .btnAdd:hover {
@@ -88,11 +87,10 @@ details > p {
 
 .productImage {
     grid-area: productImage;
-    background-image: url("../assets/keyboard.png");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    width: 95%;
+    background-position-x: center;
+    align-content: center;
     aspect-ratio: 1;
 }
 
@@ -101,11 +99,11 @@ details > p {
 }
 
 .productName {
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 .category {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     color: grey;
 }
 
@@ -114,13 +112,26 @@ details > p {
 }
 
 .oldPrice {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: grey;
     text-decoration: line-through;
 }
 
 .newPrice {
     font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.date {
+    font-size: 1.4rem;
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: blue;
+    color: white;
+}
+
+.offerEndDate{
     font-weight: bold;
 }
 
@@ -145,6 +156,12 @@ header {
     padding: 0.75rem 1.5rem;
     gap: 1rem;
 }
+
+header > a {
+    color: white;
+    text-decoration: none;
+}
+
 
 /* cambio del tamaño: altura*/
 .tLogo {
@@ -191,7 +208,7 @@ header span {
     transition: color 0.3s;
 }
 
-header span:hover {
+header span:hover, header > a:hover {
     color: black;
 }
 
@@ -212,3 +229,171 @@ footer {
     padding-bottom: 0.5rem;
 }
 
+@media screen and (min-width: 768px) {
+
+    main {
+        grid-template-columns: 2fr 1fr; 
+        grid-template-rows: repeat(2, auto); 
+        grid-template-areas:
+            "product             product"              
+            "productDescription  productDescription"; 
+        gap: 0.5rem;
+        margin: 0 auto;
+    }
+
+    .product {
+        grid-template-columns: 2fr 1.5fr;
+        grid-template-rows: repeat(3, auto);  
+        grid-template-areas:
+            "productImage productInformation"
+            "productImage prices"
+            "productImage btnAdd";
+        gap: 0.5rem;
+        align-items: center;
+        position: relative;
+    }
+
+    .productImage {
+        padding-top: 2rem;
+        aspect-ratio: 1;
+    }
+
+    .productInformation {
+        align-self: end;
+    }
+
+    .prices {
+        align-self: center;
+    }
+
+    .oldPrice {
+        font-size: 2rem;
+    }
+
+    .newPrice {
+        font-size: 2.5rem;
+
+    }
+
+    .date {
+        font-size: 1.2rem;
+    }
+
+    .btnAdd {
+        width: 100%;   
+        font-size: 1.5rem;
+        align-self: start;
+    }
+
+
+    .productDescription {
+        grid-area: productDescription;
+    }
+
+}
+
+
+
+@media screen and (min-width: 1024px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 0.5rem;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 2fr 1fr; 
+        grid-template-rows: auto; 
+        gap: 1rem;
+        padding: 2rem 3rem;
+    }
+
+    .product {
+        grid-template-columns: 2fr 1fr; 
+        grid-template-rows: repeat(3, auto);  
+        grid-template-areas:
+            "productImage productInformation"
+            "productImage prices"
+            "productImage btnAdd";
+        gap: 0.25rem;
+    }
+
+    .productImage {
+        display: flex;
+        width: 60%;
+        justify-content: center;
+        justify-self: center;
+    }
+
+    /* Object-fit:contain, se usa para que no se deforma la imagen */
+    .productImage img {
+        display: flex;
+        object-fit: contain; 
+        border-radius: 10px;
+    }
+
+    .productInformation {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .productName {
+        font-size: 3.8rem;
+    }
+
+    .category {
+        font-size: 2rem;
+    }
+
+    .prices {
+        grid-area: prices;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .oldPrice {
+        font-size: 2.1rem;
+    }
+
+    .newPrice {
+        font-size: 3rem;
+    }
+
+    .date {
+        font-size: 1.5rem;
+        padding: 0.7rem 1.2rem;
+        border-radius: 12px;
+    }
+
+    .btnAdd {
+        width: 100%;
+        font-size: 1.6rem;
+        justify-self: center; 
+        margin-top: 1.5rem;
+        align-self: start;
+    }
+
+    .productDescription {
+        font-size: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    
+    .productDescription > summary {
+        font-size: 2rem;
+        margin: 0;
+        padding: 0;
+        display: list-item;
+        cursor: pointer;
+    }
+
+    .productDescription > p {
+        font-size: 1.7rem;
+    }
+
+}
