@@ -32,11 +32,11 @@ main {
     display: grid;
     grid-template-columns: 120px 1fr;
     grid-template-rows: min-content min-content 1fr min-content;
-    grid-template-areas: 
-    "profile-title      profile-title"
-    "profile-picture    profile-info-card"
-    "profile-orders     profile-orders"
-    "end-session        filler"
+    grid-template-areas:
+        "profile-title      profile-title"
+        "profile-picture    profile-info-card"
+        "profile-orders     profile-orders"
+        "end-session        filler"
     ;
 }
 
@@ -138,13 +138,14 @@ footer {
 }
 
 /* Profile data */
-.profile-title{
+.profile-title {
     grid-area: profile-title;
 }
+
 .profile-avatar {
-grid-area: profile-picture;
+    grid-area: profile-picture;
     display: block;
-    width:  120px;
+    width: 120px;
     border: solid 4px #1d1dff;
     border-radius: 50%;
     margin-top: 20px;
@@ -160,12 +161,25 @@ grid-area: profile-picture;
 
 .data-type {
     color: gray;
-    
 }
-.profile-orders{
+
+.profile-orders {
     grid-area: profile-orders;
+
+    table,
+    th,
+    td {
+        border: #1d1dff solid 2px;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 5px;
+    }
 }
-.end-session{
+
+.end-session {
     grid-area: end-session;
 }
 

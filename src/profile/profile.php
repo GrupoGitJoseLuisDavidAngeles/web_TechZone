@@ -31,19 +31,26 @@
             <div>
 
                 <p class="data-type">Email</p>
-                <p class="data-element">peperez@mail.com</p>  
+                <p class="data-element">peperez@mail.com</p>
             </div>
             <button type="button">Editar perfil</button>
         </div>
 
         <!-- Resumen rápido -->
         <div class="profile-orders">
-                <h2>Pedidos</h2>
-                <p>12 realizados</p>
+            <h2>Pedidos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
 
 
-       <button class="end-session">Cerrar sesión</button>
+        <button class="end-session">Cerrar sesión</button>
 
     </main>
 
