@@ -4,3 +4,17 @@ GET http://localhost:8081/api/productos.php
 GET http://localhost:8081/api/categorias.php
 ###
 GET http://localhost:8081/api/ofertas.php
+
+### Añadir producto al carrito
+POST http://localhost:8081/api/carrito_add.php
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njg5Mjg0OTAsImV4cCI6MTc2ODkzNTY5MH0.LeuENSwZGDQQcB2ETvqKTaR2JLEuHf_PYD16aAESk28
+
+{
+  "productoId": 2
+}
+
+### Obtener carrito de un usuario
+POST http://localhost:8081/api/carrito_get.php
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njg5Mjg0OTAsImV4cCI6MTc2ODkzNTY5MH0.LeuENSwZGDQQcB2ETvqKTaR2JLEuHf_PYD16aAESk28

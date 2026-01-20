@@ -58,11 +58,19 @@ if (!$carrito) {
 $carritoId = $carrito['id'];
 
 $stmt = $pdo->prepare("
-    SELECT cp.id AS lineaId, cp.cantidad, 
-           p.id AS productoId, p.nombre, p.precio, p.imagen
+    SELECT 
+    cp.id AS lineaId,
+    cp.cantidad,
+    p.id AS productoId,
+    p.nombre,
+    p.precio,
+    p.imagen,
+    c.nombre AS categoria
     FROM carrito_productos cp
     JOIN productos p ON cp.producto_id = p.id
-    WHERE cp.carrito_id = ? ORDER BY cp.id ASC
+    JOIN categorias c ON p.categoria_id = c.id
+    WHERE cp.carrito_id = ?
+    ORDER BY cp.id ASC;
 ");
 $stmt->execute([$carritoId]);
 $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
