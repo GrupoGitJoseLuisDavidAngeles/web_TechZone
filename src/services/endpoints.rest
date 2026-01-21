@@ -8,7 +8,7 @@ GET http://localhost:8081/api/ofertas.php
 ### Añadir producto al carrito
 POST http://localhost:8081/api/carrito_add.php
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njg5Mjg0OTAsImV4cCI6MTc2ODkzNTY5MH0.LeuENSwZGDQQcB2ETvqKTaR2JLEuHf_PYD16aAESk28
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NjkwMTMzMzYsImV4cCI6MTc2OTAyMDUzNn0.P6P6JyFVnv7Aq-0AtzhP8r-qEiijo9C_O91cMrfd6X0
 
 {
   "productoId": 2
@@ -17,13 +17,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZ
 ### Obtener carrito de un usuario
 POST http://localhost:8081/api/carrito_get.php
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njg5Mjg0OTAsImV4cCI6MTc2ODkzNTY5MH0.LeuENSwZGDQQcB2ETvqKTaR2JLEuHf_PYD16aAESk28
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NjkwMTMzMzYsImV4cCI6MTc2OTAyMDUzNn0.P6P6JyFVnv7Aq-0AtzhP8r-qEiijo9C_O91cMrfd6X0
 
 ### Añadir pedido
 POST http://localhost:8081/api/pedido_add.php
 Content-Type: application/json
-Authorization: Bearer TU_TOKEN_AQUI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NjkwMTMzMzYsImV4cCI6MTc2OTAyMDUzNn0.P6P6JyFVnv7Aq-0AtzhP8r-qEiijo9C_O91cMrfd6X0
 
 {
-  "productos": [1, 2, 2, 5]
+  "productos": [1, 4, 4, 5]
 }
+
+### Obtener pedidos de un usuario
+GET http://localhost:8081/api/pedidos_get.php
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NjkwMTMzMzYsImV4cCI6MTc2OTAyMDUzNn0.P6P6JyFVnv7Aq-0AtzhP8r-qEiijo9C_O91cMrfd6X0
+
+### Obtener información de usuario
+GET http://localhost:8081/api/usuario.php
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NjkwMTMzMzYsImV4cCI6MTc2OTAyMDUzNn0.P6P6JyFVnv7Aq-0AtzhP8r-qEiijo9C_O91cMrfd6X0
