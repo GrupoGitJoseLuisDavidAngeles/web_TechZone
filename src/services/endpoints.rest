@@ -8,7 +8,7 @@ GET http://localhost:8081/api/ofertas.php
 ### Añadir producto al carrito
 POST http://localhost:8081/api/carrito_add.php
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njg5Mjg0OTAsImV4cCI6MTc2ODkzNTY5MH0.LeuENSwZGDQQcB2ETvqKTaR2JLEuHf_PYD16aAESk28
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZSI6ImFuZ2VsZXMiLCJyb2wiOiJjbGllbnRlIiwiaWF0IjoxNzY5MDA5NzYyLCJleHAiOjE3NjkwMTY5NjJ9.apirpvTLH8ew7X-CnWUPiakRPzECZ24mmSp040YD9gg
 
 {
   "productoId": 2
@@ -17,12 +17,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZ
 ### Obtener carrito de un usuario
 POST http://localhost:8081/api/carrito_get.php
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njg5Mjg0OTAsImV4cCI6MTc2ODkzNTY5MH0.LeuENSwZGDQQcB2ETvqKTaR2JLEuHf_PYD16aAESk28
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZSI6ImFuZ2VsZXMiLCJyb2wiOiJjbGllbnRlIiwiaWF0IjoxNzY5MDA5NzYyLCJleHAiOjE3NjkwMTY5NjJ9.apirpvTLH8ew7X-CnWUPiakRPzECZ24mmSp040YD9gg
 
 ### Añadir pedido
 POST http://localhost:8081/api/pedido_add.php
 Content-Type: application/json
-Authorization: Bearer TU_TOKEN_AQUI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZSI6ImFuZ2VsZXMiLCJyb2wiOiJjbGllbnRlIiwiaWF0IjoxNzY5MDA5NzYyLCJleHAiOjE3NjkwMTY5NjJ9.apirpvTLH8ew7X-CnWUPiakRPzECZ24mmSp040YD9gg
 
 {
   "productos": [1, 2, 2, 5]

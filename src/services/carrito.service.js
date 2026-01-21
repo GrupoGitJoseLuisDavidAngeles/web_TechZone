@@ -1,4 +1,4 @@
-export class CarritoService {
+export default class CarritoService {
     /**
      * 
      * @param {*} productID 
