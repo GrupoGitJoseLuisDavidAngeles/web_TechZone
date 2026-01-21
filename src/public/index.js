@@ -1,7 +1,11 @@
+import { checkTokenAndChangeLoginButton } from "../libs/token.utils.js";
 import productosService from "../services/productos.service.js";
 setup();
 
 async function setup() {
+    const token = window.localStorage.getItem('token');
+    await checkTokenAndChangeLoginButton(token);
+
     fillCategorySelect();
 
     const service = new productosService();
