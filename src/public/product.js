@@ -1,3 +1,4 @@
+import CarritoService from "../services/carrito.service.js";
 import productosService from "../services/productos.service.js";
 
 setup();
@@ -20,6 +21,10 @@ function getIdFromUrl() {
     return urlParams.get("id");
 }
 
+function getToken(){
+    return window.localStorage.getItem("token");
+}
+
 /**
  * Devuelve la oferta de un producto si existe, o null si no.
  * @param {Object} product 
@@ -36,6 +41,15 @@ function obtenerOferta(product, offerts) {
         fechaFin: oferta.fecha_fin
     };
 }
+
+function addProductToCartHandler(event){
+    const token = getToken();
+    const id=Number(getIdFromUrl());
+
+    const service = new CarritoService();
+    service.addToCart(id, token);
+}
+
 
 function fillProductWithData(products, offerts, categories, productId) {
     const product = products.find(p => p.id == productId);
@@ -142,10 +156,11 @@ function fillProductWithData(products, offerts, categories, productId) {
     const btnAdd = document.createElement("button");
     btnAdd.setAttribute("class", "btnAdd");
     btnAdd.setAttribute("id", "addCartBtn");
-    btnAdd.setAttribute("type", "submit");
+    btnAdd.setAttribute("type", "button");
     btnAdd.textContent = "Añadir a la cesta";
     nDivProduct.appendChild(btnAdd);
 
+    btnAdd.addEventListener("click", addProductToCartHandler(event));
 
     const details = document.createElement("details");
     details.setAttribute("class", "productDescription");
