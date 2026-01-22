@@ -142,7 +142,7 @@ function fillProductWithData(products, offerts, categories, productId) {
     const btnAdd = document.createElement("button");
     btnAdd.setAttribute("class", "btnAdd");
     btnAdd.setAttribute("id", "addCartBtn");
-    btnAdd.setAttribute("type", "submit");
+    btnAdd.setAttribute("type", "button");
     btnAdd.textContent = "Añadir a la cesta";
     nDivProduct.appendChild(btnAdd);
 
