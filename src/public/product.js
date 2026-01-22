@@ -42,12 +42,12 @@ function obtenerOferta(product, offerts) {
     };
 }
 
-function addProductToCartHandler(event){
+async function addProductToCartHandler(event){
     const token = getToken();
     const id=Number(getIdFromUrl());
 
     const service = new CarritoService();
-    service.addToCart(id, token);
+    await service.addToCart(id, token);
 }
 
 
