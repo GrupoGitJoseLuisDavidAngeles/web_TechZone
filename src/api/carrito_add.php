@@ -46,7 +46,7 @@ if (!$payload) {
 $usuarioId = $payload['sub'];
 
 $data = json_decode(file_get_contents('php://input'), true);
-$productoId = $data['productoId'] ?? null;
+$productoId = (int)$data['productoId'] ?? null;
 
 if (!$productoId || !is_numeric($productoId)) {
     http_response_code(400);

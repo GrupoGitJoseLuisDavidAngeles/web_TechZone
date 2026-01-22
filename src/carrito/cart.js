@@ -7,7 +7,7 @@ async function setup() {
     fillFeaturedContainer(products);
     updateOrderSummary();
 }
-
+// Iniciar sesión y obtener el token para añadir al carrito
 const categoryMap = {
     1: "Portátiles",
     2: "PC de escritorio",

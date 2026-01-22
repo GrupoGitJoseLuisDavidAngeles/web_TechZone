@@ -19,12 +19,8 @@ body {
         "header"
         "main"
         "footer";
-    overflow-x: auto;
 }
 
-body::-webkit-scrollbar {
-    display: none;
-}
 
 .asideRight {
     grid-area: asideRight;

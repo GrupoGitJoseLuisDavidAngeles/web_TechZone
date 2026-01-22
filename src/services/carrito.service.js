@@ -1,4 +1,4 @@
-export class CarritoService {
+export default class CarritoService {
     /**
      * 
      * @param {*} productID 
@@ -39,11 +39,10 @@ export class CarritoService {
 
     /**
      * 
-     * @param {*} url 
      * @param {*} token 
      * @returns {Promise<Array>} 
      */
-    async getCart(url, token) {
+    async getCart(token) {
         const url = 'http://localhost:8081/api/carrito_get.php';
 
         let response;
