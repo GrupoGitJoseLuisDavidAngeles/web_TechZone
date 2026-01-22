@@ -27,7 +27,7 @@
             <span class="iconSearchBar"></span>
         </div>
 
-        <a href="../auth/login.php">Iniciar sesión</a>
+        <a href="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
         <a href="../carrito/index.php">Carrito</a>
     </header>
 

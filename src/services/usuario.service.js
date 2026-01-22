@@ -1,7 +1,6 @@
-export class UsuarioService {
+export default class UsuarioService {
     async getUserDataByToken(token) {
-
-        const url = 'http://localhost:8081/api/usuario_me.php';
+        const url = 'http://localhost:8081/api/usuario.php';
 
         let response;
         try {
