@@ -17,7 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZ
 ### Obtener carrito de un usuario
 POST http://localhost:8081/api/carrito_get.php
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NjkwOTkwNzksImV4cCI6MTc2OTEwNjI3OX0.n4jyn6lil-CM1qfrRMEexuqOP0LPDKOWhJOwZMy3C_U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NjkxNjQ0NzIsImV4cCI6MTc2OTE3MTY3Mn0.P3uo1wRUzhYPYUuqjRmjrXOn4nmnJoZqey-tP2fD_98
 
 ### Añadir pedido
 POST http://localhost:8081/api/pedido_add.php

@@ -44,7 +44,7 @@ function obtenerOferta(product, offerts) {
 
 async function addProductToCartHandler(event){
     const token = getToken();
-    const id=Number(getIdFromUrl());
+    const id=getIdFromUrl();
 
     const service = new CarritoService();
     await service.addToCart(id, token);
@@ -160,7 +160,7 @@ function fillProductWithData(products, offerts, categories, productId) {
     btnAdd.textContent = "Añadir a la cesta";
     nDivProduct.appendChild(btnAdd);
 
-    btnAdd.addEventListener("click", addProductToCartHandler(event));
+    btnAdd.addEventListener("click", addProductToCartHandler);
 
     const details = document.createElement("details");
     details.setAttribute("class", "productDescription");
