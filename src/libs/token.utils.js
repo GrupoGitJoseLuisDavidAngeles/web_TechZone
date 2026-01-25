@@ -42,7 +42,6 @@ export async function checkTokenAndChangeLoginButton(token) {
             loginButton.textContent = 'Iniciar Sesión';
         }
     } catch (error) {
-        alert('Error al verificar el token: ' + error.message);
         loginButton.textContent = 'Iniciar Sesión';
     }
 }

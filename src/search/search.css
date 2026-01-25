@@ -31,56 +31,51 @@ main {
     padding: 1rem;
 }
 
-
-.featured-products {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-rows: 250px;
-    gap: 30px;
+.product-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px;
 }
 
 .product-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 10px;
+    padding: 5px;
     cursor: pointer;
     border-radius: 10px;
-    display: grid;
-    padding: 5px;
-    grid-template-rows: 2fr auto auto;
-    gap: 4px;
     position: relative;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     .product-name {
-        font-weight: bold;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        font-weight: 600;
     }
 
-    .product-price {
+    .price-new {
         font-weight: bold;
         color: #1d1dff;
         font-size: 1.1rem;
     }
 
-    .product-price-old {
-        margin-left: 7px;
+    .price-old {
         font-weight: normal;
         color: #ff0000;
         font-size: .9rem;
         text-decoration: line-through;
     }
 
-    .product-discount {
-        position: absolute;
-        font-size: 1.5rem;
-        transform: rotate(10deg);
-        background-color: #1d1dff;
-        color: #ffffff;
-        /* margin: 10px; */
-        padding: 5px;
-        border-radius: 30px;
-        font-weight: bold;
-        top: 15px;
+    .product-image {
+        grid-row: span 3;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .product-description {
+        align-self: self-end;
     }
 }
 
@@ -88,11 +83,6 @@ main {
     background-color: #cccccc3f;
     width: calc(inherit + 10px);
     transform: scale(1.05);
-}
-
-.product-image {
-    width: 150px;
-    place-self: center;
 }
 
 .aside-left {
@@ -114,16 +104,14 @@ header {
     gap: 1rem;
 }
 
-
 .tLogo {
     width: 10rem;
     height: 3rem;
-    background-image: url("./images/logo_techzone.png");
+    background-image: url("/public/images/logo_techzone.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
-
 
 .selectCategories {
     padding: 0.25rem 0.5rem;
@@ -132,7 +120,6 @@ header {
     border: 0.0625rem solid rgb(255, 255, 255);
     background-color: #fff;
 }
-
 
 .divSearchBar {
     position: relative;
@@ -155,12 +142,11 @@ header {
     transform: translateY(-50%);
     width: 1.5rem;
     height: 1.5rem;
-    background-image: url("./images/busqueda-de-lupa.png");
+    background-image: url("/public/images/busqueda-de-lupa.png");
     background-size: cover;
     background-position: center;
     cursor: pointer;
 }
-
 
 header a {
     color: inherit;
