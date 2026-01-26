@@ -26,11 +26,17 @@
     <main>
         <div class="cart">
             <h1>Carrito de la compra</h1>
-            <p id="productsQuantity">x<span> productos</span></p>
+
+            <p id="productsQuantity">x</p>
+
+            <div id="freeShippingAlert" class="freeShippingNotice">
+                ¡Felicidades! Tu compra supera los 200€, los gastos de envío son gratis.
+            </div>
 
             <div class="productsContainer">
 
-                <!-- <div class="product">
+                <!-- 
+                <div class="product">
                     <div class="productImage1"></div>
     
                     <div class="productInformation">
@@ -90,20 +96,20 @@
             <h2>Resumen del pedido</h2>
             <div class="orderSummary">
                 <p>Precio de los productos 
-                    <span class="subtotal"><span class="amount">1000</span> €</span>
+                    <span class="subtotal"><span class="amount"></span></span>
                 </p>
                 <p>IVA 
-                    <span class="iva"><span class="amount">100</span> €</span>
+                    <span class="iva"><span class="amount"></span></span>
                 </p>
                 <p>Gastos de envío
-                    <span class="shippingCosts"></span>
+                    <span class="shippingCosts"><span class="amountDiscount"></span></span>
                 </p>
             </div>
             <div class="total">
                 <span class="totalLabel">
                     Total <span class="textIva">(IVA incluido)</span>
                 </span>
-                <span class="totalPrice" id="finalPrice">1100 €</span>
+                <span class="totalPrice" id="finalPrice"></span>
             </div>
             <button class="btnComprar">Finalizar compra</button> 
         </div>
