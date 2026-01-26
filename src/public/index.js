@@ -1,5 +1,6 @@
 import { checkTokenAndChangeLoginButton } from "../libs/token.utils.js";
 import productosService from "../services/productos.service.js";
+import {redirectToSearchPage, fillCategorySelect} from "../libs/search.utils.js";
 setup();
 
 async function setup() {
@@ -19,22 +20,8 @@ async function setup() {
     nSelCategory.addEventListener('change', fillContainersByCategory);
     nSelCategory.addEventListener('change', changeTitles);
 
-
-}
-
-
-async function fillCategorySelect() {
-    const service = new productosService();
-    let categories = await service.getCategories();
-
-    const nSelect = document.querySelector('#tSelectCategory');
-
-    categories.forEach(category => {
-        const nOpt = document.createElement('option');
-        nSelect.appendChild(nOpt);
-        nOpt.value = category.id;
-        nOpt.textContent = category.nombre;
-    });
+    const searchBtn = document.querySelector("#tSpnSearch");
+    searchBtn.addEventListener("click", redirectToSearchPage);
 }
 
 async function changeTitles(e) {

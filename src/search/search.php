@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./search.css">
     <script type="module" src="index.js"></script>
     <link rel="icon" type="image/png" href="./images/favicon.png">
-
+    <script type="module" src="./search.js"></script>
 </head>
 
 <body>
@@ -23,8 +23,8 @@
         </div>
 
         <div class="divSearchBar">
-            <input class="inputSearchBar" type="text" name="" id="" placeholder="Busque un producto">
-            <span class="iconSearchBar"></span>
+            <input class="inputSearchBar" type="text" name="" id="tInputSearch" placeholder="Busque un producto">
+            <span class="iconSearchBar" id="tSpnSearch"></span>
         </div>
 
         <a href="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
