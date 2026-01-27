@@ -1,40 +1,69 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/Database.php';
 
-if (isset($_GET['categoria']) && is_numeric($_GET['categoria'])) {
+header('Content-Type: application/json; charset=utf-8');
+
+$pdo = Database::getInstance();
+
+if (isset($_GET['id'])) {
+
+    if (!is_numeric($_GET['id'])) {
+        http_response_code(400);
+        echo json_encode([
+            'ok' => false,
+            'message' => 'ID de producto inválido'
+        ], JSON_UNESCAPED_UNICODE);
+        exit;
+    }
 
     $stmt = $pdo->prepare("
         SELECT 
-            p.id,
-            p.nombre,
-            p.descripcion,
-            p.precio,
-            p.stock,
-            p.imagen,
-            p.categoria_id
-        FROM productos p
-        WHERE p.categoria_id = ?
+            id,
+            nombre,
+            descripcion,
+            precio,
+            stock,
+            imagen,
+            categoria_id
+        FROM productos
+        WHERE id = ?
     ");
 
-    $stmt->execute([$_GET['categoria']]);
+    $stmt->execute([$_GET['id']]);
+    $producto = $stmt->fetch();
 
-} else {
+    if (!$producto) {
+        http_response_code(404);
+        echo json_encode([
+            'ok' => false,
+            'message' => 'Producto no encontrado'
+        ], JSON_UNESCAPED_UNICODE);
+        exit;
+    }
 
-    $stmt = $pdo->query("
-        SELECT 
-            p.id,
-            p.nombre,
-            p.descripcion,
-            p.precio,
-            p.stock,
-            p.imagen,
-            p.categoria_id
-        FROM productos p
-    ");
+    echo json_encode([
+        'ok' => true,
+        'producto' => $producto
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
 }
+
+$stmt = $pdo->query("
+    SELECT 
+        id,
+        nombre,
+        descripcion,
+        precio,
+        stock,
+        imagen,
+        categoria_id
+    FROM productos
+");
 
 $productos = $stmt->fetchAll();
 
-header('Content-Type: application/json; charset=utf-8');
-echo json_encode($productos, JSON_UNESCAPED_UNICODE);
+echo json_encode([
+    'ok' => true,
+    'productos' => $productos
+], JSON_UNESCAPED_UNICODE);
 ?>

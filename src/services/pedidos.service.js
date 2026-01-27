@@ -1,13 +1,7 @@
-export default class CarritoService {
-    /**
-     * 
-     * @param {*} productID 
-     * @param {*} token 
-     * @returns {Promise<string>}
-     */
-    async addToCart(productID, token) {
+export default class PedidosService {
+    async addPedido(productosIds, token) {
 
-        const url = 'http://localhost:8081/api/carrito_add.php';
+        const url = 'http://localhost:8081/api/pedido_add.php';
 
         let response;
         try {
@@ -17,7 +11,9 @@ export default class CarritoService {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ productoId: productID })
+                body: JSON.stringify({
+                    productos: productosIds
+                })
             });
         } catch (error) {
             throw new Error(`Error de conexión: ${error.message}`);
@@ -31,31 +27,26 @@ export default class CarritoService {
         }
 
         if (!data.ok) {
-            throw new Error(data.message || 'Error al añadir al carrito');
+            throw new Error(data.message || 'Error al crear el pedido');
         }
 
         return data.message;
     }
 
-    /**
-     * 
-     * @param {*} token 
-     * @returns {Promise<Array>} 
-     */
-    async getCart(token) {
-        const url = 'http://localhost:8081/api/carrito_get.php';
+    async getPedidos(token) {
+
+        const url = 'http://localhost:8081/api/pedidos_get.php';
 
         let response;
         try {
             response = await fetch(url, {
-                method: 'POST',
+                method: 'GET',
                 headers: {
-                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
             });
         } catch (error) {
-            throw new Error(`Error conectando con el servidor: ${error.message}`);
+            throw new Error(`Error de conexión: ${error.message}`);
         }
 
         let data;
@@ -66,9 +57,9 @@ export default class CarritoService {
         }
 
         if (!data.ok) {
-            throw new Error(data.message || 'Error obteniendo el carrito');
+            throw new Error(data.message || 'Error obteniendo los pedidos');
         }
 
-        return data.productos;
+        return data.pedidos;
     }
 }

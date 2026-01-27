@@ -1,7 +1,9 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/Database.php';
 
 header('Content-Type: application/json; charset=utf-8');
+
+$pdo = Database::getInstance();
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 

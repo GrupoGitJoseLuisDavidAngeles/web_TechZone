@@ -19,12 +19,8 @@ body {
         "header"
         "main"
         "footer";
-    overflow-x: auto;
 }
 
-body::-webkit-scrollbar {
-    display: none;
-}
 
 .asideRight {
     grid-area: asideRight;
@@ -35,6 +31,7 @@ main {
     display: grid;
     grid-template-areas: 
         "shoppingCart"
+        "freeShippingNotice"
         "order";
     gap: 2rem;
     padding: 1rem;
@@ -50,6 +47,16 @@ main {
 .cart > p {
     color: #808080;
     font-size: 1.7rem;
+}
+
+.freeShippingNotice {
+    grid-area: freeShippingNotice;
+    display: none;
+    padding:  0.5rem;
+    background-color: #CCE2CB;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin: 1rem;
 }
 
 .productsContainer {

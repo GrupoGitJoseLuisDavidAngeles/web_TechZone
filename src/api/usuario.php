@@ -7,7 +7,7 @@ header('Content-Type: application/json; charset=utf-8');
 $CLAVE_JWT = 'CLAVE_SECRETA';
 $pdo = Database::getInstance();
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);
     echo json_encode([
         'ok' => false,
@@ -27,8 +27,7 @@ if (!isset($headers['authorization'])) {
     exit;
 }
 
-$authHeader = $headers['authorization'];
-$token = str_replace('Bearer ', '', $authHeader);
+$token = str_replace('Bearer ', '', $headers['authorization']);
 
 $payload = validateJWT($token, $CLAVE_JWT);
 
@@ -43,40 +42,27 @@ if (!$payload) {
 
 $usuarioId = $payload['sub'];
 
-$stmt = $pdo->prepare("SELECT id FROM carritos WHERE usuario_id = ?");
-$stmt->execute([$usuarioId]);
-$carrito = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare("
+    SELECT nombre, email, rol
+    FROM usuarios
+    WHERE id = ?
+");
 
-if (!$carrito) {
+$stmt->execute([$usuarioId]);
+
+$usuario = $stmt->fetch();
+
+if (!$usuario) {
+    http_response_code(404);
     echo json_encode([
-        'ok' => true,
-        'productos' => []
+        'ok' => false,
+        'message' => 'Usuario no encontrado'
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-$carritoId = $carrito['id'];
-
-$stmt = $pdo->prepare("
-    SELECT 
-    cp.id AS lineaId,
-    cp.cantidad,
-    p.id AS productoId,
-    p.nombre,
-    p.precio,
-    p.imagen,
-    c.nombre AS categoria
-    FROM carrito_productos cp
-    JOIN productos p ON cp.producto_id = p.id
-    JOIN categorias c ON p.categoria_id = c.id
-    WHERE cp.carrito_id = ?
-    ORDER BY cp.id ASC;
-");
-$stmt->execute([$carritoId]);
-$productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 echo json_encode([
     'ok' => true,
-    'productos' => $productos
+    'usuario' => $usuario
 ], JSON_UNESCAPED_UNICODE);
 ?>

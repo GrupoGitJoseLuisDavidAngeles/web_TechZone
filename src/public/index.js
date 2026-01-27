@@ -1,9 +1,13 @@
+import { checkTokenAndChangeLoginButton } from "../libs/token.utils.js";
 import productosService from "../services/productos.service.js";
-// import { format } from 'date-fns';
 setup();
 
 async function setup() {
+    const token = window.localStorage.getItem('token');
+    await checkTokenAndChangeLoginButton(token);
+
     fillCategorySelect();
+
     const service = new productosService();
     let productos = await service.getProducts();
     let ofertas = await service.getOffers();
@@ -12,8 +16,12 @@ async function setup() {
     fillOnOffer(productos, ofertas);
 
     const nSelCategory = document.querySelector('#tSelectCategory');
-    nSelCategory.addEventListener('change', fillContainersByCategory)
+    nSelCategory.addEventListener('change', fillContainersByCategory);
+    nSelCategory.addEventListener('change', changeTitles);
+
+
 }
+
 
 async function fillCategorySelect() {
     const service = new productosService();
@@ -29,10 +37,25 @@ async function fillCategorySelect() {
     });
 }
 
-async function fillContainersByCategory(e) {
+async function changeTitles(e) {
     const nSelect = e.target;
     const categoriaId = nSelect.value;
 
+    const service = new productosService();
+    const categories = await service.getCategories();
+    let newTitle = 'Productos';
+    if (categoriaId != 'all') {
+        newTitle = categories.filter(cat => cat['id'] == categoriaId).at(0).nombre;
+    }
+
+    document.querySelector('#tTitleFeatured').textContent = newTitle;
+    document.querySelector('#tTitleOffers').textContent = newTitle;
+
+}
+
+async function fillContainersByCategory(e) {
+    const nSelect = e.target;
+    const categoriaId = nSelect.value;
 
     const service = new productosService();
     let productos = await service.getProducts();
@@ -97,7 +120,6 @@ async function fillOnOffer(products, offers) {
 
 
         const product = products.filter(prod => prod['id'] == productId).at(0)
-        console.log(product);
 
         const nCard = document.createElement('div');
         nContainer.appendChild(nCard);
@@ -120,7 +142,7 @@ async function fillOnOffer(products, offers) {
 
         const nDescuento = document.createElement('p');
         nCard.appendChild(nDescuento);
-        const discountPercent = '-'+((offer.precio_original - offer.precio_nuevo) / offer.precio_original * 100).toFixed(0) + '%';
+        const discountPercent = '-' + ((offer.precio_original - offer.precio_nuevo) / offer.precio_original * 100).toFixed(0) + '%';
         nDescuento.textContent = discountPercent;
         nDescuento.classList.add('product-discount')
 

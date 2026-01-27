@@ -6,8 +6,37 @@ export default class productosService {
     async getProducts() {
         const url = 'http://localhost:8081/api/productos.php';
         const response = await fetch(url);
-        const data = await response.json();
-        return data;
+        let data;
+
+        try {
+            data = await response.json();
+        } catch (error) {
+            throw new Error(`Error leyendo la respuesta del servidor: ${error.message}`);
+        }
+
+        if (!data.ok) {
+            throw new Error(data.message || 'Error obteniendo el carrito');
+        }
+
+        return data.productos;
+    }
+
+    async getProductById(id) {
+        const url = `http://localhost:8081/api/productos.php?id=${id}`;
+        const response = await fetch(url);
+        let data;
+        
+        try {
+            data = await response.json();
+        } catch (error) {
+            throw new Error(`Error leyendo la respuesta del servidor: ${error.message}`);
+        }
+
+        if (!data.ok) {
+            throw new Error(data.message || 'Error obteniendo el carrito');
+        }
+
+        return data.producto;
     }
 
     /**

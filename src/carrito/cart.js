@@ -1,115 +1,117 @@
-import productosService from "../services/productos.service.js";
+import CarritoService from "../services/carrito.service.js";
+
 setup();
 
 async function setup() {
-    const service = new productosService();
-    const products = await service.getProducts();
-    fillFeaturedContainer(products);
-    updateOrderSummary();
+    const token = window.localStorage.getItem("token");
+
+    if(token){
+        const service = new CarritoService();
+        const cartProducts = await service.getCart(token);
+
+        fillFeaturedContainer(cartProducts);
+        showNumberOfProducts();
+        updateOrderSummary();
+    }else{
+        alert("Para realizar la compra debes iniciar sesión");
+        window.location = "../auth/login.php";
+        return;
+    }
+
 }
 
-const categoryMap = {
-    1: "Portátiles",
-    2: "PC de escritorio",
-    3: "Componentes",
-    4: "Periféricos"
-};
+function fillFeaturedContainer(cartProducts){
+    const nProductsContainer = document.querySelector(".productsContainer");
 
-function fillFeaturedContainer(products) {
-    const nContainer = document.querySelector('.productsContainer');
-    nContainer.innerHTML = ''; 
+    cartProducts.forEach(product => {
+        const nProduct = document.createElement("div");
+        nProductsContainer.appendChild(nProduct);
+        nProduct.setAttribute("class", `product`);
 
-    products.forEach(product => {
-        const nProduct = document.createElement('div');
-        nContainer.appendChild(nProduct);
-        nProduct.classList.add('product');
-
-        const nImage = document.createElement('div');
+        const nImage = document.createElement("div");
         nProduct.appendChild(nImage);
-        nImage.classList.add('productImage'); 
-        nImage.style.backgroundImage = `url('http://localhost:8081/assets/${product.imagen}')`;
+        nImage.setAttribute("class", "productImage");
+        nImage.style.backgroundImage = `url('../assets/${product.imagen}')`;
         nImage.style.backgroundPositionX = "center";
 
-        const nInfo = document.createElement('div');
-        nProduct.appendChild(nInfo);
-        nInfo.classList.add('productInformation');
 
-        const nName = document.createElement('p');
-        nInfo.appendChild(nName);
-        nName.classList.add('productName');
+        const nInformation = document.createElement("div");
+        nProduct.appendChild(nInformation);
+        nInformation.setAttribute("class", "productInformation");
+
+        const nName = document.createElement("p");
+        nInformation.appendChild(nName);
+        nName.setAttribute("class", "productName");
         nName.textContent = product.nombre;
 
-        const nCategory = document.createElement('p');
-        nInfo.appendChild(nCategory);
-        nCategory.classList.add('category');
-        nCategory.textContent = categoryMap[product.categoria_id] || "Sin categoría";
+        const nCategory = document.createElement("p");
+        nInformation.appendChild(nCategory);
+        nCategory.setAttribute("class", "category");
+        nCategory.textContent = product.categoria;
 
-        const nDelivery = document.createElement('p');
-        nInfo.appendChild(nDelivery);
-        nDelivery.classList.add('deliveryDay');
+        const nDelivery = document.createElement("p");
+        nInformation.appendChild(nDelivery);
+        nDelivery.setAttribute("class", "deliveryDay");
         nDelivery.textContent = "Recíbelo pronto";
 
-        const nQuantityDiv = document.createElement('div');
-        nInfo.appendChild(nQuantityDiv);
-        nQuantityDiv.classList.add('quantityControls');
 
-        const btnDelete = document.createElement('button');
-        nQuantityDiv.appendChild(btnDelete);
-        btnDelete.classList.add('btnDelete');
-        btnDelete.textContent = "-";
+        const nControls = document.createElement("div");
+        nInformation.appendChild(nControls);
+        nControls.setAttribute("class", "quantityControls");
 
-        const nQuantity = document.createElement('span');
-        nQuantity.classList.add('productQuantity');
-        nQuantity.textContent = "1";
-        nQuantityDiv.appendChild(nQuantity);
+        const nButtonDelete = document.createElement("button");
+        nControls.appendChild(nButtonDelete);
+        nButtonDelete.setAttribute("class", "btnDelete");
+        nButtonDelete.textContent = "-";
+        nButtonDelete.addEventListener("click", () => {
+            let quantity = parseInt(nQuantity.textContent);
+            if(quantity > 1){
+                nQuantity.textContent = quantity - 1;
+                updateOrderSummary();
+                showNumberOfProducts();
+            }
+        });
 
-        const btnAdd = document.createElement('button');
-        nQuantityDiv.appendChild(btnAdd);
-        btnAdd.classList.add('btnAdd');
-        btnAdd.textContent = "+";
+        const nQuantity = document.createElement("span");
+        nControls.appendChild(nQuantity);
+        nQuantity.setAttribute("class", "productQuantity");
+        nQuantity.setAttribute("id", "itemQuantity");
+        nQuantity.textContent = product.cantidad;
 
-        const nDeleteLink = document.createElement('a');
-        nInfo.appendChild(nDeleteLink);
-        nDeleteLink.classList.add('deleteProduct');
-        nDeleteLink.href = "#";
+        const nButtonAdd = document.createElement("button");
+        nControls.appendChild(nButtonAdd);
+        nButtonAdd.setAttribute("class", "btnAdd");
+        nButtonAdd.textContent = "+";
+        nButtonAdd.addEventListener("click", () => {
+            nQuantity.textContent = parseInt(nQuantity.textContent) + 1
+            updateOrderSummary();
+            showNumberOfProducts();
+        });
+
+        const nDeleteLink = document.createElement("a");
+        nInformation.appendChild(nDeleteLink);
+        nDeleteLink.setAttribute("class", "deleteProduct");
+        nDeleteLink.setAttribute("href", "#");
         nDeleteLink.textContent = "Eliminar producto";
+        nDeleteLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            nProduct.remove();
+            updateOrderSummary();
+            showNumberOfProducts()
+        });
 
-        const nPrice = document.createElement('p');
+        const nPrice = document.createElement("p");
         nProduct.appendChild(nPrice);
-        nPrice.classList.add('price');
-
+        nPrice.setAttribute("class", "price");
+        
         const nAmount = document.createElement("span");
         nPrice.appendChild(nAmount);
-        nAmount.classList.add("amount");
+        nAmount.setAttribute("class", "amount");
         nAmount.textContent = product.precio;
         nPrice.append(" €");
     });
-
-    nContainer.addEventListener('click', (e) => {
-        const target = e.target;
-
-        if (target.classList.contains('btnAdd')) {
-            const quantityEl = target.parentElement.querySelector('.productQuantity');
-            quantityEl.textContent = parseInt(quantityEl.textContent) + 1;
-            updateOrderSummary();
-        }
-
-        if (target.classList.contains('btnDelete')) {
-            const quantityEl = target.parentElement.querySelector('.productQuantity');
-            let qty = parseInt(quantityEl.textContent);
-            if (qty > 1) {
-                quantityEl.textContent = qty - 1;
-                updateOrderSummary();
-            }
-        }
-
-        if (target.classList.contains('deleteProduct')) {
-            e.preventDefault();
-            target.closest('.product').remove();
-            updateOrderSummary();
-        }
-    });
 }
+
 
 
 function updateOrderSummary() {
@@ -123,9 +125,36 @@ function updateOrderSummary() {
     });
 
     const iva = subtotal * 0.21; 
-    const total = subtotal + iva;
+    let shipping = 0;
 
-    document.querySelector('.subtotal .amount').textContent = subtotal.toFixed(2);
-    document.querySelector('.iva .amount').textContent = iva.toFixed(2);
+    const nCartAlert = document.querySelector("#freeShippingAlert");
+
+    if (subtotal > 0 && subtotal < 200) {
+        shipping = 5; 
+        nCartAlert.style.display = "none"; 
+    } else if (subtotal >= 200) {
+        shipping = 0; 
+        nCartAlert.style.display = "block";
+    } else {
+        shipping = 0;
+        nCartAlert.style.display = "none";
+    }
+
+    const total = subtotal + iva + shipping;
+
+    document.querySelector('.subtotal .amount').textContent = subtotal.toFixed(2) + " €";
+    document.querySelector('.iva .amount').textContent = iva.toFixed(2) + " €";
+    document.querySelector('.shippingCosts .amountDiscount').textContent = shipping.toFixed(2) + " €";
     document.querySelector('#finalPrice').textContent = total.toFixed(2) + " €";
+}
+
+
+
+function showNumberOfProducts(){
+    const products = document.querySelectorAll(".product");
+    const cantidad = products.length;
+    const texto = cantidad === 1 ? "producto" : "productos";
+
+    document.querySelector("#productsQuantity").textContent = 
+        `${cantidad} ${texto}`;
 }
