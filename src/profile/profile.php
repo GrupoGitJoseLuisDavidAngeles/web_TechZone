@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechZone</title>
+    <title>Perfil de usuario - TechZone</title>
     <link rel="stylesheet" href="./profile.css">
     <script type="module" src="profile.js"></script>
     <link rel="icon" type="image/png" href="./images/favicon.png">
@@ -37,21 +37,21 @@
         </div>
 
         <!-- Resumen rápido -->
+        <button class="end-session">Cerrar sesión</button>
         <div class="profile-orders">
             <h2>Pedidos</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Cantidad de items</th>
+                        <th>Precio</th>
+                        <th>Items</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="tTablePedidos"></tbody>
             </table>
         </div>
-
-
-        <button class="end-session">Cerrar sesión</button>
-
     </main>
 
     <aside class="aside-right"></aside>
