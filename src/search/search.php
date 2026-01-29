@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechZone</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./search.css">
     <script type="module" src="index.js"></script>
     <link rel="icon" type="image/png" href="./images/favicon.png">
-
+    <script type="module" src="./search.js"></script>
 </head>
 
 <body>
@@ -34,13 +34,16 @@
     <aside class="aside-left"></aside>
 
     <main>
-        <h1><span id="tTitleFeatured">Productos</span> destacados</h1>
-        <div id="tFeaturedProducts" class="featured-products">
-        </div>
-
-        <h1><span id="tTitleOffers">Productos</span> en oferta</h1>
-        <div id="tProductsOnOffer" class="featured-products">
-            (Usando la base de datos)
+        <h1 id="tH1Title">Productos encontrados</h1>
+        <div id="tDivProductContainer" class="product-container">
+            <!-- <div class="product-card">
+                <img class="product-image" src="/assets/cpu.png">
+                <p class="product-name">Procesador de ejemplo</p>
+                <div class="product-price">
+                    <p class="price-new">400 €</p>
+                </div>
+                <p class="product-description">Ejemplo de descripcion del producto.</p>
+            </div> -->
         </div>
     </main>
 

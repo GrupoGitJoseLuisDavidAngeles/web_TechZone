@@ -33,7 +33,7 @@ export default class productosService {
         }
 
         if (!data.ok) {
-            throw new Error(data.message || 'Error obteniendo el carrito');
+            throw new Error(data.message || 'Error obteniendo el producto');
         }
 
         return data.producto;
@@ -59,5 +59,36 @@ export default class productosService {
         const response = await fetch(url);
         let data = await response.json();
         return data;
+    }
+
+    async searchProducts(name = "", category = "") {
+        let conditions = "";
+
+        if (name != "") {
+            conditions += conditions ? "&" : "?";
+            conditions += `name=${encodeURIComponent(name)}`;
+        }
+
+        if (category != "") {
+            conditions += conditions ? "&" : "?";
+            conditions += `category=${encodeURIComponent(category)}`;
+        }
+
+        const url = `http://localhost:8081/api/productos_search.php${conditions}`;
+        console.log(url);
+        const response = await fetch(url);
+        let data;
+        
+        try {
+            data = await response.json();
+        } catch (error) {
+            throw new Error(`Error leyendo la respuesta del servidor: ${error.message}`);
+        }
+
+        if (!data.ok) {
+            throw new Error(data.message || 'Error obteniendo los productos');
+        }
+
+        return data.productos;
     }
 }
