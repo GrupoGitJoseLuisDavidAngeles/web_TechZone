@@ -1,9 +1,19 @@
 import CarritoService from "../services/carrito.service.js";
+import { checkTokenAndChangeLoginButton } from "../libs/token.utils.js";
+import productosService from "../services/productos.service.js";
+import { redirectToSearchPage, fillCategorySelect } from "../libs/search.utils.js";
+
 
 setup();
 
 async function setup() {
     const token = window.localStorage.getItem("token");
+    await checkTokenAndChangeLoginButton(token);
+
+    fillCategorySelect();
+    
+    const searchBtn = document.querySelector("#tSpnSearch");
+    searchBtn.addEventListener("click", redirectToSearchPage);
 
     if(token){
         const service = new CarritoService();
