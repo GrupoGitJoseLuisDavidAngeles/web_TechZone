@@ -149,6 +149,12 @@ main {
     text-decoration: underline;
 }
 
+.quantityControls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .productQuantity {
     font-size: 1rem;
     margin: 1rem 0rem;
@@ -160,6 +166,24 @@ main {
 .price {
     font-weight: bold;
     font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+    .old-amount {
+        font-size: 1rem;
+        font-weight: normal;
+        color: red;
+        text-decoration: line-through;
+    }
+}
+
+.amount {
+    white-space: nowrap;
+}
+
+.totalPrice  {
+    white-space: nowrap;
 }
 
 .order {
@@ -242,7 +266,6 @@ header, footer {
 
 header {
     grid-area: header;
-    position: sticky;
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -277,6 +300,7 @@ header {
 .divSearchBar {
     position: relative;
     width: 18rem;
+    margin-left: 20px;
 }
 
 .inputSearchBar {
@@ -333,10 +357,6 @@ footer {
     padding-bottom: 0.5rem;
 }
 
-
-
-
-
 @media screen and (min-width: 768px) {
     header {
         flex-wrap: wrap;
@@ -362,14 +382,18 @@ footer {
     }
 
     .price {
-            font-size: 1.2rem;
+        font-size: 1.2rem;
+
+        .old-amount {
+            font-size: 1rem;
+            font-weight: normal;
+            color: red;
+            text-decoration: line-through;
+        }
     }
 } 
 
-
-
-
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1240px) {
     body {
         grid-template-columns: 15% 1fr 15%;
         grid-template-areas:
@@ -406,6 +430,13 @@ footer {
 
     .price {
         text-align: end;
+
+        .old-amount {
+            font-size: 1rem;
+            font-weight: normal;
+            color: red;
+            text-decoration: line-through;
+        }
     }
 
     .total {

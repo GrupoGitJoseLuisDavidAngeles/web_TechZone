@@ -17,7 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZ
 ### Obtener carrito de un usuario
 POST http://localhost:8081/api/carrito_get.php
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZSI6ImFsZXhhbmRyYSIsInJvbCI6ImNsaWVudGUiLCJpYXQiOjE3Njk3Njk5MTAsImV4cCI6MTc2OTc3NzExMH0.g9RarUNAsLObNAcbqvSgoTjQtEDyPLLSxfmLcJ5wOVY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njk3ODk2MDAsImV4cCI6MTc2OTc5NjgwMH0.DXsfxpn5jOOsjEq9E28Q84niXgnPWcDs2hN-eriDLJY
 
 ### Añadir pedido
 POST http://localhost:8081/api/pedido_add.php
@@ -30,7 +30,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZ
 
 ### Obtener pedidos de un usuario
 GET http://localhost:8081/api/pedidos_get.php
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njk3MDM4MDcsImV4cCI6MTc2OTcxMTAwN30.bT5RUXpDqcJmmLbddT7iG4kitXQ1pdl3D4DTytKskks
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njk3OTc1NzksImV4cCI6MTc2OTgwNDc3OX0.hyGFWEdgjjxLvUQQ9ODRIEAzQAc-n2aZtRA-lsREWvg
 
 ### Obtener información de usuario
 GET http://localhost:8081/api/usuario.php
