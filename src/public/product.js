@@ -54,8 +54,14 @@ async function addProductToCartHandler(event){
     const token = getToken();
     const id=getIdFromUrl();
 
+    if (!token) {
+        alert("Debes iniciar sesión para añadir productos a la cesta.");
+        return;
+    }
+
     const service = new CarritoService();
     await service.addToCart(id, token);
+    alert("Producto añadido a la cesta.");
 }
 
 

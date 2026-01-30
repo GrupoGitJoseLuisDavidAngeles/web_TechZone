@@ -1,8 +1,8 @@
 import CarritoService from "../services/carrito.service.js";
-import { checkTokenAndChangeLoginButton } from "../libs/token.utils.js";
+import PedidosService from "../services/pedidos.service.js";
 import productosService from "../services/productos.service.js";
+import { checkTokenAndChangeLoginButton } from "../libs/token.utils.js";
 import { redirectToSearchPage, fillCategorySelect } from "../libs/search.utils.js";
-
 
 setup();
 
@@ -17,9 +17,12 @@ async function setup() {
 
     if(token){
         const service = new CarritoService();
-        const cartProducts = await service.getCart(token);
+        const productService = new productosService();
 
-        fillFeaturedContainer(cartProducts);
+        const cartProducts = await service.getCart(token);
+        const offers = await productService.getOffers();
+
+        fillFeaturedContainer(cartProducts, offers);
         showNumberOfProducts();
         updateOrderSummary();
     }else{
@@ -28,22 +31,56 @@ async function setup() {
         return;
     }
 
+    const orderBtn = document.querySelector("#tBtnComprar");
+    orderBtn.addEventListener("click", addOrder);
 }
 
-function fillFeaturedContainer(cartProducts){
+async function addOrder() {
+    const products = document.querySelectorAll('.product');
+    const token = window.localStorage.getItem("token");
+    const pedidoService = new PedidosService();
+    const carritoService = new CarritoService();
+    const productsIds = [];
+
+    if (products.length === 0) {
+        alert("El carrito está vacío. No se puede realizar el pedido.");
+        return;
+    }
+
+    products.forEach(product => {
+        let cantidad = product.dataset.productCantidad;
+        let id = product.dataset.productId;
+
+        for (let i = 0; i < cantidad; i++) {
+            productsIds.push(id);
+        }
+    });
+
+    try {
+        await pedidoService.addPedido(productsIds, token);
+        await carritoService.clearCart(token);
+        alert("Pedido realizado con éxito.");
+        window.location = "/carrito/cart.php";
+    } catch (error) {
+        alert("Error al realizar el pedido: " + error.message);
+    }
+}
+
+function fillFeaturedContainer(cartProducts, offers){
     const nProductsContainer = document.querySelector(".productsContainer");
 
     cartProducts.forEach(product => {
         const nProduct = document.createElement("div");
         nProductsContainer.appendChild(nProduct);
         nProduct.setAttribute("class", `product`);
+        nProduct.setAttribute("data-product-id", product.productoId);
+        nProduct.setAttribute("data-product-cantidad", product.cantidad);
 
         const nImage = document.createElement("div");
         nProduct.appendChild(nImage);
         nImage.setAttribute("class", "productImage");
         nImage.style.backgroundImage = `url('../assets/${product.imagen}')`;
         nImage.style.backgroundPositionX = "center";
-
 
         const nInformation = document.createElement("div");
         nProduct.appendChild(nInformation);
@@ -72,15 +109,8 @@ function fillFeaturedContainer(cartProducts){
         nControls.appendChild(nButtonDelete);
         nButtonDelete.setAttribute("class", "btnDelete");
         nButtonDelete.textContent = "-";
-        nButtonDelete.addEventListener("click", () => {
-            let quantity = parseInt(nQuantity.textContent);
-            if(quantity > 1){
-                nQuantity.textContent = quantity - 1;
-                updateOrderSummary();
-                showNumberOfProducts();
-            }
-        });
-
+        nButtonDelete.addEventListener("click", deleteFromCart);
+        
         const nQuantity = document.createElement("span");
         nControls.appendChild(nQuantity);
         nQuantity.setAttribute("class", "productQuantity");
@@ -91,37 +121,65 @@ function fillFeaturedContainer(cartProducts){
         nControls.appendChild(nButtonAdd);
         nButtonAdd.setAttribute("class", "btnAdd");
         nButtonAdd.textContent = "+";
-        nButtonAdd.addEventListener("click", () => {
-            nQuantity.textContent = parseInt(nQuantity.textContent) + 1
-            updateOrderSummary();
-            showNumberOfProducts();
-        });
+        nButtonAdd.addEventListener("click", addToCart);
 
-        const nDeleteLink = document.createElement("a");
-        nInformation.appendChild(nDeleteLink);
-        nDeleteLink.setAttribute("class", "deleteProduct");
-        nDeleteLink.setAttribute("href", "#");
-        nDeleteLink.textContent = "Eliminar producto";
-        nDeleteLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            nProduct.remove();
-            updateOrderSummary();
-            showNumberOfProducts()
-        });
-
-        const nPrice = document.createElement("p");
+        const nPrice = document.createElement("div");
         nProduct.appendChild(nPrice);
         nPrice.setAttribute("class", "price");
         
-        const nAmount = document.createElement("span");
-        nPrice.appendChild(nAmount);
-        nAmount.setAttribute("class", "amount");
-        nAmount.textContent = product.precio;
-        nPrice.append(" €");
+        const offer = offers.find(offer => offer.producto_id === product.productoId);
+
+        if (offer) {
+            let nAmount = document.createElement("span");
+            nPrice.appendChild(nAmount);
+            nAmount.setAttribute("class", "old-amount");
+            nAmount.textContent = offer.precio_original;
+
+            nAmount = document.createElement("span");
+            nPrice.appendChild(nAmount);
+            nAmount.setAttribute("class", "amount");
+            nAmount.textContent = offer.precio_nuevo + " €";
+        } else {
+            let nAmount = document.createElement("span");
+            nPrice.appendChild(nAmount);
+            nAmount.setAttribute("class", "amount");
+            nAmount.textContent = product.precio + " €";
+        }
+
     });
 }
 
+async function deleteFromCart(e) {
+    const token = window.localStorage.getItem("token");
+    const productElement = e.target.closest(".product");
+    const productId = productElement.getAttribute("data-product-id");
 
+    console.log(`Eliminar producto con ID: ${productId}`);
+    const service = new CarritoService();
+
+    try {
+        await service.deleteFromCart(productId, token);
+        window.location = "/carrito/cart.php";
+    } catch (error) {
+        console.error("Error al eliminar el producto del carrito:", error);
+    }
+}
+
+async function addToCart(e) {
+    const token = window.localStorage.getItem("token");
+    const productElement = e.target.closest(".product");
+    const productId = productElement.getAttribute("data-product-id");
+
+    console.log(`Añadir producto con ID: ${productId}`);
+    const service = new CarritoService();
+
+    try {
+        await service.addToCart(productId, token);
+        window.location = "/carrito/cart.php";
+    } catch (error) {
+        console.error("Error al añadir el producto al carrito:", error);
+    }
+}
 
 function updateOrderSummary() {
     const products = document.querySelectorAll('.product');

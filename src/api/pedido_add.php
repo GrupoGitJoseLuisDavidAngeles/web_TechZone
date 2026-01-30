@@ -7,15 +7,21 @@ header('Content-Type: application/json; charset=utf-8');
 $CLAVE_JWT = 'CLAVE_SECRETA';
 $pdo = Database::getInstance();
 
+/* =======================
+   Comprobar método
+======================= */
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode([
         'ok' => false,
         'message' => 'Método no permitido'
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
+/* =======================
+   Obtener y validar JWT
+======================= */
 $headers = array_change_key_case(getallheaders(), CASE_LOWER);
 
 if (!isset($headers['authorization'])) {
@@ -23,7 +29,7 @@ if (!isset($headers['authorization'])) {
     echo json_encode([
         'ok' => false,
         'message' => 'Token no proporcionado'
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -35,7 +41,7 @@ if (!$payload) {
     echo json_encode([
         'ok' => false,
         'message' => 'Token inválido o expirado'
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
@@ -49,10 +55,11 @@ if (!is_array($productos) || empty($productos)) {
     echo json_encode([
         'ok' => false,
         'message' => 'Lista de productos inválida'
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
+/* Contar cantidades */
 $conteo = array_count_values($productos);
 
 try {
@@ -62,12 +69,14 @@ try {
         INSERT INTO pedidos (usuario_id, total)
         VALUES (?, 0)
     ");
-
     $stmt->execute([$usuarioId]);
     $pedidoId = $pdo->lastInsertId();
 
     $total = 0;
 
+    /* =======================
+       Procesar productos
+    ======================= */
     foreach ($conteo as $productoId => $cantidad) {
 
         if (!is_numeric($productoId) || $cantidad <= 0) {
@@ -75,42 +84,45 @@ try {
         }
 
         $stmt = $pdo->prepare("
-            SELECT precio 
-            FROM productos 
-            WHERE id = ?
+            SELECT 
+                p.precio AS precio_original,
+                o.precio_oferta
+            FROM productos p
+            LEFT JOIN ofertas o ON 
+                o.producto_id = p.id
+                AND o.activa = 1
+                AND NOW() BETWEEN o.fecha_inicio AND o.fecha_fin
+            WHERE p.id = ?
         ");
-        
         $stmt->execute([$productoId]);
         $producto = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$producto) {
-            throw new Exception("Producto $productoId no existe");
+            throw new Exception("El producto $productoId no existe");
         }
 
-        $precio = $producto['precio'];
-        $subtotal = $precio * $cantidad;
+        $precioUnitario = $producto['precio_oferta'] ?? $producto['precio_original'];
+        $subtotal = $precioUnitario * $cantidad;
         $total += $subtotal;
 
         $stmt = $pdo->prepare("
-            INSERT INTO pedido_productos 
+            INSERT INTO pedido_productos
             (pedido_id, producto_id, cantidad, precio_unitario)
             VALUES (?, ?, ?, ?)
         ");
-
         $stmt->execute([
             $pedidoId,
             $productoId,
             $cantidad,
-            $precio
+            $precioUnitario
         ]);
     }
 
     $stmt = $pdo->prepare("
-        UPDATE pedidos 
+        UPDATE pedidos
         SET total = ?
         WHERE id = ?
     ");
-
     $stmt->execute([$total, $pedidoId]);
 
     $pdo->commit();
@@ -130,6 +142,6 @@ try {
         'ok' => false,
         'message' => 'Error creando el pedido',
         'error' => $e->getMessage()
-    ]);
+    ], JSON_UNESCAPED_UNICODE);
 }
 ?>

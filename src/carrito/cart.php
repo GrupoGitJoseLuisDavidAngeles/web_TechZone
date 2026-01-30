@@ -29,7 +29,7 @@
             <span class="iconSearchBar" id="tSpnSearch"></span>
         </div>
 
-        <span class="../auth/login.php" id="tLnkLogin">Iniciar sesión</span>
+        <a class="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
         <a href="../carrito/cart.php">Carrito</a>
     </header>
 
@@ -67,7 +67,7 @@
                 </span>
                 <span class="totalPrice" id="finalPrice"></span>
             </div>
-            <button class="btnComprar">Finalizar compra</button> 
+            <button class="btnComprar" id="tBtnComprar">Finalizar compra</button> 
         </div>
     </main>
 
