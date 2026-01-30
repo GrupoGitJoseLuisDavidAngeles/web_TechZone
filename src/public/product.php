@@ -9,7 +9,9 @@
 </head>
 <body>
     <header>
-        <div class="tLogo"></div>
+        <a href="/public/index.php" class="tAIndex">
+            <div class="tLogo"></div>
+        </a>
 
         <div>
             <label for="">Categorías</label>
