@@ -1,59 +1,70 @@
 import { checkTokenAndChangeLoginButton } from "../libs/token.utils.js";
 import productosService from "../services/productos.service.js";
 import {redirectToSearchPage, fillCategorySelect} from "../libs/search.utils.js";
+
 setup();
 
 async function setup() {
     const token = window.localStorage.getItem('token');
     await checkTokenAndChangeLoginButton(token);
 
-    fillCategorySelect();
+    await fillCategorySelect();
 
     const service = new productosService();
     let productos = await service.getProducts();
     let ofertas = await service.getOffers();
 
-    fillFeaturedContainer(productos);
-    fillOnOffer(productos, ofertas);
+    fillContainers(productos, ofertas);
 
     const nSelCategory = document.querySelector('#tSelectCategory');
-    nSelCategory.addEventListener('change', fillContainersByCategory);
-    nSelCategory.addEventListener('change', changeTitles);
+    nSelCategory.addEventListener('change', async e => {
+        await changeTitles(e, service);
+        await fillContainersByCategory(e, service);
+    });
 
     const searchBtn = document.querySelector("#tSpnSearch");
     searchBtn.addEventListener("click", redirectToSearchPage);
 }
 
-async function changeTitles(e) {
+
+async function changeTitles(e, service) {
     const nSelect = e.target;
     const categoriaId = nSelect.value;
 
-    const service = new productosService();
     const categories = await service.getCategories();
     let newTitle = 'Productos';
     if (categoriaId != 'all') {
-        newTitle = categories.filter(cat => cat['id'] == categoriaId).at(0).nombre;
+        const cat = categories.find(cat => cat.id == categoriaId);
+        if (cat) newTitle = cat.nombre;
     }
 
     document.querySelector('#tTitleFeatured').textContent = newTitle;
     document.querySelector('#tTitleOffers').textContent = newTitle;
-
 }
 
-async function fillContainersByCategory(e) {
+
+async function fillContainersByCategory(e, service) {
     const nSelect = e.target;
     const categoriaId = nSelect.value;
 
-    const service = new productosService();
     let productos = await service.getProducts();
     let ofertas = await service.getOffers();
+
     if (categoriaId != 'all') {
-        productos = productos.filter(prod => prod['categoria_id'] == categoriaId)
-        ofertas = ofertas.filter(oferta => oferta['categoria_id'] == categoriaId)
+        productos = productos.filter(prod => prod.categoria_id == categoriaId);
+        ofertas = ofertas.filter(oferta => oferta.categoria_id == categoriaId);
     }
 
-    fillFeaturedContainer(productos);
-    fillOnOffer(productos, ofertas);
+    fillContainers(productos, ofertas);
+}
+
+
+function fillContainers(productos, ofertas) {
+    const ofertaIds = ofertas.map(oferta => oferta.producto_id);
+    const productosSinOferta = productos.filter(prod => !ofertaIds.includes(prod.id));
+
+    fillFeaturedContainer(productosSinOferta); 
+    fillOnOffer(productos, ofertas);           
 }
 
 
@@ -105,15 +116,13 @@ function fillFeaturedContainer(productos) {
  * @param {Array<{id:number, nombre:string, descripcion:string, precio:number, stock:number, imagen:string, categoria:string}>} products 
  * @param {Array<{producto_id: number, nombre: string, categoria_id: number, precio_original: number, precio_nuevo: number, fecha_inicio: string, fecha_fin: string}>} offers
  */
-
 async function fillOnOffer(products, offers) {
     const nContainer = document.querySelector('#tProductsOnOffer');
     nContainer.innerHTML = '';
     offers.forEach(offer => {
         const productId = offer.producto_id;
-
-
-        const product = products.filter(prod => prod['id'] == productId).at(0)
+        const product = products.find(prod => prod.id === productId);
+        if (!product) return;
 
         const nCard = document.createElement('div');
         nContainer.appendChild(nCard);
@@ -138,7 +147,9 @@ async function fillOnOffer(products, offers) {
 
         const nDescuento = document.createElement('p');
         nCard.appendChild(nDescuento);
-        const discountPercent = '-' + ((offer.precio_original - offer.precio_nuevo) / offer.precio_original * 100).toFixed(0) + '%';
+        const discountPercent = offer.precio_original
+            ? '-' + ((offer.precio_original - offer.precio_nuevo) / offer.precio_original * 100).toFixed(0) + '%'
+            : '';
         nDescuento.textContent = discountPercent;
         nDescuento.classList.add('product-discount')
 
