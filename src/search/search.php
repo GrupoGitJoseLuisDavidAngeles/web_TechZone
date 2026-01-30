@@ -23,7 +23,7 @@
         </div>
 
         <div class="divSearchBar">
-            <input class="inputSearchBar" type="text" name="" id="tInputSearch" placeholder="Busque un producto">
+            <input class="inputSearchBar" type="text" name="" id="tInputSearch" placeholder="Buscar...">
             <span class="iconSearchBar" id="tSpnSearch"></span>
         </div>
 
