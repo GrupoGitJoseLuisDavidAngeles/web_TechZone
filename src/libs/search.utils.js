@@ -16,6 +16,7 @@ export function redirectToSearchPage() {
     }
 
     if (!conditions) {
+        window.location = "/public/index.php";
         return;
     }
 

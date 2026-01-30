@@ -20,9 +20,69 @@ async function setup() {
 
     const service = new productosService();
     const products = await service.searchProducts(name, category);
-    console.log(products);
+    const offers = await service.getOffers();
+
+    setupCategorySelect(category);
+    await loadFoundProducts(products, offers);
 }
 
-async function loadFoundProducts(products) {
-    
+function redirectToProductPage(event) {
+    const productId = event.currentTarget.dataset.id;
+    window.location = `/public/product.php?id=${productId}`;
+}
+
+function setupCategorySelect(categoryId) {
+    if (categoryId == "") return;
+    const categorySelect = document.querySelector("#tSelectCategory");
+    categorySelect.value = categoryId;
+}
+
+async function loadFoundProducts(products, offers) {
+    const productsContainer = document.querySelector("#tDivProductContainer");
+    productsContainer.innerHTML = "";
+
+    products.forEach(product => {
+        let productCard = document.createElement("div");
+        productCard.classList.add("product-card");
+        productCard.setAttribute("data-id", product.id);
+        productCard.addEventListener("click", redirectToProductPage);
+        productsContainer.appendChild(productCard);
+
+        let productImage = document.createElement("img");
+        productImage.setAttribute("src", `/assets/${product.imagen}`);
+        productImage.classList.add("product-image");
+        productCard.appendChild(productImage);
+
+        let productName = document.createElement("p");
+        productName.textContent = product.nombre;
+        productName.classList.add("product-name");
+        productCard.appendChild(productName);
+
+        let divPrice = document.createElement("div");
+        divPrice.classList.add("product-price");
+        productCard.appendChild(divPrice);
+
+        const offer = offers.find(offer => offer.producto_id === product.id);
+
+        if (offer) {
+            let oldPrice = document.createElement("p");
+            oldPrice.textContent = offer.precio_original + " €";
+            oldPrice.classList.add("price-old");
+            divPrice.appendChild(oldPrice);
+
+            let newPrice = document.createElement("p");
+            newPrice.textContent = offer.precio_nuevo + " €";
+            newPrice.classList.add("price-new");
+            divPrice.appendChild(newPrice);
+        } else {
+            let price = document.createElement("p");
+            price.textContent = product.precio + " €";
+            price.classList.add("price-new");
+            divPrice.appendChild(price);
+        }
+        let productDescription = document.createElement("p");
+        productDescription.textContent = product.descripcion;
+        productDescription.classList.add("product-description");
+        productCard.appendChild(productDescription);
+    });
 }
