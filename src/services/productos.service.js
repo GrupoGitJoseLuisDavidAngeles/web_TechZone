@@ -46,8 +46,18 @@ export default class productosService {
     async getCategories() {
         const url = 'http://localhost:8081/api/categorias.php';
         const response = await fetch(url);
-        let data = await response.json();
-        return data;
+        let data;
+
+        try {
+            data = await response.json();
+        } catch (error) {
+            throw new Error(`Error leyendo la respuesta del servidor: ${error.message}`);
+        }
+
+        if (!data.ok) {
+            throw new Error(data.message || 'Error obteniendo las categorías');
+        }
+        return data.categorias;
     }
     
     /**
@@ -57,8 +67,20 @@ export default class productosService {
     async getOffers() {
         const url = 'http://localhost:8081/api/ofertas.php';
         const response = await fetch(url);
-        let data = await response.json();
-        return data;
+        let data;
+        
+        try {
+            data = await response.json();
+        } catch (error) {
+            throw new Error(`Error leyendo la respuesta del servidor: ${error.message}`);
+        }
+
+        if (!data.ok) {
+            throw new Error(data.message || 'Error obteniendo las ofertas');
+        }
+
+        console.log(data.ofertas);
+        return data.ofertas;
     }
 
     async searchProducts(name = "", category = "") {

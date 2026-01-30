@@ -36,14 +36,6 @@
     <main>
         <h1 id="tH1Title">Productos encontrados</h1>
         <div id="tDivProductContainer" class="product-container">
-            <!-- <div class="product-card">
-                <img class="product-image" src="/assets/cpu.png">
-                <p class="product-name">Procesador de ejemplo</p>
-                <div class="product-price">
-                    <p class="price-new">400 €</p>
-                </div>
-                <p class="product-description">Ejemplo de descripcion del producto.</p>
-            </div> -->
         </div>
     </main>
 

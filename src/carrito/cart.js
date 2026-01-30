@@ -54,7 +54,6 @@ function fillFeaturedContainer(cartProducts){
         nDelivery.setAttribute("class", "deliveryDay");
         nDelivery.textContent = "Recíbelo pronto";
 
-
         const nControls = document.createElement("div");
         nInformation.appendChild(nControls);
         nControls.setAttribute("class", "quantityControls");
@@ -147,8 +146,6 @@ function updateOrderSummary() {
     document.querySelector('.shippingCosts .amountDiscount').textContent = shipping.toFixed(2) + " €";
     document.querySelector('#finalPrice').textContent = total.toFixed(2) + " €";
 }
-
-
 
 function showNumberOfProducts(){
     const products = document.querySelectorAll(".product");
