@@ -23,12 +23,12 @@
         </div>
 
         <div class="divSearchBar">
-            <input class="inputSearchBar" type="text" name="" id="tInputSearch" placeholder="Busque un producto">
+            <input class="inputSearchBar" type="text" name="" id="tInputSearch" placeholder="Buscar...">
             <span class="iconSearchBar" id="tSpnSearch"></span>
         </div>
 
         <a href="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
-        <a href="../carrito/index.php">Carrito</a>
+        <a href="../carrito/cart.php">Carrito</a>
     </header>
 
     <aside class="aside-left"></aside>

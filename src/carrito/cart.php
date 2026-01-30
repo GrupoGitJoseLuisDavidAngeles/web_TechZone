@@ -34,63 +34,7 @@
             </div>
 
             <div class="productsContainer">
-
-                <!-- 
-                <div class="product">
-                    <div class="productImage1"></div>
-    
-                    <div class="productInformation">
-                        <p class="productName">Teclado mecánico</p>
-                        <p class="category">Sección a la que pertenece</p>
-                        <p class="deliveryDay">Recíbelo del 6 al 9 de enero</p>
-
-                        <div class="quantityControls">
-                            <button class="btnDelete">-</button>
-                            <span class="productQuantity" id="itemQuantity">5</span>
-                            <button class="btnAdd">+</button>
-                        </div>
-                        <span href="" class="deleteProduct">Eliminar producto</span>
-                    </div>
-                    <p class="price"><span class="amount">30</span> €</p>
-                </div>
-
-                <div class="product">
-                    <div class="productImage2"></div>
-    
-                    <div class="productInformation">
-                        <p class="productName">Ratón gaming</p>
-                        <p class="category">Sección a la que pertenece</p>
-                        <p class="deliveryDay">Recíbelo el 2 de enero</p>
-
-                        <div class="quantityControls">
-                            <button class="btnDelete">-</button>
-                            <span class="productQuantity" id="productQuantity">2</span>
-                            <button class="btnAdd">+</button>
-                        </div>
-                        <a href="" class="deleteProduct">Eliminar producto</a>
-                    </div>
-                    <p class="price"><span class="amount">50</span> €</p>
-                </div>
-                
-                <div class="product">
-                    <div class="productImage3"></div>
-                    
-                    <div class="productInformation">
-                        <p class="productName">Monitor FHD</p>
-                        <p class="category">Sección a la que pertenece</p>
-                        <p class="deliveryDay">Recíbelo mañana</p>
-
-                        <div class="quantityControls">
-                            <button class="btnDelete">-</button>
-                            <span class="productQuantity" id="productQuantity">1</span>
-                            <button class="btnAdd">+</button>
-                        </div>
-                        <a href="" class="deleteProduct">Eliminar producto</a>
-                    </div>
-                    <p class="price"><span class="amount">280</span> €</p>
-                </div>
-            </div> -->
-        </div>
+            </div>
 
         <div class="order">
             <h2>Resumen del pedido</h2>

@@ -57,6 +57,11 @@ async function fillContainersByCategory(e) {
 }
 
 
+function redirectToProduct(event){
+    const productId = event.currentTarget.dataset.id;
+    window.location = `product.php?id=${productId}`;
+}
+
 /**
  * 
  * @param {Array<{id:number, nombre:string, descripcion:string, precio:number, stock:number, imagen:string, categoria:string}>} productos 
@@ -64,13 +69,16 @@ async function fillContainersByCategory(e) {
 function fillFeaturedContainer(productos) {
     const nContainer = document.querySelector('#tFeaturedProducts');
     nContainer.innerHTML = '';
+
     for (let i = 0; i < productos.length; i++) {
         const product = productos[i];
 
         const nCard = document.createElement('div');
         nContainer.appendChild(nCard);
-        nCard.classList.add('product-card')
-
+        nCard.classList.add('product-card');
+        nCard.dataset.id = product.id;
+        nCard.addEventListener("click", redirectToProduct);
+        
         const nImg = document.createElement('img');
         nCard.appendChild(nImg);
         nImg.classList.add('product-image');
@@ -89,7 +97,6 @@ function fillFeaturedContainer(productos) {
         const nDescripcion = document.createElement('p');
         nCard.appendChild(nDescripcion);
         nDescripcion.textContent = product.descripcion;
-
     }
 }
 
@@ -111,6 +118,8 @@ async function fillOnOffer(products, offers) {
         const nCard = document.createElement('div');
         nContainer.appendChild(nCard);
         nCard.classList.add('product-card')
+        nCard.dataset.id = productId;
+        nCard.addEventListener("click", redirectToProduct);
 
         const nImg = document.createElement('img');
         nCard.appendChild(nImg);

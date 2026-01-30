@@ -1,11 +1,17 @@
 import CarritoService from "../services/carrito.service.js";
 import productosService from "../services/productos.service.js";
 
+import { checkTokenAndChangeLoginButton } from "../libs/token.utils.js";
+import { redirectToSearchPage, fillCategorySelect } from "../libs/search.utils.js";
+
 setup();
 
 async function setup() {
-    const service = new productosService();
+    const token = getToken();
+    await checkTokenAndChangeLoginButton(token);
+    fillCategorySelect();
 
+    const service = new productosService();
     const products = await service.getProducts();
     const categories = await service.getCategories();
     const offerts = await service.getOffers();
@@ -14,6 +20,8 @@ async function setup() {
     if (!productId) return;
 
     fillProductWithData(products, offerts, categories, productId);
+    const searchBtn = document.querySelector("#tSpnSearch");
+    searchBtn.addEventListener("click", redirectToSearchPage);
 }
 
 function getIdFromUrl() {
