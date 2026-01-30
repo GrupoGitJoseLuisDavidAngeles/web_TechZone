@@ -35,7 +35,7 @@ main {
         "order";
     gap: 2rem;
     padding: 1rem;
-    min-height: 900px;  /*calc(100dvh - 100px);*/
+    min-height: 900px; 
 }
 
 .cart {
@@ -251,12 +251,13 @@ header {
     justify-content: center; 
     padding: 0.75rem 1.5rem;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
-/* cambio del tamaño: altura*/
+
 .tLogo {
     width: 10rem;
-    height: 3.5rem;
+    height: 3rem;
     background-image: url("../public/images/logo_techzone.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -264,12 +265,21 @@ header {
     flex-shrink: 0;
 }
 
-.divSearch {
+.selectCategories {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    border: 0.0625rem solid rgb(255, 255, 255);
+    background-color: #fff;
+}
+
+
+.divSearchBar {
     position: relative;
     width: 18rem;
 }
 
-.inputSearch {
+.inputSearchBar {
     width: 100%;
     padding: 0.5rem 2.5rem 0.5rem 0.5rem;
     border: 0.0625rem solid #ccc;
@@ -278,7 +288,7 @@ header {
     outline: none;
 }
 
-.searchIcon {
+.iconSearchBar {
     position: absolute;
     right: 0.5rem;
     top: 50%;
@@ -291,16 +301,20 @@ header {
     cursor: pointer;
 }
 
-header span {
+
+header a {
+    color: inherit;
+    text-decoration: none;
     margin-left: 1rem;
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 1rem;
     transition: color 0.3s;
 }
 
-header span:hover {
+header a:hover {
     color: black;
 }
+
 
 footer {
     grid-area: footer;
@@ -330,7 +344,7 @@ footer {
         gap: 0.5rem;
     }
 
-    .divSearch {
+    .divSearchBar {
         width: 100%;
         max-width: 300px;
     }

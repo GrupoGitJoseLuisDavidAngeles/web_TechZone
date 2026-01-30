@@ -401,7 +401,8 @@ footer {
 
 
     .divSearchBar {
-    position: relative;
-    width: 16rem;
-}
+        width: 100%;
+        max-width: 300px;
+    }
+
 }

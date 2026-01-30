@@ -7,13 +7,16 @@
     <title>TechZone</title>
     <link rel="stylesheet" href="./index.css">
     <script type="module" src="index.js"></script>
-    <link rel="icon" type="image/png" href="./images/favicon.png">
+    <link rel="icon" type="image/png" href="../assets/logo_techzone.png">
 
 </head>
 
 <body>
     <header>
-        <div class="tLogo"></div>
+        <a href="/public/index.php">
+            <div class="tLogo">
+            </div>
+        </a>
 
         <div>
             <label for="">Categorías</label>
