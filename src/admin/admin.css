@@ -1,0 +1,221 @@
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100dvh;
+    background: linear-gradient(135deg, #000000, #1e00ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    position: relative;
+    background-color: white;
+    margin: 3rem;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    width: 95%;
+    max-width: 1000px;
+    box-shadow: 0 10px 25px #00000033;
+}
+
+
+main h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+
+#btnLogout {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 0.5rem 0.9rem;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#btnLogout:hover {
+    background-color: #dc2626;
+}
+
+
+.add-product-form {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1.8rem;
+}
+
+.add-product-form input,
+.add-product-form select {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.add-product-form input:focus,
+.add-product-form select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+}
+
+.add-product-form button {
+    background-color: #34d399;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-product-form button:hover {
+    background-color: #10b981;
+    transform: translateY(-1px);
+}
+
+.add-product-form button:active {
+    transform: translateY(0);
+}
+
+
+#productsTable {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 5px 15px #00000022;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#productsTable th, #productsTable td {
+    border: 1px solid #ccc;
+    padding: 0.6rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+#productsTable th {
+    background-color: #667eea;
+    color: white;
+}
+
+#productsTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#productsTable tbody tr:hover {
+    background-color: #eef2ff;
+}
+
+#productsTable input, #productsTable select {
+    width: 100%;
+    padding: 0.35rem 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+#productsTable button {
+    margin: 0 0.2rem;
+    padding: 0.35rem 0.6rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: white;
+    background-color: #667eea;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#productsTable button:hover {
+    background-color: #5563c1;
+    transform: translateY(-1px);
+}
+
+#productsTable button:active {
+    transform: translateY(0);
+}
+
+.errors {
+    background-color: #fdecea;
+    color: #b71c1c;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.success {
+    background-color: #e6fffa;
+    color: #065f46;
+    border: 1px solid #34d399;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.tLogo {
+    position: absolute;
+    background-image: url("../public/images/logo_techzone.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 10px;
+    left: 10px;
+    width: 300px;
+    height: 150px;
+}
+
+
+@media screen and (max-width: 900px) {
+    .add-product-form {
+        grid-template-columns: 1fr;
+    }
+
+    .tLogo {
+        display: none;
+    }
+
+    main {
+        padding: 1.5rem;
+    }
+
+    #btnLogout {
+        top: 10px;
+        right: 10px;
+    }
+
+
+    #productsTable {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #productsTable th, #productsTable td {
+        min-width: 120px;
+    }
+}
