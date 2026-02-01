@@ -38,7 +38,7 @@ main h2 {
 }
 
 
-#btnLogout {
+#tBtnLogout {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -52,7 +52,7 @@ main h2 {
     transition: background-color 0.3s;
 }
 
-#btnLogout:hover {
+#tBtnLogout:hover {
     background-color: #dc2626;
 }
 

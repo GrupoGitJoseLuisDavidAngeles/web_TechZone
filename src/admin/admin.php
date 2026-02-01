@@ -1,11 +1,3 @@
-<?php
-require_once __DIR__ . '/../config/database.php';
-session_start();
-
-$mensajeExito = $_SESSION['success_message'] ?? null;
-unset($_SESSION['success_message']);
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,32 +15,26 @@ unset($_SESSION['success_message']);
     </a>
 
     <main>
-        <button id="btnLogout">Cerrar sesión</button>
+        <button id="tBtnLogout">Cerrar sesión</button>
 
         <h2>Panel de Administración</h2>
 
-        <?php if ($mensajeExito): ?>
-            <div class="success">
-                <?= htmlspecialchars($mensajeExito) ?>
-            </div>
-        <?php endif; ?>
-
-        <div id="tDivErrors" class="errors"></div>
+        <div id="tDivErrors" class="errors" hidden></div>
 
         <section class="add-product-form">
 
-            <input type="text" id="inputName" placeholder="Nombre del producto">
+            <input type="text" id="tInputName" placeholder="Nombre del producto">
 
-            <input type="number" id="inputPrice" placeholder="Precio" 
+            <input type="number" id="tInputPrice" placeholder="Precio" 
                 min="1" max="9999" step="0.01">
 
-            <input type="text" id="inputDescription" placeholder="Descripción">
+            <input type="text" id="tInputDescription" placeholder="Descripción">
 
             <select id="tSelectCategory">
-                <option value="">Selecciona categoría</option>
+                <option value="0" disabled selected>Selecciona categoría</option>
             </select>
 
-            <button id="btnAddProduct">Añadir producto</button>
+            <button id="tBtnAddProduct">Añadir producto</button>
         </section>
 
         <table id="productsTable">
@@ -61,7 +47,7 @@ unset($_SESSION['success_message']);
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody id="tbyProducts">
+            <tbody id="tBodyProducts">
             </tbody>
         </table>
 
