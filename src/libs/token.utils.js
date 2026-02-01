@@ -45,3 +45,8 @@ export async function checkTokenAndChangeLoginButton(token) {
         loginButton.textContent = 'Iniciar Sesión';
     }
 }
+
+export function logout() {
+    localStorage.removeItem('token');
+    window.location = "/public/index.php";
+}
