@@ -39,7 +39,7 @@
         <div class="cart">
             <h1>Carrito de la compra</h1>
 
-            <p id="productsQuantity">x</p>
+            <p id="productsQuantity">0 productos</p>
 
             <div id="freeShippingAlert" class="freeShippingNotice">
                 ¡Felicidades! Tu compra supera los 200€, los gastos de envío son gratis.

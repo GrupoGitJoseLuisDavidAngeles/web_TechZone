@@ -37,6 +37,17 @@
     <aside class="aside-left"></aside>
 
     <main>
+        <div class="carousel" id="featuredCarousel">
+            <button class="carousel-btn prev">⬅</button>
+
+            <div class="carousel-window">
+                <div class="carousel-track" id="tFeaturedCarousel">
+                </div>
+            </div>
+
+            <button class="carousel-btn next">➡</button>
+        </div>
+
         <h1><span id="tTitleOffers">Productos</span> en oferta</h1>
         <div id="tProductsOnOffer" class="featured-products">
             (Usando la base de datos)
