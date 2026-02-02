@@ -398,4 +398,8 @@ footer {
         position: relative;
         width: 18rem;
     }
+
+    .stock {
+        font-size: 1.2rem;
+    }
 }

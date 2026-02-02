@@ -73,7 +73,7 @@ CREATE TABLE pedido_productos (
     precio_unitario DECIMAL(10,2) NOT NULL,
 
     FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE,
-    FOREIGN KEY (producto_id) REFERENCES productos(id)
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 INSERT INTO categorias (nombre, descripcion) VALUES

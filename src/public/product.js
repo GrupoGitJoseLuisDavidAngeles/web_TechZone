@@ -115,6 +115,27 @@ function fillProductWithData(products, offerts, categories, productId) {
     nCategory.textContent = category ? category.nombre : "Sin categoría";
     nDivInfo.appendChild(nCategory);
 
+    const nStock = document.createElement("p");
+    nStock.setAttribute("class", "stock");
+    nStock.setAttribute("id", "productStock");
+    
+    const stock = parseInt(product.stock) || 0;
+    
+    if (stock > 10) {
+        nStock.textContent = `Stock disponible: ${stock} unidades`;
+        nStock.style.color = "#28a745";
+    } else if (stock > 0) {
+        nStock.textContent = `¡Últimas ${stock} unidades!`;
+        nStock.style.color = "#ff9800";
+        nStock.style.fontWeight = "bold";
+    } else {
+        nStock.textContent = "Sin stock";
+        nStock.style.color = "#dc3545";
+        nStock.style.fontWeight = "bold";
+    }
+    
+    nDivInfo.appendChild(nStock);
+
 
     const nDivPrices = document.createElement("div");
     nDivPrices.setAttribute("class", "prices");
@@ -166,15 +187,21 @@ function fillProductWithData(products, offerts, categories, productId) {
         nDivPrices.appendChild(nDate);
     }
 
-
     const btnAdd = document.createElement("button");
     btnAdd.setAttribute("class", "btnAdd");
     btnAdd.setAttribute("id", "addCartBtn");
     btnAdd.setAttribute("type", "button");
-    btnAdd.textContent = "Añadir a la cesta";
-    nDivProduct.appendChild(btnAdd);
 
-    btnAdd.addEventListener("click", addProductToCartHandler);
+    if (stock <= 0) {
+        btnAdd.textContent = "Sin stock";
+        btnAdd.disabled = true;
+        btnAdd.style.opacity = "0.5";
+        btnAdd.style.cursor = "not-allowed";
+    } else {
+        btnAdd.textContent = "Añadir a la cesta";
+        btnAdd.addEventListener("click", addProductToCartHandler);
+    }
+    nDivProduct.appendChild(btnAdd);
 
     const details = document.createElement("details");
     details.setAttribute("class", "productDescription");

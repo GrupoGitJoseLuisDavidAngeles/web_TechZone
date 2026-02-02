@@ -30,6 +30,9 @@
 
             <input type="text" id="tInputDescription" placeholder="Descripción">
 
+            <input type="number" id="tInputStock" placeholder="Stock" 
+                min="1" max="9999" step="1">
+
             <select id="tSelectCategory">
                 <option value="0" disabled selected>Selecciona categoría</option>
             </select>
@@ -43,6 +46,7 @@
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Descripción</th>
+                    <th>Stock</th>
                     <th>Categoría</th>
                     <th>Acciones</th>
                 </tr>

@@ -78,16 +78,19 @@ try {
         }
 
         $stmt = $pdo->prepare("
-            SELECT 
-                p.precio AS precio_original,
-                o.precio_oferta
-            FROM productos p
-            LEFT JOIN ofertas o ON 
-                o.producto_id = p.id
-                AND o.activa = 1
-                AND NOW() BETWEEN o.fecha_inicio AND o.fecha_fin
-            WHERE p.id = ?
+        SELECT 
+            p.precio AS precio_original,
+            p.stock,
+            p.nombre,
+            o.precio_oferta
+        FROM productos p
+        LEFT JOIN ofertas o ON 
+            o.producto_id = p.id
+            AND o.activa = 1
+            AND NOW() BETWEEN o.fecha_inicio AND o.fecha_fin
+        WHERE p.id = ?
         ");
+        
         $stmt->execute([$productoId]);
         $producto = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -95,14 +98,18 @@ try {
             throw new Exception("El producto $productoId no existe");
         }
 
+        if ($producto['stock'] < $cantidad) {
+            throw new Exception("Stock insuficiente para el producto '{$producto['nombre']}'. Stock disponible: {$producto['stock']}, solicitado: {$cantidad}");
+        }
+
         $precioUnitario = $producto['precio_oferta'] ?? $producto['precio_original'];
         $subtotalProducto = $precioUnitario * $cantidad;
         $subtotal += $subtotalProducto;
 
         $stmt = $pdo->prepare("
-            INSERT INTO pedido_productos
-            (pedido_id, producto_id, cantidad, precio_unitario)
-            VALUES (?, ?, ?, ?)
+        INSERT INTO pedido_productos
+        (pedido_id, producto_id, cantidad, precio_unitario)
+        VALUES (?, ?, ?, ?)
         ");
         $stmt->execute([
             $pedidoId,
@@ -110,6 +117,13 @@ try {
             $cantidad,
             $precioUnitario
         ]);
+
+        $stmt = $pdo->prepare("
+        UPDATE productos 
+        SET stock = stock - ? 
+        WHERE id = ?
+        ");
+        $stmt->execute([$cantidad, $productoId]);
     }
 
     $iva = $subtotal * IVA_PORCENTAJE;
@@ -140,7 +154,6 @@ try {
             'total' => round($total, 2)
         ]
     ], JSON_UNESCAPED_UNICODE);
-
 } catch (Exception $e) {
     $pdo->rollBack();
 
@@ -151,4 +164,3 @@ try {
         'error' => $e->getMessage()
     ], JSON_UNESCAPED_UNICODE);
 }
-?>

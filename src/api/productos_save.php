@@ -45,6 +45,7 @@ $productoId  = isset($data['productoId']) ? (int)$data['productoId'] : null;
 $nombre      = trim($data['nombre'] ?? '');
 $precio      = $data['precio'] ?? null;
 $descripcion = trim($data['descripcion'] ?? '');
+$stock       = isset($data['stock']) ? (int)$data['stock'] : 0;
 $categoriaId = (int)($data['categoria'] ?? 0);
 
 if ($nombre === '') {
@@ -61,6 +62,15 @@ if (!is_numeric($precio) || $precio <= 0) {
     echo json_encode([
         'ok' => false,
         'message' => 'Precio inválido'
+    ]);
+    exit;
+}
+
+if ($stock < 0) {
+    http_response_code(400);
+    echo json_encode([
+        'ok' => false,
+        'message' => 'El stock debe ser positivo'
     ]);
     exit;
 }
@@ -111,7 +121,7 @@ if ($productoId) {
 
     $stmt = $pdo->prepare("
         UPDATE productos
-        SET nombre = ?, descripcion = ?, precio = ?, categoria_id = ?, imagen = ?
+        SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ?, imagen = ?
         WHERE id = ?
     ");
 
@@ -119,6 +129,7 @@ if ($productoId) {
         $nombre,
         $descripcion,
         $precio,
+        $stock,
         $categoriaId,
         $imagen,
         $productoId
@@ -134,13 +145,14 @@ if ($productoId) {
 $stmt = $pdo->prepare("
     INSERT INTO productos
     (nombre, descripcion, precio, stock, categoria_id, imagen)
-    VALUES (?, ?, ?, 0, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?)
 ");
 
 $stmt->execute([
     $nombre,
     $descripcion,
     $precio,
+    $stock,
     $categoriaId,
     $imagen
 ]);

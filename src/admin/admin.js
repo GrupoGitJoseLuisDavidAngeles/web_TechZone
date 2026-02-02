@@ -34,6 +34,8 @@ async function addProduct(e) {
 
     const nombre = document.querySelector("#tInputName").value;
     const descripcion = document.querySelector("#tInputDescription").value;
+    const stockInput = document.querySelector("#tInputStock").value;
+    const stock = stockInput === "" ? 0 : parseInt(stockInput);
     const precio = parseFloat(document.querySelector("#tInputPrice").value);
     const categoriaId = parseInt(document.querySelector("#tSelectCategory").value);
 
@@ -41,6 +43,7 @@ async function addProduct(e) {
         nombre: nombre,
         descripcion: descripcion,
         precio: precio,
+        stock: stock,
         categoria: categoriaId
     };
 
@@ -90,6 +93,8 @@ async function updateProduct(e) {
     const nombre = inputs[0].value.trim();
     const precio = parseFloat(inputs[1].value);
     const descripcion = inputs[2].value.trim();
+    const stockInput = inputs[3].value;
+    const stock = stockInput === "" ? 0 : parseInt(stockInput);
     const categoria = parseInt(select.value);
 
     const productData = {
@@ -97,6 +102,7 @@ async function updateProduct(e) {
         nombre: nombre,
         descripcion: descripcion,
         precio: precio,
+        stock: stock,
         categoria: categoria
     };
 
@@ -164,6 +170,17 @@ async function fillTableWithProducts(products, categories) {
         nInputDescription.setAttribute("type", "text");
         nInputDescription.setAttribute("value", product.descripcion);
 
+        const nTdStock = document.createElement("td");
+        nTr.appendChild(nTdStock);
+
+        const nInputStock = document.createElement("input");
+        nTdStock.appendChild(nInputStock);
+
+        nInputStock.setAttribute("type", "number");
+        nInputStock.setAttribute("min", "0");
+        nInputStock.setAttribute("max", "99999");
+        nInputStock.setAttribute("step", "1");
+        nInputStock.setAttribute("value", product.stock || 0);
 
         const nTdCategory = document.createElement("td");
         nTr.appendChild(nTdCategory);
