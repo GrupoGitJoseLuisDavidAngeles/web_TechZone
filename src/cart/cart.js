@@ -60,7 +60,7 @@ async function addOrder() {
         await pedidoService.addPedido(productsIds, token);
         await carritoService.clearCart(token);
         alert("Pedido realizado con éxito.");
-        window.location = "/carrito/cart.php";
+        window.location = "/cart/cart.php";
     } catch (error) {
         alert("Error al realizar el pedido: " + error.message);
     }
@@ -159,7 +159,7 @@ async function deleteFromCart(e) {
 
     try {
         await service.deleteFromCart(productId, token);
-        window.location = "/carrito/cart.php";
+        window.location = "/cart/cart.php";
     } catch (error) {
         console.error("Error al eliminar el producto del carrito:", error);
     }
@@ -175,7 +175,7 @@ async function addToCart(e) {
 
     try {
         await service.addToCart(productId, token);
-        window.location = "/carrito/cart.php";
+        window.location = "/cart/cart.php";
     } catch (error) {
         console.error("Error al añadir el producto al carrito:", error);
     }
