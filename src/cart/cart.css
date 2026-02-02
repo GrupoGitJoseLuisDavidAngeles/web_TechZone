@@ -281,7 +281,7 @@ header {
 .tLogo {
     width: 10rem;
     height: 3rem;
-    background-image: url("../public/images/logo_techzone.png");
+    background-image: url("/assets/logo_techzone.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left center;
@@ -319,7 +319,7 @@ header {
     transform: translateY(-50%);
     width: 1.5rem;
     height: 1.5rem;
-    background-image: url("../public/images/busqueda-de-lupa.png");
+    background-image: url("/assets/busqueda-de-lupa.png");
     background-size: cover;
     background-position: center;
     cursor: pointer;

@@ -30,7 +30,7 @@
         </div>
 
         <a class="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
-        <a href="../carrito/cart.php">Carrito</a>
+        <a href="../cart/cart.php">Carrito</a>
     </header>
 
     <aside class="asideLeft"></aside>

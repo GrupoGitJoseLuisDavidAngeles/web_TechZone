@@ -127,7 +127,7 @@ export default class productosService {
         });
 
         let data;
-        
+
         try {
             data = await response.json();
         } catch (error) {
@@ -139,5 +139,32 @@ export default class productosService {
         }
 
         return data;
+    }
+
+    async deleteProduct(productoId, token) {
+        const url = 'http://localhost:8081/api/productos_delete.php';
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ productoId })
+        });
+
+        let data;
+
+        try {
+            data = await response.json();
+        } catch (error) {
+            throw new Error(`Error leyendo la respuesta del servidor: ${error.message}`);
+        }
+
+        if (!data.ok) {
+            throw new Error(data.message);
+        }
+
+        return data.message;
     }
 }

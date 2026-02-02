@@ -3,12 +3,12 @@ import { logout, isAdmin } from "../libs/token.utils.js";
 
 setup();
 
-async function setup(){
+async function setup() {
     const token = localStorage.getItem("token");
-    
+
     const admin = await isAdmin(token);
 
-    if(!admin){
+    if (!admin) {
         alert("No tienes permisos para acceder a esta página");
         window.location = "/public/index.php";
         return;
@@ -56,6 +56,24 @@ async function addProduct(e) {
     }
 }
 
+async function deleteProduct(e) {
+    if (!confirm("¿Seguro que quieres eliminar este producto?")) return;
+
+    const row = e.target.closest("tr");
+    const productoId = row.dataset.productId;
+    const token = localStorage.getItem("token");
+
+    const service = new productosService();
+
+    try {
+        await service.deleteProduct(productoId, token);
+        alert("Producto eliminado correctamente.")
+        window.location = "/admin/admin.php";
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
 async function updateProduct(e) {
     const service = new productosService();
     const token = localStorage.getItem("token");
@@ -94,9 +112,9 @@ async function updateProduct(e) {
     }
 }
 
-async function fillCategories(categories){
+async function fillCategories(categories) {
     const nSelect = document.querySelector("#tSelectCategory");
-    
+
     categories.forEach(category => {
         const nOption = document.createElement("option");
         nSelect.appendChild(nOption);
@@ -106,14 +124,14 @@ async function fillCategories(categories){
 }
 
 
-async function fillTableWithProducts(products, categories){
+async function fillTableWithProducts(products, categories) {
     const nTbody = document.querySelector("#tBodyProducts");
 
     products.forEach(product => {
         const nTr = document.createElement("tr");
         nTr.setAttribute("data-product-id", product.id);
         nTbody.appendChild(nTr);
-        
+
         const nTdName = document.createElement("td");
         nTr.appendChild(nTdName);
 
@@ -126,7 +144,7 @@ async function fillTableWithProducts(products, categories){
 
         const nTdPrice = document.createElement("td");
         nTr.appendChild(nTdPrice);
-    
+
         const nInputPrice = document.createElement("input");
         nTdPrice.appendChild(nInputPrice);
 
@@ -149,7 +167,7 @@ async function fillTableWithProducts(products, categories){
 
         const nTdCategory = document.createElement("td");
         nTr.appendChild(nTdCategory);
-        
+
         const nSelectCategory = document.createElement("select");
         nTdCategory.appendChild(nSelectCategory);
 
@@ -159,8 +177,8 @@ async function fillTableWithProducts(products, categories){
 
             nOptionCategory.value = category.id;
             nOptionCategory.textContent = category.nombre;
-            
-            if(category.id === product.categoria_id){
+
+            if (category.id === product.categoria_id) {
                 nOptionCategory.selected = true;
             }
         });
@@ -177,6 +195,7 @@ async function fillTableWithProducts(products, categories){
         const nDeleteButton = document.createElement("button");
         nTdActions.appendChild(nDeleteButton);
         nDeleteButton.textContent = "Eliminar";
+        nDeleteButton.addEventListener("click", deleteProduct);
     });
 
 }

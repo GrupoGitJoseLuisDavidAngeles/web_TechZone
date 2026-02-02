@@ -180,7 +180,7 @@ main h2 {
 
 .tLogo {
     position: absolute;
-    background-image: url("../public/images/logo_techzone.png");
+    background-image: url("/assets/logo_techzone.png");
     background-repeat: no-repeat;
     background-size: contain;
     top: 10px;

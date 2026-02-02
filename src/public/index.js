@@ -38,7 +38,7 @@ async function changeTitles(e, service) {
         if (cat) newTitle = cat.nombre;
     }
 
-    document.querySelector('#tTitleFeatured').textContent = newTitle;
+    document.querySelector('#tTitleFeatured').textContent = newTitle.toLowerCase();
     document.querySelector('#tTitleOffers').textContent = newTitle;
 }
 

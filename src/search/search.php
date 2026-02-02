@@ -13,9 +13,9 @@
 
 <body>
     <header>
-        <!-- <a href="../public/index.php"> -->
+        <a href="../public/index.php">
             <div class="tLogo"></div>
-        <!-- </a> -->
+        </a>
 
         <div>
             <label for="">Categorías</label>
@@ -30,7 +30,7 @@
         </div>
 
         <a href="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
-        <a href="../carrito/index.php">Carrito</a>
+        <a href="../cart/cart.php">Carrito</a>
     </header>
 
     <aside class="aside-left"></aside>
