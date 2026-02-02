@@ -30,7 +30,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZ
 
 ### Obtener pedidos de un usuario
 GET http://localhost:8081/api/pedidos_get.php
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njk5Mzk2MjAsImV4cCI6MTc2OTk0NjgyMH0.1qdk_XqVo9Mb31h3HWge_mUaI3EdgdI6KEk-CT4D9sE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NzAwMjgwNjMsImV4cCI6MTc3MDAzNTI2M30.DgdGxwfBpMkv03JDEJwv2p79XEZX5IxdJIjMDaOUPus
 
 ### Obtener información de usuario
 GET http://localhost:8081/api/usuario.php
