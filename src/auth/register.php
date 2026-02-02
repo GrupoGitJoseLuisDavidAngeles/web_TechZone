@@ -64,7 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <div class="tLogo"></div>
+    <a href="/public/index.php">
+        <div class="tLogo"></div>
+    </a>
     <main>
         <h2>Registro</h2>
         <?php if (!empty($errores)): ?>

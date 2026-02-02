@@ -19,7 +19,9 @@ unset($_SESSION['success_message']);
 </head>
 
 <body>
-    <div class="tLogo"></div>
+    <a href="/public/index.php">
+        <div class="tLogo"></div>
+    </a>
     <main>
         <h2> Inicio de sesión </h2>
         <?php if ($mensajeExito): ?>
