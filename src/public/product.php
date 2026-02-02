@@ -6,7 +6,7 @@
     <title>Product</title>
     <link rel="stylesheet" href="./product.css">
     <script type="module" src="./product.js"></script>
-        <link rel="icon" type="image/png" href="../assets/logo_techzone.png">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
 </head>
 <body>
     <header>

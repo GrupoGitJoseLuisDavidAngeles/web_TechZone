@@ -46,9 +46,10 @@ main {
 .product-card {
     cursor: pointer;
     border-radius: 10px;
+    height: 250px;
     display: grid;
     padding: 5px;
-    grid-template-rows: 2fr auto auto;
+    grid-template-rows: 150px auto auto;
     gap: 4px;
     position: relative;
     transition: transform 0.2s ease, box-shadow 0.2s ease;

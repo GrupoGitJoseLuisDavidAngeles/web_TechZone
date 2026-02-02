@@ -7,7 +7,7 @@
     <title>TechZone</title>
     <link rel="stylesheet" href="./search.css">
     <script type="module" src="index.js"></script>
-    <link rel="icon" type="image/png" href="../assets/logo_techzone.png">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
     <script type="module" src="./search.js"></script>
 </head>
 
