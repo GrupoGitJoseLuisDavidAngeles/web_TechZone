@@ -7,9 +7,6 @@ header('Content-Type: application/json; charset=utf-8');
 $CLAVE_JWT = 'CLAVE_SECRETA';
 $pdo = Database::getInstance();
 
-/* =======================
-   Comprobar método
-======================= */
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode([
@@ -19,9 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-/* =======================
-   Obtener y validar JWT
-======================= */
 $headers = array_change_key_case(getallheaders(), CASE_LOWER);
 
 if (!isset($headers['authorization'])) {
@@ -59,8 +53,11 @@ if (!is_array($productos) || empty($productos)) {
     exit;
 }
 
-/* Contar cantidades */
 $conteo = array_count_values($productos);
+
+const IVA_PORCENTAJE = 0.21;
+const GASTOS_ENVIO = 5;
+const UMBRAL_ENVIO_GRATIS = 200;
 
 try {
     $pdo->beginTransaction();
@@ -72,11 +69,8 @@ try {
     $stmt->execute([$usuarioId]);
     $pedidoId = $pdo->lastInsertId();
 
-    $total = 0;
+    $subtotal = 0;
 
-    /* =======================
-       Procesar productos
-    ======================= */
     foreach ($conteo as $productoId => $cantidad) {
 
         if (!is_numeric($productoId) || $cantidad <= 0) {
@@ -84,16 +78,19 @@ try {
         }
 
         $stmt = $pdo->prepare("
-            SELECT 
-                p.precio AS precio_original,
-                o.precio_oferta
-            FROM productos p
-            LEFT JOIN ofertas o ON 
-                o.producto_id = p.id
-                AND o.activa = 1
-                AND NOW() BETWEEN o.fecha_inicio AND o.fecha_fin
-            WHERE p.id = ?
+        SELECT 
+            p.precio AS precio_original,
+            p.stock,
+            p.nombre,
+            o.precio_oferta
+        FROM productos p
+        LEFT JOIN ofertas o ON 
+            o.producto_id = p.id
+            AND o.activa = 1
+            AND NOW() BETWEEN o.fecha_inicio AND o.fecha_fin
+        WHERE p.id = ?
         ");
+        
         $stmt->execute([$productoId]);
         $producto = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -101,14 +98,18 @@ try {
             throw new Exception("El producto $productoId no existe");
         }
 
+        if ($producto['stock'] < $cantidad) {
+            throw new Exception("Stock insuficiente para el producto '{$producto['nombre']}'. Stock disponible: {$producto['stock']}, solicitado: {$cantidad}");
+        }
+
         $precioUnitario = $producto['precio_oferta'] ?? $producto['precio_original'];
-        $subtotal = $precioUnitario * $cantidad;
-        $total += $subtotal;
+        $subtotalProducto = $precioUnitario * $cantidad;
+        $subtotal += $subtotalProducto;
 
         $stmt = $pdo->prepare("
-            INSERT INTO pedido_productos
-            (pedido_id, producto_id, cantidad, precio_unitario)
-            VALUES (?, ?, ?, ?)
+        INSERT INTO pedido_productos
+        (pedido_id, producto_id, cantidad, precio_unitario)
+        VALUES (?, ?, ?, ?)
         ");
         $stmt->execute([
             $pedidoId,
@@ -116,7 +117,21 @@ try {
             $cantidad,
             $precioUnitario
         ]);
+
+        $stmt = $pdo->prepare("
+        UPDATE productos 
+        SET stock = stock - ? 
+        WHERE id = ?
+        ");
+        $stmt->execute([$cantidad, $productoId]);
     }
+
+    $iva = $subtotal * IVA_PORCENTAJE;
+    $subtotalConIva = $subtotal + $iva;
+
+    $gastosEnvio = ($subtotalConIva < UMBRAL_ENVIO_GRATIS) ? GASTOS_ENVIO : 0;
+
+    $total = $subtotalConIva + $gastosEnvio;
 
     $stmt = $pdo->prepare("
         UPDATE pedidos
@@ -131,9 +146,14 @@ try {
         'ok' => true,
         'message' => 'Pedido creado correctamente',
         'pedidoId' => $pedidoId,
-        'total' => $total
+        'desglose' => [
+            'subtotal' => round($subtotal, 2),
+            'iva' => round($iva, 2),
+            'subtotal_con_iva' => round($subtotalConIva, 2),
+            'gastos_envio' => round($gastosEnvio, 2),
+            'total' => round($total, 2)
+        ]
     ], JSON_UNESCAPED_UNICODE);
-
 } catch (Exception $e) {
     $pdo->rollBack();
 
@@ -144,4 +164,3 @@ try {
         'error' => $e->getMessage()
     ], JSON_UNESCAPED_UNICODE);
 }
-?>

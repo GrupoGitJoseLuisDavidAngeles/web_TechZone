@@ -60,10 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="./register.css">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
 </head>
 
 <body>
-    <div class="tLogo"></div>
+    <a href="/public/index.php">
+        <div class="tLogo"></div>
+    </a>
     <main>
         <h2>Registro</h2>
         <?php if (!empty($errores)): ?>

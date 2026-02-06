@@ -7,7 +7,7 @@
     <title>TechZone</title>
     <link rel="stylesheet" href="./index.css">
     <script type="module" src="index.js"></script>
-    <link rel="icon" type="image/png" href="../assets/logo_techzone.png">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
 
 </head>
 
@@ -31,18 +31,30 @@
         </div>
 
         <a href="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
-        <a href="../carrito/cart.php">Carrito</a>
+        <a href="../cart/cart.php">Carrito</a>
     </header>
 
     <aside class="aside-left"></aside>
 
     <main>
-        <h1><span id="tTitleFeatured">Productos</span> destacados</h1>
-        <div id="tFeaturedProducts" class="featured-products">
+        <div class="carousel" id="featuredCarousel">
+            <button class="carousel-btn prev">⬅</button>
+
+            <div class="carousel-window">
+                <div class="carousel-track" id="tFeaturedCarousel">
+                </div>
+            </div>
+
+            <button class="carousel-btn next">➡</button>
         </div>
 
         <h1><span id="tTitleOffers">Productos</span> en oferta</h1>
         <div id="tProductsOnOffer" class="featured-products">
+            (Usando la base de datos)
+        </div>
+
+        <h1>Otros <span id="tTitleFeatured">productos</span></h1>
+        <div id="tFeaturedProducts" class="featured-products">
             (Usando la base de datos)
         </div>
     </main>

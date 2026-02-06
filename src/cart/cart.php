@@ -7,7 +7,7 @@
     <title>Carrito</title>
     <link rel="stylesheet" href="./cart.css">
     <script type="module" src="./cart.js"></script>
-    <link rel="icon" type="image/png" href="../assets/logo_techzone.png">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         </div>
 
         <a class="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
-        <a href="../carrito/cart.php">Carrito</a>
+        <a href="../cart/cart.php">Carrito</a>
     </header>
 
     <aside class="asideLeft"></aside>
@@ -39,7 +39,7 @@
         <div class="cart">
             <h1>Carrito de la compra</h1>
 
-            <p id="productsQuantity">x</p>
+            <p id="productsQuantity">0 productos</p>
 
             <div id="freeShippingAlert" class="freeShippingNotice">
                 ¡Felicidades! Tu compra supera los 200€, los gastos de envío son gratis.

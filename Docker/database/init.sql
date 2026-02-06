@@ -42,8 +42,8 @@ CREATE TABLE carrito_productos (
     carrito_id INT NOT NULL,
     producto_id INT NOT NULL,
     cantidad INT NOT NULL,
-    FOREIGN KEY (carrito_id) REFERENCES carritos(id),
-    FOREIGN KEY (producto_id) REFERENCES productos(id),
+    FOREIGN KEY (carrito_id) REFERENCES carritos(id) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE,
     UNIQUE (carrito_id, producto_id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -73,7 +73,7 @@ CREATE TABLE pedido_productos (
     precio_unitario DECIMAL(10,2) NOT NULL,
 
     FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE,
-    FOREIGN KEY (producto_id) REFERENCES productos(id)
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 INSERT INTO categorias (nombre, descripcion) VALUES

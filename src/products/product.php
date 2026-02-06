@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
     <link rel="stylesheet" href="./product.css">
     <script type="module" src="./product.js"></script>
-        <link rel="icon" type="image/png" href="../assets/logo_techzone.png">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
 </head>
 <body>
     <header>
@@ -28,7 +28,7 @@
         </div>
 
         <a href="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
-        <a href="../carrito/cart.php">Carrito</a>
+        <a href="../cart/cart.php">Carrito</a>
     </header>
 
     <aside class="asideLeft"></aside>

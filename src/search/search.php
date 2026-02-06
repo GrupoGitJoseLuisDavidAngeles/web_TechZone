@@ -7,15 +7,15 @@
     <title>TechZone</title>
     <link rel="stylesheet" href="./search.css">
     <script type="module" src="index.js"></script>
-    <link rel="icon" type="image/png" href="../assets/logo_techzone.png">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
     <script type="module" src="./search.js"></script>
 </head>
 
 <body>
     <header>
-        <!-- <a href="../public/index.php"> -->
+        <a href="../public/index.php">
             <div class="tLogo"></div>
-        <!-- </a> -->
+        </a>
 
         <div>
             <label for="">Categorías</label>
@@ -30,7 +30,7 @@
         </div>
 
         <a href="../auth/login.php" id="tLnkLogin">Iniciar sesión</a>
-        <a href="../carrito/index.php">Carrito</a>
+        <a href="../cart/cart.php">Carrito</a>
     </header>
 
     <aside class="aside-left"></aside>

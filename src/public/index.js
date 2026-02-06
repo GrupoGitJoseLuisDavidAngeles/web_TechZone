@@ -1,6 +1,6 @@
 import { checkTokenAndChangeLoginButton } from "../libs/token.utils.js";
 import productosService from "../services/productos.service.js";
-import {redirectToSearchPage, fillCategorySelect} from "../libs/search.utils.js";
+import { redirectToSearchPage, fillCategorySelect } from "../libs/search.utils.js";
 
 setup();
 
@@ -15,6 +15,7 @@ async function setup() {
     let ofertas = await service.getOffers();
 
     fillContainers(productos, ofertas);
+    fillFeaturedCarousel(productos, ofertas);
 
     const nSelCategory = document.querySelector('#tSelectCategory');
     nSelCategory.addEventListener('change', async e => {
@@ -26,6 +27,99 @@ async function setup() {
     searchBtn.addEventListener("click", redirectToSearchPage);
 }
 
+function getRandomOffers(offers, count = 3) {
+    const shuffled = [...offers].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+}
+
+function fillFeaturedCarousel(products, offers) {
+    const nTrack = document.querySelector('#tFeaturedCarousel');
+    nTrack.innerHTML = '';
+
+    const randomOffers = getRandomOffers(offers, 3);
+
+    randomOffers.forEach(offer => {
+        const product = products.find(p => p.id === offer.producto_id);
+        if (!product) return;
+
+        const nCard = document.createElement('div');
+        nCard.classList.add('carousel-product-card');
+        nCard.dataset.id = product.id;
+        nCard.addEventListener("click", redirectToProduct);
+
+        const nImg = document.createElement('img');
+        nImg.src = 'http://localhost:8081/assets/' + product.imagen;
+        nImg.classList.add('product-image');
+
+        const nName = document.createElement('p');
+        nName.textContent = offer.nombre;
+        nName.classList.add('product-name');
+
+        const nPrecioNuevo = document.createElement('p');
+        nPrecioNuevo.textContent = offer.precio_nuevo + ' €';
+        nPrecioNuevo.classList.add('product-price');
+
+        const nDescuento = document.createElement('p');
+        const discountPercent = offer.precio_original
+            ? '-' + ((offer.precio_original - offer.precio_nuevo) / offer.precio_original * 100).toFixed(0) + '%'
+            : '';
+        nDescuento.textContent = discountPercent;
+        nDescuento.classList.add('product-discount');
+
+        const nPrecioOriginal = document.createElement('span');
+        nPrecioOriginal.textContent = offer.precio_original + ' €';
+        nPrecioOriginal.classList.add('product-price-old');
+
+        nPrecioNuevo.appendChild(nPrecioOriginal);
+
+        nCard.append(nImg, nName, nPrecioNuevo, nDescuento);
+        nTrack.appendChild(nCard);
+    });
+
+    initCarousel();
+}
+
+function initCarousel() {
+    const carousel = document.getElementById('featuredCarousel');
+    const track = carousel.querySelector('.carousel-track');
+    const next = carousel.querySelector('.next');
+    const prev = carousel.querySelector('.prev');
+
+    let slides = Array.from(track.children);
+    let slideWidth = carousel.querySelector('.carousel-window').clientWidth;
+
+    function update() {
+        track.style.transition = 'transform 0.4s ease';
+        track.style.transform = `translateX(-${slideWidth}px)`;
+    }
+
+    next.addEventListener('click', () => {
+        track.style.transition = 'transform 0.4s ease';
+        track.style.transform = `translateX(-${slideWidth}px)`;
+
+        track.addEventListener('transitionend', function handler() {
+            track.appendChild(track.firstElementChild); 
+            track.style.transition = 'none';
+            track.style.transform = 'translateX(0)'; 
+            track.removeEventListener('transitionend', handler);
+        });
+    });
+
+    prev.addEventListener('click', () => {
+        track.insertBefore(track.lastElementChild, track.firstElementChild);
+        track.style.transition = 'none';
+        track.style.transform = `translateX(-${slideWidth}px)`;
+
+        requestAnimationFrame(() => {
+            track.style.transition = 'transform 0.4s ease';
+            track.style.transform = 'translateX(0)';
+        });
+    });
+
+    window.addEventListener('resize', () => {
+        slideWidth = carousel.querySelector('.carousel-window').clientWidth;
+    });
+}
 
 async function changeTitles(e, service) {
     const nSelect = e.target;
@@ -38,7 +132,7 @@ async function changeTitles(e, service) {
         if (cat) newTitle = cat.nombre;
     }
 
-    document.querySelector('#tTitleFeatured').textContent = newTitle;
+    document.querySelector('#tTitleFeatured').textContent = newTitle.toLowerCase();
     document.querySelector('#tTitleOffers').textContent = newTitle;
 }
 
@@ -63,14 +157,14 @@ function fillContainers(productos, ofertas) {
     const ofertaIds = ofertas.map(oferta => oferta.producto_id);
     const productosSinOferta = productos.filter(prod => !ofertaIds.includes(prod.id));
 
-    fillFeaturedContainer(productosSinOferta); 
-    fillOnOffer(productos, ofertas);           
+    fillFeaturedContainer(productosSinOferta);
+    fillOnOffer(productos, ofertas);
 }
 
 
-function redirectToProduct(event){
+function redirectToProduct(event) {
     const productId = event.currentTarget.dataset.id;
-    window.location = `product.php?id=${productId}`;
+    window.location = `/products/product.php?id=${productId}`;
 }
 
 /**
@@ -89,7 +183,7 @@ function fillFeaturedContainer(productos) {
         nCard.classList.add('product-card');
         nCard.dataset.id = product.id;
         nCard.addEventListener("click", redirectToProduct);
-        
+
         const nImg = document.createElement('img');
         nCard.appendChild(nImg);
         nImg.classList.add('product-image');

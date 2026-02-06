@@ -37,12 +37,36 @@ export async function checkTokenAndChangeLoginButton(token) {
 
         if (userData && userData.nombre) {
             loginButton.textContent = userData.nombre;
-            loginButton.href = '/profile/profile.php';
+
+            if (userData.rol && userData.rol.toLowerCase() === 'admin') {
+                loginButton.href = '/admin/admin.php';
+            } else {
+                loginButton.href = '/profile/profile.php';
+            }
         } else {
             loginButton.textContent = 'Iniciar Sesión';
         }
     } catch (error) {
         loginButton.textContent = 'Iniciar Sesión';
+    }
+}
+
+export async function isAdmin(token) {
+    if (!token) return false;
+
+    const service = new UsuarioService();
+
+    try {
+        var userData = await service.getUserDataByToken(token);
+
+        if (userData && userData.rol) {
+            console.log(userData.rol);
+            return userData.rol.toLowerCase() === 'admin';
+        } else {
+            return false;
+        }
+    } catch (error) {
+        return false;
     }
 }
 

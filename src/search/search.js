@@ -28,7 +28,7 @@ async function setup() {
 
 function redirectToProductPage(event) {
     const productId = event.currentTarget.dataset.id;
-    window.location = `/public/product.php?id=${productId}`;
+    window.location = `/products/product.php?id=${productId}`;
 }
 
 function setupCategorySelect(categoryId) {

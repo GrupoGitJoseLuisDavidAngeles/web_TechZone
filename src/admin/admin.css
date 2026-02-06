@@ -38,7 +38,7 @@ main h2 {
 }
 
 
-#btnLogout {
+#tBtnLogout {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -52,14 +52,14 @@ main h2 {
     transition: background-color 0.3s;
 }
 
-#btnLogout:hover {
+#tBtnLogout:hover {
     background-color: #dc2626;
 }
 
 
 .add-product-form {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 0.8rem;
     margin-bottom: 1.8rem;
 }
@@ -105,6 +105,13 @@ main h2 {
     box-shadow: 0 5px 15px #00000022;
     border-radius: 8px;
     overflow: hidden;
+}
+
+#productsTable td:last-child {
+    display: flex;
+    gap: 0.3rem;
+    justify-content: center;
+    align-items: center;
 }
 
 #productsTable th, #productsTable td {
@@ -180,7 +187,7 @@ main h2 {
 
 .tLogo {
     position: absolute;
-    background-image: url("../public/images/logo_techzone.png");
+    background-image: url("/assets/logo_techzone.png");
     background-repeat: no-repeat;
     background-size: contain;
     top: 10px;
