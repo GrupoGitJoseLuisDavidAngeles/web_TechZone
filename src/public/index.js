@@ -164,7 +164,7 @@ function fillContainers(productos, ofertas) {
 
 function redirectToProduct(event) {
     const productId = event.currentTarget.dataset.id;
-    window.location = `product.php?id=${productId}`;
+    window.location = `/products/product.php?id=${productId}`;
 }
 
 /**

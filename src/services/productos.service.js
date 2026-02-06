@@ -79,7 +79,6 @@ export default class productosService {
             throw new Error(data.message || 'Error obteniendo las ofertas');
         }
 
-        console.log(data.ofertas);
         return data.ofertas;
     }
 

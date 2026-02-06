@@ -7,22 +7,24 @@
     <title>Perfil de usuario - TechZone</title>
     <link rel="stylesheet" href="./profile.css">
     <script type="module" src="profile.js"></script>
-    <link rel="icon" type="image/png" href="./images/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
 
 </head>
 
 <body>
     <header>
-        <div class="tLogo"></div>
-        <a href="../auth/login.php">Iniciar sesión</a>
-        <a href="../carrito/index.php">Carrito</a>
+        <div></div>
+        <a href="/public/index.php">
+            <div class="tLogo"></div>
+        </a>
+        <a href="/cart/cart.php">Carrito</a>
     </header>
 
     <aside class="aside-left"></aside>
 
     <main>
         <h1 class="profile-title">Perfil de <span id="tTitleUsername">Pepito Pérez</span></h1>
-        <img src="./images/avatar.png" alt="Foto de perfil del usuario" class="profile-avatar">
+        <img src="/assets/avatar.png" alt="Foto de perfil del usuario" class="profile-avatar">
         <div class="profile-data-card">
             <div>
                 <p class="data-type">Nombre</p>
@@ -33,24 +35,12 @@
                 <p class="data-type">Email</p>
                 <p class="data-element">peperez@mail.com</p>
             </div>
-            <button type="button">Editar perfil</button>
         </div>
 
-        <!-- Resumen rápido -->
         <button class="end-session">Cerrar sesión</button>
         <div class="profile-orders">
             <h2>Pedidos</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Cantidad de items</th>
-                        <th>Precio</th>
-                        <th>Items</th>
-                    </tr>
-                </thead>
-                <tbody id="tTablePedidos"></tbody>
-            </table>
+            <div id="pedidosContainer" class="pedidos-container"></div>
         </div>
     </main>
 
