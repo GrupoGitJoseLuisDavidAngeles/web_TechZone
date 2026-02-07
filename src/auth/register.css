@@ -1,6 +1,6 @@
 :root {
     font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 *, *::before, *::after {
@@ -11,108 +11,215 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #000000, #1e00ff);
+    background: linear-gradient(135deg, #000000, #1d1dff, #3924db);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    padding: 1rem;
 }
-
-
-main {
-    background-color: white;
-    padding: 2rem 2.5rem;
-    border-radius: 12px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 10px 25px #00000033;
-}
-
 
 .tLogo {
     position: absolute;
     background-image: url("/assets/logo_techzone.png");
     background-repeat: no-repeat;
     background-size: contain;
-    top: 10px;
-    left: 10px;
-    width: 300px;
-    height: 150px;
+    top: 20px;
+    left: 20px;
+    width: 280px;
+    height: 110px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
+}
+
+.tLogo:hover {
+    transform: scale(1.05);
+}
+
+body > a {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+main {
+    background-color: #ffffff;
+    padding: 2.5rem 2.5rem 2rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    backdrop-filter: blur(10px);
 }
 
 main h2 {
     text-align: center;
-    margin-bottom: 1.5rem;
-    color: rgb(51, 51, 51);
+    margin-bottom: 2rem;
+    color: #1a1a2e;
+    font-size: 1.75rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
 }
 
+main h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #1d1dff, #3924db);
+    border-radius: 2px;
+}
 
 .registerForm {
     display: flex;
     flex-direction: column;
 }
 
-
 .registerForm label {
-    margin-bottom: 0.3rem;
-    font-size: 0.9rem;
-    color: rgb(85, 85, 85);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #2d3748;
 }
-
 
 .registerForm input {
-    padding: 0.6rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    padding: 0.875rem 1rem;
+    margin-bottom: 1.25rem;
+    border: 2px solid #e8ebf0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
 }
 
+.registerForm input:hover {
+    background-color: #ffffff;
+    border-color: #cbd5e0;
+}
 
 .registerForm input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    border-color: #1d1dff;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(29, 29, 255, 0.1);
 }
-
 
 .registerForm button {
     margin-top: 0.5rem;
-    padding: 0.7rem;
-    background-color: #667eea;
-    color: #fff;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, #1d1dff, #3924db);
+    color: #ffffff;
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(29, 29, 255, 0.3);
 }
-
 
 .registerForm button:hover {
-    background-color: #5563c1;
+    background: linear-gradient(135deg, #2929ff, #4a36e8);
     transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(29, 29, 255, 0.4);
 }
-
 
 .registerForm button:active {
     transform: translateY(0);
 }
 
 .errors {
-    background-color: #fdecea;
+    background: linear-gradient(135deg, #fee, #fdd);
     color: #b71c1c;
-    border: 1px solid #f5c6cb;
-    border-radius: 6px;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
+    border: 2px solid #f5c6cb;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
     text-align: center;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(183, 28, 28, 0.1);
+}
+
+.success {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    color: #155724;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);
 }
 
 @media screen and (max-width: 815px) {
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+        gap: 2.5rem;
+    }
+
+    body > a {
+        position: static;
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
     .tLogo {
-        display: none;
+        position: static;
+        display: inline-block;
+        width: 320px;
+        height: 128px;
+        background-position: center;
+        background-size: contain;
+        filter: drop-shadow(0 4px 16px rgba(255, 255, 255, 0.25));
+    }
+
+    main {
+        padding: 2rem 1.75rem;
+        margin: 0 1rem;
+        width: calc(100% - 2rem);
+        max-width: 440px;
+    }
+
+    main h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 1.5rem 0;
+        gap: 2rem;
+    }
+
+    .tLogo {
+        width: 280px;
+        height: 112px;
+    }
+
+    main {
+        padding: 1.75rem 1.5rem;
+    }
+
+    .registerForm input,
+    .registerForm button {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.95rem;
     }
 }

@@ -1,6 +1,6 @@
 :root {
     font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 *, *::before, *::after {
@@ -19,6 +19,7 @@ body {
         "header"
         "main"
         "footer";
+    background-color: #f5f7fa;
 }
 
 .asideRight {
@@ -33,7 +34,7 @@ main {
         "freeShippingNotice"
         "order";
     gap: 2rem;
-    padding: 1rem;
+    padding: 2rem 1.5rem;
     min-height: 900px; 
 }
 
@@ -44,26 +45,31 @@ main {
 }
 
 .cart > p {
-    color: #808080;
-    font-size: 1.7rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
 }
 
 .freeShippingNotice {
     grid-area: freeShippingNotice;
     display: none;
-    padding:  0.5rem;
-    background-color: #CCE2CB;
-    border-radius: 0.5rem;
+    padding:  0.75rem 1rem;
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    border-radius: 8px;
+    border-left: 4px solid #28a745;
     text-align: center;
-    margin: 1rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);
 }
 
 .productsContainer {
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
-    margin-top: 2rem;
-    gap: 3rem;
+    margin-top: 1.5rem;
+    gap: 2rem;
 }
 
 .product {
@@ -71,9 +77,13 @@ main {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto;
     gap: 1.5rem;
-    padding: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #d6d6d6;
+    padding: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e8ebf0;
+    background-color: #ffffff;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
 }
 
 .productsContainer .product:last-child {
@@ -81,9 +91,9 @@ main {
 }
 
 .product:hover {
-    background-color: #f1f1f1;
-    border-radius: 15px;
-    transition: background-color 0.2s linear;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
 .productImage {
@@ -98,30 +108,40 @@ main {
 .productInformation {
     display: flex;
     flex-direction: column; 
-    gap: 0.4rem;
+    gap: 0.5rem;
 }
 
 .productName {
     font-size: 1.6rem;
+    font-weight: 600;
+    color: #2d3748;
 }
 
 .category {
     font-size: 1.3rem;
-    color: grey;
+    color: #718096;
 }
 
 .deliveryDay {
     font-size: 1.1rem;
-    color: green;
+    color: #28a745;
     margin: 10px 0 10px 0;
+    font-weight: 500;
 }
 
 .btnDelete, .btnAdd {
-    background-color: #c9c6c656;
-    border-radius: 5px;
-    padding: 0.5rem;
-    border: none;
+    background-color: #e8ebf0;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cbd5e0;
     cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.btnDelete:hover, .btnAdd:hover {
+    background-color: #cbd5e0;
+    border-color: #a0aec0;
 }
 
 .btnDelete {
@@ -137,15 +157,17 @@ main {
     display: inline-block;
     width: fit-content;
     text-decoration: none;
-    color: blue;
+    color: #1d1dff;
     font-size: 1.1rem;
     padding: 0;
     margin: 0;
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .deleteProduct:hover {
     text-decoration: underline;
+    color: #3924db;
 }
 
 .quantityControls {
@@ -157,24 +179,26 @@ main {
 .productQuantity {
     font-size: 1rem;
     margin: 1rem 0rem;
-    border: 1px solid #d6d6d6;
-    border-radius: 5px;
-    padding: 5px 25px;
+    border: 1px solid #e8ebf0;
+    border-radius: 6px;
+    padding: 8px 25px;
+    font-weight: 500;
 }
 
 .price {
-    font-weight: bold;
+    font-weight: 700;
     font-size: 1.4rem;
     display: flex;
     justify-content: center;
-    gap: 5px;
+    gap: 8px;
+    color: #1d1dff;
+}
 
-    .old-amount {
-        font-size: 1rem;
-        font-weight: normal;
-        color: #4e4e4e;
-        text-decoration: line-through;
-    }
+.price .old-amount {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #718096;
+    text-decoration: line-through;
 }
 
 .amount {
@@ -191,11 +215,11 @@ main {
     bottom: 5px;
     width: 100%; 
     margin-top: 1rem;
-    padding: 20px;
+    padding: 1.5rem;
     background-color: #ffffff;
-    border: 1px solid #d5d5d5;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px #00000033;
+    border: 1px solid #e8ebf0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .order h2, .order .orderSummary {
@@ -204,54 +228,62 @@ main {
 
 .order h2 {
     font-size: 1.5rem;
-    margin-bottom: 15px;
+    font-weight: 700;
+    margin-bottom: 1rem;
     text-align: center;
+    color: #1a1a2e;
 }
 
 .orderSummary {
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
 }
 
 .orderSummary p {
     display: flex;
     justify-content: space-between;
-    margin: 8px 0;
+    margin: 10px 0;
     font-size: 1rem;
-    color: #555;
+    color: #4a5568;
 }
 
 .subtotal, .iva, .total{
-    font-weight: bold;
-    color: #000;
+    font-weight: 700;
+    color: #1a1a2e;
 }
 
 .total {
     display: flex;
     justify-content: space-between;
-    font-size: 1.2rem;
-    margin-top: 10px;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid #e8ebf0;
 }
 
 .textIva {
-    color: #b1b1b1;
+    color: #a0aec0;
 }
 
 .btnComprar {
     display: block;
     width: 100%;
-    padding: 10px 0;
-    margin-top: 15px;
-    background-color: #007bff;  
+    padding: 12px 0;
+    margin-top: 1rem;
+    background: linear-gradient(135deg, #1d1dff, #3924db);
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(29, 29, 255, 0.2);
 }
 
 .btnComprar:hover {
-    background-color: #014c9c;   
+    background: linear-gradient(135deg, #1515cc, #2d1baa);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(29, 29, 255, 0.3);
 }
 
 .asideLeft {
@@ -265,17 +297,26 @@ header, footer {
 
 header {
     grid-area: header;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     padding: 0.75rem 1.5rem;
     gap: 1rem;
-    flex-wrap: wrap;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: nowrap;
 }
 
+header > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+header label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
 
 .tLogo {
     width: 10rem;
@@ -283,32 +324,46 @@ header {
     background-image: url("/assets/logo_techzone.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: center;
     flex-shrink: 0;
 }
 
+
 .selectCategories {
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
-    border-radius: 0.25rem;
-    border: 0.0625rem solid rgb(255, 255, 255);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.selectCategories:hover {
+    border-color: #1d1dff;
 }
 
 
 .divSearchBar {
     position: relative;
-    width: 18rem;
-    margin-left: 20px;
+    width: 16rem;
+    flex-shrink: 0;
 }
 
 .inputSearchBar {
     width: 100%;
-    padding: 0.5rem 2.5rem 0.5rem 0.5rem;
-    border: 0.0625rem solid #ccc;
-    border-radius: 0.25rem;
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
     font-size: 0.875rem;
     outline: none;
+    transition: all 0.2s ease;
+}
+
+.inputSearchBar:focus {
+    border-color: #1d1dff;
+    box-shadow: 0 0 0 3px rgba(29, 29, 255, 0.1);
 }
 
 .iconSearchBar {
@@ -331,11 +386,14 @@ header a {
     margin-left: 1rem;
     cursor: pointer;
     font-size: 1rem;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
 header a:hover {
-    color: black;
+    color: #e0e0e0;
+    transform: translateY(-1px);
 }
 
 
@@ -347,20 +405,33 @@ footer {
     display: flex;
     justify-content: space-around;
     list-style: none;
-    padding: 0.5rem;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
     gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.listaFooter li {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.listaFooter li:hover {
+    color: #e0e0e0;
 }
 
 .pCopyright {
     text-align: center;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    font-size: 0.875rem;
+    opacity: 0.9;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
     header {
         flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 0.5rem;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1rem;
     }
 
     .divSearchBar {
@@ -368,12 +439,20 @@ footer {
         max-width: 300px;
     }
 
+    header a {
+        margin: 0 0.5rem;
+    }
+
+    main {
+        padding: 1.5rem 1rem;
+    }
+
     .cart > p {
         font-size: 1.5rem;
     }
 
     .productName {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     .category {
@@ -382,13 +461,32 @@ footer {
 
     .price {
         font-size: 1.2rem;
+    }
 
-        .old-amount {
-            font-size: 1rem;
-            font-weight: normal;
-            color: #4e4e4e;
-            text-decoration: line-through;
-        }
+    .price .old-amount {
+        font-size: 1rem;
+    }
+
+    body {
+        grid-template-columns: 2% 1fr 2%;
+        grid-template-areas:
+            "header header header"
+            "main   main   main"
+            "footer footer footer";
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1239px) {
+    body {
+        grid-template-columns: 5% 1fr 5%;
+        grid-template-areas:
+            "header header header"
+            "main   main   main"
+            "footer footer footer";
+    }
+
+    header {
+        flex-wrap: nowrap;
     }
 } 
 
@@ -429,17 +527,14 @@ footer {
 
     .price {
         text-align: end;
+    }
 
-        .old-amount {
-            font-size: 1rem;
-            font-weight: normal;
-            color: #4e4e4e;
-            text-decoration: line-through;
-        }
+    .price .old-amount {
+        font-size: 1rem;
     }
 
     .total {
-        border-top: solid 1px #b0b0b0;
+        border-top: 2px solid #e8ebf0;
         padding-top: 1rem;
         font-size: 1rem;
     }

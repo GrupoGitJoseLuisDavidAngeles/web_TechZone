@@ -206,6 +206,7 @@ function fillProductWithData(products, offerts, categories, productId) {
     const details = document.createElement("details");
     details.setAttribute("class", "productDescription");
     details.setAttribute("id", "productDescriptionContainer");
+    details.setAttribute("open", true);
     nMain.appendChild(details);
 
     const summary = document.createElement("summary");

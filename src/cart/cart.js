@@ -218,7 +218,7 @@ function updateOrderSummary() {
 function showNumberOfProducts(){
     const products = document.querySelectorAll(".product");
     const cantidad = products.length;
-    const texto = cantidad === 1 ? "producto" : "productos";
+    const texto = cantidad === 1 ? "tipo de producto" : "tipos de productos";
 
     document.querySelector("#productsQuantity").textContent = 
         `${cantidad} ${texto}`;
