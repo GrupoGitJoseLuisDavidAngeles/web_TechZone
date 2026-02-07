@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración</title>
     <link rel="stylesheet" href="admin.css">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
     <script type="module" src="./admin.js"></script>
 </head>
 

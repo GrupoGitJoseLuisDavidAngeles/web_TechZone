@@ -1,6 +1,6 @@
 :root {
     font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 *, *::before, *::after {
@@ -18,8 +18,7 @@ body {
         "header header header"
         "main   main   main"
         "footer footer footer";
-    /* display: flex;
-    flex-direction: column; */
+    background-color: #f5f7fa;
 }
 
 .asideRight {
@@ -35,8 +34,8 @@ main {
     grid-template-areas: 
         "product"
         "description";
-    gap: 1rem;
-    padding: 1rem;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
 }
 
 .product {
@@ -50,82 +49,125 @@ main {
         "prices"
         "btnAdd";
     gap: 1.5rem;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .btnAdd {
     grid-area: btnAdd;
     display: block;
     width: 100%;
-    padding: 10px 0;
-    font-size: 1.8rem;
+    padding: 14px 0;
+    font-size: 1.1rem;
     margin-top: 0.5rem;
-    background-color: #007bff;  
+    background: linear-gradient(135deg, #1d1dff, #3924db);
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(29, 29, 255, 0.2);
+}
+
+.btnAdd:hover {
+    background: linear-gradient(135deg, #1515cc, #2d1baa);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(29, 29, 255, 0.3);
 }
 
 .productDescription {
     grid-area: description;
-    padding-top: 2rem;
-    font-size: 1.6rem;
+    padding: 2rem;
+    font-size: 1.1rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.productDescription summary {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e8ebf0;
 }
 
 details > p {
-    color: #616161;
-    padding-left: 2.8rem;
-}
-
-.btnAdd:hover {
-    background-color: #014c9c;   
+    color: #4a5568;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+    margin-top: 1rem;
 }
 
 .productImage {
     grid-area: productImage;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position-x: center;
+    background-position: center;
     align-content: center;
     aspect-ratio: 1;
+    padding: 1rem;
 }
 
 .productInformation {
     grid-area: productInformation;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 .productName {
-    font-size: 3rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.2;
 }
 
 .category {
-    font-size: 1.7rem;
-    color: grey;
+    font-size: 1.2rem;
+    color: #718096;
+    font-weight: 500;
+}
+
+.stock {
+    font-size: 1rem;
+    color: #28a745;
+    font-weight: 600;
 }
 
 .prices {
     grid-area: prices;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 
 .oldPrice {
-    font-size: 2rem;
-    color: grey;
+    font-size: 1.5rem;
+    color: #718096;
     text-decoration: line-through;
 }
 
 .newPrice {
-    font-size: 2.5rem;
-    font-weight: bold;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1d1dff;
 }
 
 .date {
-    font-size: 1.4rem;
+    font-size: 1rem;
     width: fit-content;
-    padding: 0.5rem;
-    border-radius: 10px;
-    background-color: blue;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #1d1dff, #3924db);
     color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(29, 29, 255, 0.2);
 }
 
 .offerEndDate{
@@ -143,31 +185,27 @@ header, footer {
 
 header {
     grid-area: header;
-    position: relative;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     padding: 0.75rem 1.5rem;
     gap: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: nowrap;
 }
 
-header a {
-    color: inherit;
-    text-decoration: none;
-    margin-left: 1rem;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: color 0.3s;
+header > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-header a:hover {
-    color: black;
+header label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
-footer {
-    grid-area: footer;
-}
 .tLogo {
     width: 10rem;
     height: 3rem;
@@ -175,30 +213,45 @@ footer {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    flex-shrink: 0;
 }
 
 
 .selectCategories {
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
-    border-radius: 0.25rem;
-    border: 0.0625rem solid rgb(255, 255, 255);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.selectCategories:hover {
+    border-color: #1d1dff;
 }
 
 
 .divSearchBar {
     position: relative;
-    width: 18rem;
+    width: 16rem;
+    flex-shrink: 0;
 }
 
 .inputSearchBar {
     width: 100%;
-    padding: 0.5rem 2.5rem 0.5rem 0.5rem;
-    border: 0.0625rem solid #ccc;
-    border-radius: 0.25rem;
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
     font-size: 0.875rem;
     outline: none;
+    transition: all 0.2s ease;
+}
+
+.inputSearchBar:focus {
+    border-color: #1d1dff;
+    box-shadow: 0 0 0 3px rgba(29, 29, 255, 0.1);
 }
 
 .iconSearchBar {
@@ -214,17 +267,50 @@ footer {
     cursor: pointer;
 }
 
+
+header a {
+    color: inherit;
+    text-decoration: none;
+    margin-left: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+header a:hover {
+    color: #e0e0e0;
+    transform: translateY(-1px);
+}
+
+footer {
+    grid-area: footer;
+}
+
 .listaFooter {
     display: flex;
     justify-content: space-around;
     list-style: none;
-    padding: 0.5rem;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
     gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.listaFooter li {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.listaFooter li:hover {
+    color: #e0e0e0;
 }
 
 .pCopyright {
     text-align: center;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    font-size: 0.875rem;
+    opacity: 0.9;
 }
 
 @media screen and (min-width: 768px) {
@@ -235,8 +321,9 @@ footer {
         grid-template-areas:
             "product             product"              
             "productDescription  productDescription"; 
-        gap: 0.5rem;
+        gap: 1.5rem;
         margin: 0 auto;
+        max-width: 1400px;
     }
 
     .product {
@@ -246,7 +333,7 @@ footer {
             "productImage productInformation"
             "productImage prices"
             "productImage btnAdd";
-        gap: 0.5rem;
+        gap: 1.5rem;
         align-items: center;
         position: relative;
     }
@@ -265,43 +352,77 @@ footer {
     }
 
     .oldPrice {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .newPrice {
-        font-size: 2.5rem;
-
+        font-size: 2.25rem;
     }
 
     .date {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .btnAdd {
         width: 100%;   
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         align-self: start;
     }
-
 
     .productDescription {
         grid-area: productDescription;
     }
-
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 768px) {
     header {
         flex-wrap: wrap;
         justify-content: space-around;
         gap: 0.5rem;
     }
 
+    .divSearchBar {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    main {
+        padding: 1.5rem 1rem;
+        gap: 1.5rem;
+    }
+
+    body {
+        grid-template-columns: 5% 1fr 5%;
+    }
+
+    .product {
+        padding: 1.5rem;
+    }
+
+    .productName {
+        font-size: 1.75rem;
+    }
+
+    .category {
+        font-size: 1.1rem;
+    }
+
+    .newPrice {
+        font-size: 1.75rem;
+    }
+
+    .oldPrice {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
     main {
         display: grid;
         grid-template-columns: 2fr 1fr; 
         grid-template-rows: auto; 
-        gap: 1rem;
+        gap: 2rem;
         padding: 2rem 3rem;
     }
 
@@ -312,21 +433,21 @@ footer {
             "productImage productInformation"
             "productImage prices"
             "productImage btnAdd";
-        gap: 0.25rem;
+        gap: 2rem;
+        padding: 2.5rem;
     }
 
     .productImage {
         display: flex;
-        width: 60%;
+        width: 80%;
         justify-content: center;
         justify-self: center;
     }
 
-    /* Object-fit:contain, no se deforma la imagen */
     .productImage img {
         display: flex;
         object-fit: contain; 
-        border-radius: 10px;
+        border-radius: 12px;
     }
 
     .productInformation {
@@ -336,67 +457,60 @@ footer {
     }
 
     .productName {
-        font-size: 3.8rem;
+        font-size: 2.5rem;
     }
 
     .category {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .prices {
         grid-area: prices;
         display: flex;
         flex-direction: column;
-        gap: 0.8rem;
+        gap: 1rem;
     }
 
     .oldPrice {
-        font-size: 2.1rem;
+        font-size: 2rem;
     }
 
     .newPrice {
-        font-size: 3rem;
+        font-size: 2.75rem;
     }
 
     .date {
-        font-size: 1.5rem;
-        padding: 0.7rem 1.2rem;
-        border-radius: 12px;
+        font-size: 1.25rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 24px;
     }
 
     .btnAdd {
         width: 100%;
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         justify-self: center; 
         margin-top: 1.5rem;
         align-self: start;
+        padding: 16px 0;
     }
 
     .productDescription {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        padding: 0;
+        padding: 2.5rem;
     }
     
-    .productDescription > summary {
+    .productDescription summary {
         font-size: 2rem;
-        margin: 0;
-        padding: 0;
-        display: list-item;
-        cursor: pointer;
+        margin-bottom: 1.5rem;
     }
 
     .productDescription > p {
-        font-size: 1.7rem;
-    }
-
-
-    .divSearchBar {
-        position: relative;
-        width: 18rem;
+        font-size: 1.1rem;
+        line-height: 1.8;
     }
 
     .stock {
