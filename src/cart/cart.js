@@ -33,6 +33,35 @@ async function setup() {
 
     const orderBtn = document.querySelector("#tBtnComprar");
     orderBtn.addEventListener("click", addOrder);
+
+    const clearCartBtn = document.querySelector("#tBtnVaciarCarrito");
+    clearCartBtn.addEventListener("click", clearCartHandler);
+}
+
+async function clearCartHandler() {
+    const token = window.localStorage.getItem("token");
+    const products = document.querySelectorAll('.product');
+
+    if (products.length === 0) {
+        alert("El carrito ya está vacío.");
+        return;
+    }
+
+    const confirmacion = confirm("¿Estás seguro de que quieres vaciar el carrito? Esta acción no se puede deshacer.");
+    
+    if (!confirmacion) {
+        return;
+    }
+
+    const carritoService = new CarritoService();
+
+    try {
+        await carritoService.clearCart(token);
+        alert("El carrito ha sido vaciado correctamente.");
+        window.location.reload();
+    } catch (error) {
+        alert("Error al vaciar el carrito: " + error.message);
+    }
 }
 
 async function addOrder() {
