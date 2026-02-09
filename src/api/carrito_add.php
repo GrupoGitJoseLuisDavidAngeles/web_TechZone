@@ -1,10 +1,11 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../libs/jwt.utils.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
 $CLAVE_JWT = 'CLAVE_SECRETA';
+$pdo = Database::getInstance();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -45,7 +46,7 @@ if (!$payload) {
 $usuarioId = $payload['sub'];
 
 $data = json_decode(file_get_contents('php://input'), true);
-$productoId = $data['productoId'] ?? null;
+$productoId = (int)$data['productoId'] ?? null;
 
 if (!$productoId || !is_numeric($productoId)) {
     http_response_code(400);
@@ -56,7 +57,7 @@ if (!$productoId || !is_numeric($productoId)) {
     exit;
 }
 
-$stmt = $pdo->prepare("SELECT id FROM productos WHERE id = ?");
+$stmt = $pdo->prepare("SELECT id, stock FROM productos WHERE id = ?");
 $stmt->execute([$productoId]);
 $producto = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -65,6 +66,15 @@ if (!$producto) {
     echo json_encode([
         'ok' => false,
         'message' => 'Producto no encontrado'
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+if ($producto['stock'] <= 0) {
+    http_response_code(400);
+    echo json_encode([
+        'ok' => false,
+        'message' => 'Producto sin stock disponible'
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }
@@ -90,6 +100,16 @@ $stmt->execute([$carritoId, $productoId]);
 $linea = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($linea) {
+    $nuevaCantidad = $linea['cantidad'] + 1;
+    if ($nuevaCantidad > $producto['stock']) {
+        http_response_code(400);
+        echo json_encode([
+            'ok' => false,
+            'message' => "No hay suficiente stock. Stock disponible: {$producto['stock']}"
+        ], JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+
     $stmt = $pdo->prepare("
         UPDATE carrito_productos 
         SET cantidad = cantidad + 1 

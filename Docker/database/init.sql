@@ -42,8 +42,8 @@ CREATE TABLE carrito_productos (
     carrito_id INT NOT NULL,
     producto_id INT NOT NULL,
     cantidad INT NOT NULL,
-    FOREIGN KEY (carrito_id) REFERENCES carritos(id),
-    FOREIGN KEY (producto_id) REFERENCES productos(id),
+    FOREIGN KEY (carrito_id) REFERENCES carritos(id) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE,
     UNIQUE (carrito_id, producto_id)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -56,6 +56,24 @@ CREATE TABLE ofertas (
     activa TINYINT(1) DEFAULT 1,
     FOREIGN KEY (producto_id) REFERENCES productos(id)
         ON DELETE CASCADE
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE pedido_productos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT NOT NULL,
+    producto_id INT NOT NULL,
+    cantidad INT NOT NULL,
+    precio_unitario DECIMAL(10,2) NOT NULL,
+
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 INSERT INTO categorias (nombre, descripcion) VALUES
@@ -105,3 +123,11 @@ INSERT INTO ofertas (producto_id, precio_oferta, fecha_inicio, fecha_fin)
 VALUES
 (10, 99.99, NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY)),
 (12, 49.99, NOW(), DATE_ADD(NOW(), INTERVAL 12 DAY));
+
+INSERT INTO usuarios (nombre, email, password, rol)
+VALUES (
+    'admin',
+    'admin@techzone.com',
+    '$2y$10$/Tx57qfve334KTIkX2vyaOnVp4Ji5/VnVdvqJOZJygUNx5CAnVzHe',
+    'admin'
+);

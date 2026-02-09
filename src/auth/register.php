@@ -1,7 +1,8 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/Database.php';
 
 $errores = [];
+$pdo = Database::getInstance();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = trim($_POST['user'] ?? '');
@@ -59,10 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="./register.css">
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
 </head>
 
 <body>
-    <div class="tLogo"></div>
+    <a href="/public/index.php">
+        <div class="tLogo"></div>
+    </a>
     <main>
         <h2>Registro</h2>
         <?php if (!empty($errores)): ?>
@@ -74,10 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post" class="registerForm">
 
             <label for="tUsuario">Usuario:</label>
-            <input type="text" name="user" id="tUsuario" autocomplete="username">
+            <input type="text" name="user" id="tUsuario" autocomplete="username" value="<?= htmlspecialchars($usuario ?? '') ?>">
 
             <label for="tEmail">Email:</label>
-            <input type="text" name="email" id="tEmail" autocomplete="email">
+            <input type="text" name="email" id="tEmail" autocomplete="email" value="<?= htmlspecialchars($email ?? '') ?>">
         
             <label for="tPassword">Contraseña:</label>
             <input type="password" name="password" id="tPassword" autocomplete="new-password">

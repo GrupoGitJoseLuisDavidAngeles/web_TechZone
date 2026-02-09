@@ -27,9 +27,7 @@ if (!isset($headers['authorization'])) {
     exit;
 }
 
-$authHeader = $headers['authorization'];
-$token = str_replace('Bearer ', '', $authHeader);
-
+$token = str_replace('Bearer ', '', $headers['authorization']);
 $payload = validateJWT($token, $CLAVE_JWT);
 
 if (!$payload) {
@@ -48,35 +46,38 @@ $stmt->execute([$usuarioId]);
 $carrito = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$carrito) {
+    http_response_code(404);
     echo json_encode([
-        'ok' => true,
-        'productos' => []
+        'ok' => false,
+        'message' => 'Carrito no encontrado'
     ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
 $carritoId = $carrito['id'];
 
-$stmt = $pdo->prepare("
-    SELECT 
-    cp.id AS lineaId,
-    cp.cantidad,
-    p.id AS productoId,
-    p.nombre,
-    p.precio,
-    p.imagen,
-    c.nombre AS categoria
-    FROM carrito_productos cp
-    JOIN productos p ON cp.producto_id = p.id
-    JOIN categorias c ON p.categoria_id = c.id
-    WHERE cp.carrito_id = ?
-    ORDER BY cp.id ASC;
-");
-$stmt->execute([$carritoId]);
-$productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+try {
+    $pdo->beginTransaction();
 
-echo json_encode([
-    'ok' => true,
-    'productos' => $productos
-], JSON_UNESCAPED_UNICODE);
+    $stmt = $pdo->prepare("
+        DELETE FROM carrito_productos
+        WHERE carrito_id = ?
+    ");
+    $stmt->execute([$carritoId]);
+
+    $pdo->commit();
+
+    echo json_encode([
+        'ok' => true,
+        'message' => 'Carrito vaciado correctamente'
+    ], JSON_UNESCAPED_UNICODE);
+
+} catch (Exception $e) {
+    $pdo->rollBack();
+    http_response_code(500);
+    echo json_encode([
+        'ok' => false,
+        'message' => 'Error al vaciar el carrito'
+    ], JSON_UNESCAPED_UNICODE);
+}
 ?>

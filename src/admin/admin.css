@@ -1,0 +1,415 @@
+:root {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100dvh;
+    background: linear-gradient(135deg, #000000, #1d1dff, #3924db);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.tLogo {
+    position: absolute;
+    background-image: url("/assets/logo_techzone.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 20px;
+    left: 20px;
+    width: 280px;
+    height: 110px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
+}
+
+.tLogo:hover {
+    transform: scale(1.05);
+}
+
+body > a {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+main {
+    position: relative;
+    background-color: #ffffff;
+    margin: 3rem;
+    padding: 2.5rem 2.5rem 2rem;
+    border-radius: 16px;
+    width: 95%;
+    max-width: 1200px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+main h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #1a1a2e;
+    font-size: 1.75rem;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+main h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #1d1dff, #3924db);
+    border-radius: 2px;
+}
+
+#tBtnLogout {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+}
+
+#tBtnLogout:hover {
+    background: linear-gradient(135deg, #b71c1c, #a31818);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(211, 47, 47, 0.3);
+}
+
+.add-product-form {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 2px solid #e8ebf0;
+}
+
+.add-product-form input,
+.add-product-form select {
+    padding: 0.875rem 1rem;
+    border: 2px solid #e8ebf0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+}
+
+.add-product-form input:hover,
+.add-product-form select:hover {
+    border-color: #cbd5e0;
+}
+
+.add-product-form input:focus,
+.add-product-form select:focus {
+    outline: none;
+    border-color: #1d1dff;
+    box-shadow: 0 0 0 3px rgba(29, 29, 255, 0.1);
+}
+
+.add-product-form button {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+.add-product-form button:hover {
+    background: linear-gradient(135deg, #20c997, #17a589);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
+}
+
+.add-product-form button:active {
+    transform: translateY(0);
+}
+
+#productsTable {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#productsTable td:last-child {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#productsTable th, #productsTable td {
+    border: 1px solid #e8ebf0;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+#productsTable th {
+    background: linear-gradient(135deg, #1d1dff, #3924db);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+#productsTable tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+#productsTable tbody tr:hover {
+    background-color: #e8f4fd;
+    transition: background-color 0.2s ease;
+}
+
+#productsTable input, #productsTable select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid #e8ebf0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+#productsTable input:focus, #productsTable select:focus {
+    outline: none;
+    border-color: #1d1dff;
+    box-shadow: 0 0 0 2px rgba(29, 29, 255, 0.1);
+}
+
+#productsTable button {
+    margin: 0 0.25rem;
+    padding: 0.5rem 0.875rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #1d1dff, #3924db);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(29, 29, 255, 0.2);
+}
+
+#productsTable button:hover {
+    background: linear-gradient(135deg, #2929ff, #4a36e8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 29, 255, 0.3);
+}
+
+#productsTable button:active {
+    transform: translateY(0);
+}
+
+.errors {
+    background: linear-gradient(135deg, #fee, #fdd);
+    color: #b71c1c;
+    border: 2px solid #f5c6cb;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(183, 28, 28, 0.1);
+}
+
+.success {
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    color: #155724;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.1);
+}
+
+@media screen and (max-width: 1200px) and (min-width: 901px) {
+    .tLogo {
+        width: 240px;
+        height: 96px;
+    }
+
+    main {
+        max-width: 95%;
+        padding: 2rem 1.5rem;
+        margin-top: 8rem;
+    }
+
+    .add-product-form {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.875rem;
+    }
+
+    #productsTable th, #productsTable td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    #productsTable button {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.825rem;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    body {
+        padding: 0.5rem;
+        display: block;
+        min-height: 100vh;
+    }
+
+    body > a {
+        position: static;
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 1rem 0;
+        margin: 0;
+    }
+
+    .tLogo {
+        position: static;
+        display: inline-block;
+        width: 240px;
+        height: 96px;
+        background-position: center;
+        background-size: contain;
+        filter: drop-shadow(0 4px 16px rgba(255, 255, 255, 0.25));
+    }
+
+    main {
+        margin: 1rem auto;
+        padding: 1.5rem 1rem;
+        width: 100%;
+        max-width: 700px;
+    }
+
+    main h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+        margin-top: 3rem;
+    }
+
+    #tBtnLogout {
+        position: static;
+        display: block;
+        width: 100%;
+        margin-bottom: 1.5rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .add-product-form {
+        grid-template-columns: 1fr;
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+
+    #productsTable {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #productsTable th, #productsTable td {
+        min-width: 100px;
+        padding: 0.75rem 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    #productsTable button {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+        margin: 0.2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 0.25rem;
+    }
+
+    body > a {
+        padding: 0.75rem 0;
+    }
+
+    .tLogo {
+        width: 200px;
+        height: 80px;
+    }
+
+    main {
+        padding: 1.25rem 0.875rem;
+        border-radius: 12px;
+    }
+
+    main h2 {
+        font-size: 1.25rem;
+        margin-top: 2.5rem;
+    }
+
+    #tBtnLogout {
+        padding: 0.6rem 0.875rem;
+        font-size: 0.875rem;
+    }
+
+    .add-product-form {
+        padding: 1rem 0.875rem;
+    }
+
+    .add-product-form input,
+    .add-product-form select,
+    .add-product-form button {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.9rem;
+    }
+
+    #productsTable th, #productsTable td {
+        min-width: 90px;
+        padding: 0.6rem 0.4rem;
+        font-size: 0.8rem;
+    }
+
+    #productsTable button {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}

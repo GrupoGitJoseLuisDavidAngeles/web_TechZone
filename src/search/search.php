@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TechZone</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./search.css">
     <script type="module" src="index.js"></script>
     <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
-
+    <script type="module" src="./search.js"></script>
 </head>
 
 <body>
     <header>
-        <a href="/public/index.php">
-            <div class="tLogo">
-            </div>
+        <a href="../public/index.php">
+            <div class="tLogo"></div>
         </a>
 
         <div>
@@ -37,25 +36,8 @@
     <aside class="aside-left"></aside>
 
     <main>
-        <div class="carousel" id="featuredCarousel">
-            <button class="carousel-btn prev">⬅</button>
-
-            <div class="carousel-window">
-                <div class="carousel-track" id="tFeaturedCarousel">
-                </div>
-            </div>
-
-            <button class="carousel-btn next">➡</button>
-        </div>
-
-        <h1><span id="tTitleOffers">Productos</span> en oferta</h1>
-        <div id="tProductsOnOffer" class="featured-products">
-            (Usando la base de datos)
-        </div>
-
-        <h1>Otros <span id="tTitleFeatured">productos</span></h1>
-        <div id="tFeaturedProducts" class="featured-products">
-            (Usando la base de datos)
+        <h1 id="tH1Title">Productos encontrados</h1>
+        <div id="tDivProductContainer" class="product-container">
         </div>
     </main>
 

@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechZone</title>
-    <link rel="stylesheet" href="./index.css">
-    <script type="module" src="index.js"></script>
+    <title>Product</title>
+    <link rel="stylesheet" href="./product.css">
+    <script type="module" src="./product.js"></script>
     <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
-
 </head>
-
 <body>
     <header>
-        <a href="/public/index.php">
-            <div class="tLogo">
-            </div>
+        <a href="/public/index.php" class="tAIndex">
+            <div class="tLogo"></div>
         </a>
 
         <div>
@@ -24,6 +20,7 @@
                 <option value="all" selected>Todas las categorías</option>
             </select>
         </div>
+
 
         <div class="divSearchBar">
             <input class="inputSearchBar" type="text" name="" id="tInputSearch" placeholder="Buscar...">
@@ -34,36 +31,16 @@
         <a href="../cart/cart.php">Carrito</a>
     </header>
 
-    <aside class="aside-left"></aside>
+    <aside class="asideLeft"></aside>
 
-    <main>
-        <div class="carousel" id="featuredCarousel">
-            <button class="carousel-btn prev">⬅</button>
-
-            <div class="carousel-window">
-                <div class="carousel-track" id="tFeaturedCarousel">
-                </div>
-            </div>
-
-            <button class="carousel-btn next">➡</button>
-        </div>
-
-        <h1><span id="tTitleOffers">Productos</span> en oferta</h1>
-        <div id="tProductsOnOffer" class="featured-products">
-            (Usando la base de datos)
-        </div>
-
-        <h1>Otros <span id="tTitleFeatured">productos</span></h1>
-        <div id="tFeaturedProducts" class="featured-products">
-            (Usando la base de datos)
-        </div>
+    <main id="mainContainer">
     </main>
 
-    <aside class="aside-right"></aside>
+    <aside class="asideRight"></aside>
 
     <footer>
         <nav>
-            <ul class="listFooter">
+            <ul class="listaFooter">
                 <li>Contacto</li>
                 <li>Sobre nosotros</li>
                 <li>Comunidad</li>
@@ -73,5 +50,4 @@
     </footer>
 
 </body>
-
 </html>

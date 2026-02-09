@@ -15,10 +15,13 @@ unset($_SESSION['success_message']);
     <title>Iniciar sesión</title>
     <link rel="stylesheet" href="login.css">
     <script type="module" src="./login.js"></script>
+    <link rel="icon" type="image/png" href="/assets/logo_techzone.png">
 </head>
 
 <body>
-    <div class="tLogo"></div>
+    <a href="/public/index.php">
+        <div class="tLogo"></div>
+    </a>
     <main>
         <h2> Inicio de sesión </h2>
         <?php if ($mensajeExito): ?>
