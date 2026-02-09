@@ -38,6 +38,43 @@ main {
     min-height: 900px; 
 }
 
+.cartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.cartHeader h1 {
+    margin: 0;
+}
+
+.btnVaciarCarrito {
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.2);
+    white-space: nowrap;
+}
+
+.btnVaciarCarrito:hover {
+    background: linear-gradient(135deg, #c82333, #bd2130);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btnVaciarCarrito:active {
+    transform: translateY(0);
+}
+
 .cart {
     grid-area: shoppingCart;
     display: flex;
