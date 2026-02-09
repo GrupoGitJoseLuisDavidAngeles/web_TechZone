@@ -37,7 +37,10 @@
 
     <main>
         <div class="cart">
-            <h1>Carrito de la compra</h1>
+            <div class="cartHeader">
+                <h1>Carrito de la compra</h1>
+                <button class="btnVaciarCarrito" id="tBtnVaciarCarrito">Vaciar carrito</button>
+            </div>
 
             <p id="productsQuantity">0 productos</p>
 
