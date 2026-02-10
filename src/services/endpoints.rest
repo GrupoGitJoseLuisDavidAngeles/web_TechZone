@@ -8,7 +8,7 @@ GET http://localhost:8081/api/ofertas.php
 ### Añadir producto al carrito
 POST http://localhost:8081/api/carrito_add.php
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZSI6ImFsZXhhbmRyYSIsInJvbCI6ImNsaWVudGUiLCJpYXQiOjE3Njk3Njk5MTAsImV4cCI6MTc2OTc3NzExMH0.g9RarUNAsLObNAcbqvSgoTjQtEDyPLLSxfmLcJ5wOVY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsIm5vbWJyZSI6IlRlc3RVc3VhcmlvIiwicm9sIjoiY2xpZW50ZSIsImlhdCI6MTc3MDY1NjQ2NCwiZXhwIjoxNzcwNjYzNjY0fQ.EPSzTHTs6LCeQ8f3eMrOLyhHwDJ0c_nx7XgdUCBx02c
 
 {
   "productoId": 2
@@ -17,20 +17,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZ
 ### Obtener carrito de un usuario
 POST http://localhost:8081/api/carrito_get.php
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5vbWJyZSI6ImFkbWluIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3Njk3ODk2MDAsImV4cCI6MTc2OTc5NjgwMH0.DXsfxpn5jOOsjEq9E28Q84niXgnPWcDs2hN-eriDLJY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsIm5vbWJyZSI6IlRlc3RVc3VhcmlvIiwicm9sIjoiY2xpZW50ZSIsImlhdCI6MTc3MDY1NjQ2NCwiZXhwIjoxNzcwNjYzNjY0fQ.EPSzTHTs6LCeQ8f3eMrOLyhHwDJ0c_nx7XgdUCBx02c
 
 ### Añadir pedido
 POST http://localhost:8081/api/pedido_add.php
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZSI6ImFsZXhhbmRyYSIsInJvbCI6ImNsaWVudGUiLCJpYXQiOjE3Njk3Njk5MTAsImV4cCI6MTc2OTc3NzExMH0.g9RarUNAsLObNAcbqvSgoTjQtEDyPLLSxfmLcJ5wOVY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsIm5vbWJyZSI6IlRlc3RVc3VhcmlvIiwicm9sIjoiY2xpZW50ZSIsImlhdCI6MTc3MDY1NjQ2NCwiZXhwIjoxNzcwNjYzNjY0fQ.EPSzTHTs6LCeQ8f3eMrOLyhHwDJ0c_nx7XgdUCBx02c
 
 {
-  "productos": [1, 4, 4, 5]
+  "productos": [1, 3, 3, 5]
 }
 
 ### Obtener pedidos de un usuario
 GET http://localhost:8081/api/pedidos_get.php
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5vbWJyZSI6InBlZGlkb3MiLCJyb2wiOiJjbGllbnRlIiwiaWF0IjoxNzcwMzk2NTYwLCJleHAiOjE3NzA0MDM3NjB9.-MoJsN2B2aFXcH0izLw5KOOblVutLYtjxtz-yuE7HZA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsIm5vbWJyZSI6IlRlc3RVc3VhcmlvIiwicm9sIjoiY2xpZW50ZSIsImlhdCI6MTc3MDY1NjQ2NCwiZXhwIjoxNzcwNjYzNjY0fQ.EPSzTHTs6LCeQ8f3eMrOLyhHwDJ0c_nx7XgdUCBx02c
 
 ### Obtener información de usuario
 GET http://localhost:8081/api/usuario.php
