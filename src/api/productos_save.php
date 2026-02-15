@@ -120,6 +120,31 @@ if ($productoId) {
     }
 
     $stmt = $pdo->prepare("
+        SELECT precio_oferta 
+        FROM ofertas 
+        WHERE producto_id = ? 
+        AND activa = 1 
+        AND NOW() BETWEEN fecha_inicio AND fecha_fin
+    ");
+
+    $stmt->execute([$productoId]);
+    $oferta = $stmt->fetch();
+
+    if ($oferta) {
+        $precioOferta = floatval($oferta['precio_oferta']);
+        $nuevoPrecio = floatval($precio);
+
+        if ($nuevoPrecio <= $precioOferta) {
+            http_response_code(400);
+            echo json_encode([
+                'ok' => false,
+                'message' => "El precio del producto no puede ser menor o igual al precio de oferta (" . number_format($precioOferta, 2) . " €)"
+            ]);
+            exit;
+        }
+    }
+
+    $stmt = $pdo->prepare("
         UPDATE productos
         SET nombre = ?, descripcion = ?, precio = ?, stock = ?, categoria_id = ?, imagen = ?
         WHERE id = ?
