@@ -86,7 +86,7 @@ docker-compose up --build -d
 > **Nota:** El flag `--build` es necesario la primera vez para construir la imagen personalizada de PHP con las extensiones necesarias. En ejecuciones posteriores puedes usar solo `docker-compose up -d`.
 
 3. **Acceder a la aplicación**
-- Web: http://localhost:8081
+- Web: http://localhost:8081/public/index.php
 - Base de datos: localhost:45000
 
 ### Usuarios Predeterminados
